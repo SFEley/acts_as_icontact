@@ -5,11 +5,11 @@ begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
     gem.name = "acts_as_icontact"
-    gem.summary = %Q{TODO}
+    gem.summary = "Automatic bridge between iContact e-mail marketing service and Rails ActiveRecord"
     gem.email = "sfeley@gmail.com"
     gem.homepage = "http://github.com/SFEley/acts_as_icontact"
     gem.authors = ["Stephen Eley"]
-    gem.rubyforge_project = "acts_as_icontact"
+    gem.rubyforge_project = "actsasicontact"
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
 
