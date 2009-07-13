@@ -13,7 +13,7 @@ module ActsAsIcontact
       2.0
     end
     
-    # Prefixed to the beginning of every API request.  You can override this if you have some special
+    # Prefixed to the beginning of every API request.  You can override this if you have some special 
     # need (e.g. working against a testing server, or if iContact takes their API out of beta and 
     # changes the URI before the gem gets updated), but for the most part you can leave it alone.
     def self.url
