@@ -2,6 +2,7 @@ require 'rubygems'
 require 'rest_client'
 require 'json'
 
+$LOAD_PATH.unshift(File.dirname(__FILE__))
 require 'acts_as_icontact/exceptions'
 require 'acts_as_icontact/config'
 require 'acts_as_icontact/connection'

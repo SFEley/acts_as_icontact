@@ -16,7 +16,7 @@ module ActsAsIcontact
   end
   
   # The accountId retrieved from iContact.  Can also be set manually for performance optimization,
-  # but memoizes so that it won't be pulled more than once anyway.
+  # but remembers it so that it won't be pulled more than once anyway.
   def self.account_id
     @account_id ||= Accounts.first["accountId"].to_i
   end
