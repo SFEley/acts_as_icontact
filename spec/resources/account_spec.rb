@@ -36,13 +36,17 @@ describe ActsAsIcontact, "account method" do
   end
 end
 
-describe ActsAsIcontact::Accounts do
+describe ActsAsIcontact::Account do    
   it "can return all accounts" do
-    ActsAsIcontact::Accounts.all.should have(1).account
+    ActsAsIcontact::Account.all.should have(1).account
   end
   
   it "can return the first account" do
-    ActsAsIcontact::Accounts.first.should be_a_kind_of(Hash)
+    ActsAsIcontact::Account.first.should be_a_kind_of(ActsAsIcontact::Account)
   end
     
+  it "knows its attributes" do
+    a = ActsAsIcontact::Account.first
+    a.firstName.should == "Bob"
+  end
 end

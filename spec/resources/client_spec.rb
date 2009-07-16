@@ -36,13 +36,17 @@ describe ActsAsIcontact, "client method" do
   end
 end
 
-describe ActsAsIcontact::Accounts do
+describe ActsAsIcontact::Client do
   it "can return all clients for the given account" do
-    ActsAsIcontact::Clients.all.should have(1).client
+    ActsAsIcontact::Client.all.should have(1).client
   end
   
   it "can return the first client" do
-    ActsAsIcontact::Clients.first.should be_a_kind_of(Hash)
+    ActsAsIcontact::Client.first.should be_a_kind_of(ActsAsIcontact::Client)
   end
     
+  it "knows its properties" do
+    c = ActsAsIcontact::Client.first
+    c.emailRecipient.should == "bob@example.org"
+  end
 end
