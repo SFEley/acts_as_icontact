@@ -2,18 +2,9 @@ module ActsAsIcontact
   # The top-level Accounts resource from iContact.  Currently only supports retrieval -- and is 
   # highly targeted toward the _first_ account, since that seems to be the dominant use case.
   class Account < Resource
-            
-    # Returns an array of accounts associated with this username.  (Probably only one.)
-    def self.all
-      response = ActsAsIcontact.connection['a'].get
-      parsed = JSON.parse(response)
-      parsed["accounts"].collect{|a| self.new(a)}
-    end
-    
-    # Returns the first account associated with this username.
-    def self.first
-      all.first
-    end
+    def self.uri_component
+      'a'
+    end     
   end
   
   # The accountId retrieved from iContact.  Can also be set manually for performance optimization,

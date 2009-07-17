@@ -2,16 +2,20 @@ module ActsAsIcontact
   # The nested Client Folder resource from iContact.  Currently only supports retrieval -- and is 
   # highly targeted toward the _first_ client folder, since that seems to be the dominant use case.
   class Client < Resource
-    # Returns an array of client folders associated with this username.  (Probably only one.)
-    def self.all
-      response = ActsAsIcontact.account['c'].get
-      parsed = JSON.parse(response)
-      parsed["clientfolders"].collect{|a| self.new(a)}
+    def self.resource_name
+      'clientfolder'
     end
     
-    # Returns the first account associated with this username.
-    def self.first
-      all.first
+    def self.collection_name
+      'clientfolders'
+    end
+    
+    def self.uri_component
+      'c'
+    end
+    
+    def self.base
+      ActsAsIcontact.account
     end
   end
   

@@ -19,11 +19,29 @@ module ActsAsIcontact
       end
     end
     
+    # Returns an array of resources starting at the base.
+    def self.all
+      response = base[uri_component].get
+      parsed = JSON.parse(response)
+      parsed[collection_name].collect{|r| self.new(r)}
+    end
+    
+    # Returns the first account associated with this username.
+    def self.first
+      all.first
+    end
+    
     protected
+    # The base RestClient resource that this particular class nests from.  Starts with 
+    # the resource connection at 'https://api.icontact.com/icp/' and works its way up.
+    def self.base
+      ActsAsIcontact.connection
+    end
+    
     # The name of the singular resource type pulled from iContact.  Defaults to the lowercase
     # version of the class name.
     def self.resource_name
-      name.demodulize.camelcase(:lower)
+      name.demodulize.downcase
     end
 
     # The name of the resource collection pulled from iContact.  Defaults to the lowercase
@@ -32,29 +50,10 @@ module ActsAsIcontact
       resource_name.pluralize
     end
     
-  end
-  
-  # The accountId retrieved from iContact.  Can also be set manually for performance optimization,
-  # but remembers it so that it won't be pulled more than once anyway.
-  def self.account_id
-    @account_id ||= Account.first.accountId.to_i
-  end
-  
-  # Manually sets the accountId used in subsequent calls.  Setting this in your initializer will save
-  # at least one unnecessary request to the iContact server.
-  def self.account_id=(val)
-    @account_id = val
-  end
-  
-  # RestClient subresource scoped to the specific account ID.  Most other iContact calls will derive
-  # from this one.
-  def self.account
-    @account ||= connection["a/#{account_id}"]
-  end
-  
-  # Clears the account resource from memory.  Called by reset_connection! since the only likely reason
-  # to do this is connecting as a different user.
-  def self.reset_account!
-    @account = nil
+    # The URI component name corresponding to this resource type.  In many cases it's the same as the
+    # collection name; exceptions include accounts ('a') and clientFolders ('c').
+    def self.uri_component
+      collection_name
+    end
   end
 end
