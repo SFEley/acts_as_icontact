@@ -96,7 +96,7 @@ Again, think ActiveRecord.  When you initialize an object, you can optionally pa
 	                :email => "bob@example.org")
 	c.address = "123 Test Street"
 
-Each resource class has a #save method which returns true or false.  If false, the #error method contains the reply back from iContact about what went wrong.  (Which may or may not be informative, but we can't tell you more than they do.)  There's also a #save! method which throws an exception instead.
+Each resource class has a +#save+ method which returns true or false.  If false, the +#error+ method contains the reply back from iContact about what went wrong.  (Which may or may not be informative, but we can't tell you more than they do.)  There's also a +#save!+ method which throws an exception instead.
 
 Nested resources can be created using the +build_+ method (which returns an object but doesn't save it right away) or +create_+ method (which does save it upon creation).  The full panoply of ActiveRecord association methods are not implemented yet.  (Hey, we said it was AR-_like._)
 
