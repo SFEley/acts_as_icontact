@@ -2,7 +2,7 @@ require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
 
 describe "Configuration" do
   it "knows its AppId" do
-    ActsAsIcontact::Config.app_id.should == "Ml5SnuFhnoOsuZeTOuZQnLUHTbzeUyhx"
+    ActsAsIcontact::Config.app_id.should == "IYDOhgaZGUKNjih3hl1ItLln7zpAtWN2"
   end
   
   it "knows it's version 2.0" do

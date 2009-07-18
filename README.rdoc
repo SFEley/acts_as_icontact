@@ -31,7 +31,7 @@ but 'production', or if you tell it to in configuration.
 		ActsAsIcontact::Config.beta = true
 		ActsAsIcontact::Config.username = my_beta_username
 		ActsAsIcontact::Config.password = my_api_password
-  If you're using Rails, the recommended approach is to require the gem with
+If you're using Rails, the recommended approach is to require the gem with
 +config.gem 'acts_as_icontact'+ in your *config/environment.rb* file, and then
 set up an initializer (i.e. *config/initializers/acts_as_icontact.rb*) with the above code.  See more about Rails below.
 5.Rinse and repeat with production credentials when you're ready to move out of the beta environment.	
@@ -104,7 +104,6 @@ Nested resources can be created using the +build_+ method (which returns an obje
 The #delete method on each class works as you'd expect, assuming iContact allows deletes on that resource.  Resource collections containing the resource are not updated, however, so you may need to requery.
 
 Multiple-record updates are not implemented at this time.
-
 
 
 
