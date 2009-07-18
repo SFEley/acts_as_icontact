@@ -5,7 +5,9 @@ module ActsAsIcontact
     # Passed in the header of every request as the *API-AppId:* parameter. You should not need
     # to change this.  Ever.
     def self.app_id
-      "Ml5SnuFhnoOsuZeTOuZQnLUHTbzeUyhx"
+      "IYDOhgaZGUKNjih3hl1ItLln7zpAtWN2"
+      # Old beta API:
+      # "Ml5SnuFhnoOsuZeTOuZQnLUHTbzeUyhx"
     end
     
     # The API version that this code is designed to interface with.
@@ -46,7 +48,7 @@ module ActsAsIcontact
     end
     
     # Required for every API request.  If you're using these methods in a Rails app, the recommended
-    # way to set the usenrame is in a Rails initializer file.  You can also set the ICONTACT_USERNAME
+    # way to set the username is in a Rails initializer file.  You can also set the ICONTACT_USERNAME
     # environment variable.
     def self.username
       @username ||= ENV['ICONTACT_USERNAME']
