@@ -1,4 +1,6 @@
 require 'activesupport'
+require 'uri'
+
 module ActsAsIcontact
   # Base class for shared functionality between iContact resources.  Supports getting, finding, saving,
   # all that fun stuff. 
@@ -20,10 +22,16 @@ module ActsAsIcontact
     end
     
     # Returns an array of resources starting at the base.
-    def self.all
-      response = base[uri_component].get
+    def self.find(type, options={})
+      uri_extension = uri_component + build_query(options).to_s
+      response = base[uri_extension].get
       parsed = JSON.parse(response)
       parsed[collection_name].collect{|r| self.new(r)}
+    end
+    
+    # Returns an array of resources starting at the base.
+    def self.all
+      find(:all)
     end
     
     # Returns the first account associated with this username.
@@ -54,6 +62,13 @@ module ActsAsIcontact
     # collection name; exceptions include accounts ('a') and clientFolders ('c').
     def self.uri_component
       collection_name
+    end
+    
+    private
+    def self.build_query(options={})
+      return nil if options.empty?
+      terms = options.collect{|k,v| "#{k}=#{URI.escape(v.to_s)}"}
+      "?" + terms.join('&')
     end
   end
 end
