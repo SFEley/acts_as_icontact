@@ -108,9 +108,6 @@ Multiple-record updates are not implemented at this time.
 
 
 
-
-
-
 == Copyright
 
 Copyright (c) 2009 Stephen Eley. See LICENSE for details.
