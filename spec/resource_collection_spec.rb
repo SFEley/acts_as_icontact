@@ -6,7 +6,6 @@ describe ActsAsIcontact::ResourceCollection do
   end
   
   it "initializes from an iContact resource hash" do
-    pending
     this = ActsAsIcontact::ResourceCollection.new(@dummy)
     this.size.should == 2
   end

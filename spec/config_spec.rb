@@ -1,16 +1,67 @@
 require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
 
 describe "Configuration" do
-  it "knows its AppId" do
-    ActsAsIcontact::Config.app_id.should == "IYDOhgaZGUKNjih3hl1ItLln7zpAtWN2"
+  before(:all) do
+    # Copy our configuration to a safe place, then wipe it
+    @old_config = {}
+    ActsAsIcontact::Config.instance_variables.each do |v|
+      @old_config[v] = ActsAsIcontact::Config.instance_variable_get(v)
+      ActsAsIcontact::Config.instance_variable_set(v,nil)
+    end
+  end
+  
+  context "in beta" do
+    it "can set the beta attribute manually" do
+      ActsAsIcontact::Config.beta = true
+      ActsAsIcontact::Config.beta?.should be_true
+    end
+    
+    it "is true if RAILS_ENV is in production" do
+      old_rails_env = ENV["RAILS_ENV"]
+      ENV["RAILS_ENV"] = 'production'
+      ActsAsIcontact::Config.should be_beta
+      ENV["RAILS_ENV"] = old_rails_env
+    end
+    
+    it "is true if RACK_ENV is in production" do
+      old_rack_env = ENV["RACK_ENV"]
+      ENV["RACK_ENV"] = 'production'
+      ActsAsIcontact::Config.should be_beta
+      ENV["RACK_ENV"] = old_rack_env
+    end
+    
+    it "is false if neither RAILS_ENV nor RACK_ENV are in production" do
+      ActsAsIcontact::Config.should_not be_beta
+    end
+    
+    it "returns the beta AppId" do
+      ActsAsIcontact::Config.beta = true
+      ActsAsIcontact::Config.app_id.should == "Ml5SnuFhnoOsuZeTOuZQnLUHTbzeUyhx"
+    end
+    
+    it "returns the beta URL" do
+      ActsAsIcontact::Config.beta = true
+      ActsAsIcontact::Config.url.should == "https://app.beta.icontact.com/icp/"
+    end
+  end
+  
+  context "in production" do
+    before(:each) do
+      ActsAsIcontact::Config.beta = false
+    end
+    
+    it "returns the production AppId" do
+      ActsAsIcontact::Config.app_id.should == "IYDOhgaZGUKNjih3hl1ItLln7zpAtWN2"
+    end
+    
+    it "returns the production URL" do
+      ActsAsIcontact::Config.url.should == "https://app.icontact.com/icp/"
+    end
+    
   end
   
   it "knows it's version 2.0" do
     ActsAsIcontact::Config.api_version.should == 2.0
-  end
-  
-  it "knows its URL base" do
-    ActsAsIcontact::Config.url.should == "https://app.beta.icontact.com/icp/"
   end
   
   it "can set its URL base" do
@@ -59,5 +110,10 @@ describe "Configuration" do
   after(:each) do
     # Clear any variables we might have set
     ActsAsIcontact::Config.instance_variables.each{|v| ActsAsIcontact::Config.instance_variable_set(v,nil)}
+  end
+  
+  after(:all) do
+    # Restore our saved configuration
+    @old_config.each_pair {|k, v| ActsAsIcontact::Config.instance_variable_set(k,v)}
   end
 end

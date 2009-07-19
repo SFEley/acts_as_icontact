@@ -2,12 +2,22 @@ module ActsAsIcontact
   # Predefined and user-supplied parameters for interfacing with iContact. Most of these are
   # required by the iContact API for authentication.
   module Config
+    
+    # Sets the 'beta' flag.  This changes the AppId and URL.
+    def self.beta=(val)
+      @beta = val
+    end
+    
+    # Determines whether to return the beta or production AppId and URL.  Aliased to #beta?
+    def self.beta?
+      @beta ||= (ENV["RAILS_ENV"] == 'production' || ENV["RACK_ENV"] == 'production')
+    end
+    
+    
     # Passed in the header of every request as the *API-AppId:* parameter. You should not need
     # to change this.  Ever.
     def self.app_id
-      "IYDOhgaZGUKNjih3hl1ItLln7zpAtWN2"
-      # Old beta API:
-      # "Ml5SnuFhnoOsuZeTOuZQnLUHTbzeUyhx"
+      beta? ? "Ml5SnuFhnoOsuZeTOuZQnLUHTbzeUyhx" : "IYDOhgaZGUKNjih3hl1ItLln7zpAtWN2"
     end
     
     # The API version that this code is designed to interface with.
@@ -19,7 +29,7 @@ module ActsAsIcontact
     # need (e.g. working against a testing server, or if iContact takes their API out of beta and 
     # changes the URI before the gem gets updated), but for the most part you can leave it alone.
     def self.url
-      @url ||= "https://app.beta.icontact.com/icp/"
+      @url ||= (beta? ? "https://app.beta.icontact.com/icp/" : "https://app.icontact.com/icp/")
     end
     
     # Overrides the base URL for the API request.  
