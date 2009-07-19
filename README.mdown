@@ -15,21 +15,21 @@ Using ActsAsIcontact is easy, but going through iContact's authorization process
 
 2. _Optional but recommended:_ Go to http://beta.icontact.com and sign up for an iContact Beta account. ActsAsIcontact will use your Beta credentials and API URL by default if the `RAILS_ENV` or `RACK_ENV` variables are set to anything but 'production', or if you tell it to in configuration.
 
-3. Enable the ActsAsIcontact gem for use with your iContact account. The URL and credentials you'll use are different between the beta and production environments:
-
-   **BETA:** Go to http://app.beta.icontact.com/icp/core/externallogin and enter `Ml5SnuFhnoOsuZeTOuZQnLUHTbzeUyhx` for the Application Id. Choose a password for ActsAsIcontact that's different from your account password.
-
+3. Enable the ActsAsIcontact gem for use with your iContact account. The URL and credentials you'll use are different between the beta and production environments:  
+  
+   **BETA:** Go to http://app.beta.icontact.com/icp/core/externallogin and enter `Ml5SnuFhnoOsuZeTOuZQnLUHTbzeUyhx` for the Application Id. Choose a password for ActsAsIcontact that's different from your account password.  
+  
    **PRODUCTION:** Go to http://app.icontact.com/icp/core/externallogin and enter `Ml5SnuFhnoOsuZeTOuZQnLUHTbzeUyhx` for the Application Id. Choose a password for ActsAsIcontact that's different from your account password.
 	
-4. Set your _(beta, if applicable)_ account username and the password you just chose for API access. You can either set the environment variables `ICONTACT_USERNAME` and `ICONTACT_PASSWORD`, or you can explicitly do it with calls to the Config module:
+4. Set your _(beta, if applicable)_ account username and the password you just chose for API access. You can either set the environment variables `ICONTACT_USERNAME` and `ICONTACT_PASSWORD`, or you can explicitly do it with calls to the Config module:  
 
         require 'rubygems'
         require 'acts_as_icontact'
     
         ActsAsIcontact::Config.beta = true
         ActsAsIcontact::Config.username = my_beta_username
-        ActsAsIcontact::Config.password = my_api_password
-
+        ActsAsIcontact::Config.password = my_api_password  
+  
    If you're using Rails, the recommended approach is to require the gem with `config.gem 'acts_as_icontact'` in your **config/environment.rb** file, and then set up an initializer (i.e. **config/initializers/acts\_as\_icontact.rb**) with the above code.  See more about Rails below.
 
 5. Rinse and repeat with production credentials when you're ready to move out of the beta environment.	
@@ -97,16 +97,15 @@ Again, think ActiveRecord.  When you initialize an object, you can optionally pa
 	                	:email => "bob@example.org")
 		c.address = "123 Test Street"
 
-Each resource class has a `#save`method which returns true or false.  If false, the `#error`method contains the reply back from iContact about what went wrong.  (Which may or may not be informative, but we can't tell you more than they do.)  There's also a`#save!`method which throws an exception instead.
+Each resource class has a `#save` method which returns true or false.  If false, the `#error` method contains the reply back from iContact about what went wrong.  (Which may or may not be informative, but we can't tell you more than they do.)  There's also a`#save!`method which throws an exception instead.
 
-Nested resources can be created using the `build_`method (which returns an object but doesn't save it right away) or `create_`method (which does save it upon creation).  The full panoply of ActiveRecord association methods are not implemented yet.  (Hey, we said it was AR-_like._)
+Nested resources can be created using the `build_` method (which returns an object but doesn't save it right away) or `create_` method (which does save it upon creation).  The full panoply of ActiveRecord association methods are not implemented yet.  (Hey, we said it was AR-_like._)
 
 The `#delete` method on each class works as you'd expect, assuming iContact allows deletes on that resource.  Resource collections containing the resource are not updated, however, so you may need to requery.
 
 Multiple-record updates are not implemented at this time.
 
 
-
-== Copyright
-
+Copyright
+---------
 Copyright (c) 2009 Stephen Eley. See LICENSE for details.
