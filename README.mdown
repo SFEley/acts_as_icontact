@@ -17,9 +17,9 @@ Using ActsAsIcontact is easy, but going through iContact's authorization process
 
 3. Enable the ActsAsIcontact gem for use with your iContact account. The URL and credentials you'll use are different between the beta and production environments:  
   
-    * **BETA:** Go to [http://app.beta.icontact.com/icp/core/externallogin](http://app.beta.icontact.com/icp/core/externallogin) and enter `Ml5SnuFhnoOsuZeTOuZQnLUHTbzeUyhx` for the Application Id. Choose a password for ActsAsIcontact that's different from your account password.  
+     * **BETA:** Go to [http://app.beta.icontact.com/icp/core/externallogin](http://app.beta.icontact.com/icp/core/externallogin) and enter `Ml5SnuFhnoOsuZeTOuZQnLUHTbzeUyhx` for the Application Id. Choose a password for ActsAsIcontact that's different from your account password.  
   
-    * **PRODUCTION:** Go to [http://app.icontact.com/icp/core/externallogin](http://app.icontact.com/icp/core/externallogin) and enter `Ml5SnuFhnoOsuZeTOuZQnLUHTbzeUyhx` for the Application Id. Choose a password for ActsAsIcontact that's different from your account password.
+     * **PRODUCTION:** Go to [http://app.icontact.com/icp/core/externallogin](http://app.icontact.com/icp/core/externallogin) and enter `Ml5SnuFhnoOsuZeTOuZQnLUHTbzeUyhx` for the Application Id. Choose a password for ActsAsIcontact that's different from your account password.
 	
 4. Set your _(beta, if applicable)_ account username and the password you just chose for API access. You can either set the environment variables `ICONTACT_USERNAME` and `ICONTACT_PASSWORD`, or you can explicitly do it with calls to the Config module:  
 
