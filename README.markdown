@@ -136,9 +136,9 @@ The default behavior is to set `beta` to _false_ if `RAILS_ENV` is equal to "pro
 
 Finally, enable one of your models to synchronize with iContact with a simple declaration:
 
-  class Person < ActiveRecord::Base
-    acts_as_icontact
-  end
+    class Person < ActiveRecord::Base
+      acts_as_icontact
+    end
   
 There are some options, of course; we'll get to those in a bit.
 
