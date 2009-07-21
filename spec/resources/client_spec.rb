@@ -38,7 +38,7 @@ end
 
 describe ActsAsIcontact::Client do
   it "can return all clients for the given account" do
-    ActsAsIcontact::Client.all.should have(1).client
+    ActsAsIcontact::Client.all.count.should == 1
   end
   
   it "can return the first client" do

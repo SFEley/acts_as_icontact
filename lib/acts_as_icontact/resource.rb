@@ -26,7 +26,12 @@ module ActsAsIcontact
       uri_extension = uri_component + build_query(options).to_s
       response = base[uri_extension].get
       parsed = JSON.parse(response)
-      parsed[collection_name].collect{|r| self.new(r)}
+      case type
+      when :first then
+        self.new(parsed[collection_name].first) if parsed[collection_name]
+      when :all then
+        ResourceCollection.new(self, parsed)
+      end
     end
     
     # Returns an array of resources starting at the base.
@@ -36,7 +41,7 @@ module ActsAsIcontact
     
     # Returns the first account associated with this username.
     def self.first
-      all.first
+      find(:first)
     end
     
     protected
@@ -68,7 +73,7 @@ module ActsAsIcontact
     def self.build_query(options={})
       return nil if options.empty?
       terms = options.collect{|k,v| "#{k}=#{URI.escape(v.to_s)}"}
-      "?" + terms.join('&')
+      build = "?" + terms.join('&')
     end
   end
 end

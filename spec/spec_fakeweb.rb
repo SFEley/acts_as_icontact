@@ -5,9 +5,10 @@ FakeWeb.allow_net_connect = false
 
 # Resources (this one's a fake stub for pure testing)
 FakeWeb.register_uri(:get, "https://app.beta.icontact.com/icp/resources", :body => %q<{"resources":[{"foo":"bar"},{"foo":"aar"},{"foo":"far"},{"foo":"car"},{"foo":"dar"},{"foo":"ear"},{"foo":"gar"},{"foo":"har"},{"foo":"iar"},{"foo":"jar"},{"foo":"kar"},{"foo":"yar"}],"total":12,"limit":20,"offset":0}>)
-FakeWeb.register_uri(:get, "https://app.beta.icontact.com/icp/resources?limit=5", :body => %q<{"resources":[{"foo":"bar"},{"foo":"aar"},{"foo":"far"},{"foo":"car"},{"foo":"dar"}],"total":13,"limit":5,"offset":0}>)
-FakeWeb.register_uri(:get, "https://app.beta.icontact.com/icp/resources?limit=5&offset=5", :body => %q<{"resources":[{"foo":"ear"},{"foo":"gar"},{"foo":"har"},{"foo":"iar"},{"foo":"jar"}],"total":12,"limit":5,"offset":5}>)
-FakeWeb.register_uri(:get, "https://app.beta.icontact.com/icp/resources?limit=5&offset=10", :body => %q<{"resources":[{"foo":"kar"},{"foo":"yar"}],"total":12,"limit":5,"offset":10}>)
+FakeWeb.register_uri(:get, "https://app.beta.icontact.com/icp/resources?limit=5", :body => %q<{"resources":[{"foo":"bar"},{"foo":"aar"},{"foo":"far"},{"foo":"car"},{"foo":"dar"}],"total":12,"limit":5,"offset":0}>)
+FakeWeb.register_uri(:get, "https://app.beta.icontact.com/icp/resources?offset=5", :body => %q<{"resources":[{"foo":"ear"},{"foo":"gar"},{"foo":"har"},{"foo":"iar"},{"foo":"jar"},{"foo":"kar"},{"foo":"yar"}],"total":12,"limit":20,"offset":5}>)
+FakeWeb.register_uri(:get, "https://app.beta.icontact.com/icp/resources?offset=5&limit=5", :body => %q<{"resources":[{"foo":"ear"},{"foo":"gar"},{"foo":"har"},{"foo":"iar"},{"foo":"jar"}],"total":12,"limit":5,"offset":5}>)
+FakeWeb.register_uri(:get, "https://app.beta.icontact.com/icp/resources?offset=10&limit=5", :body => %q<{"resources":[{"foo":"kar"},{"foo":"yar"}],"total":12,"limit":5,"offset":10}>)
 
 # Time
 FakeWeb.register_uri(:get, "https://app.beta.icontact.com/icp/time", :body => %q<{"time":"2009-07-13T01:28:18-04:00","timestamp":1247462898}>)

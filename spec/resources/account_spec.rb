@@ -38,7 +38,7 @@ end
 
 describe ActsAsIcontact::Account do    
   it "can return all accounts" do
-    ActsAsIcontact::Account.all.should have(1).account
+    ActsAsIcontact::Account.all.count.should == 1
   end
   
   it "can return the first account" do
