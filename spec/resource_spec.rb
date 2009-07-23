@@ -1,6 +1,10 @@
 require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
 
 describe ActsAsIcontact::Resource do
+  it "has a RestClient connection" do
+    ActsAsIcontact::Resource.connection.url.should == ActsAsIcontact.connection['resources'].url
+  end
+  
   it "can return all resources for the given URL" do
     ActsAsIcontact::Resource.all.count.should == 12
   end
@@ -52,6 +56,26 @@ describe ActsAsIcontact::Resource do
   it "knows its properties" do
     r = ActsAsIcontact::Resource.first
     r.foo.should == "bar"
+  end
+  
+  it "knows its id if it's not new" do
+    r = ActsAsIcontact::Resource.first
+    r.id.should == 1
+  end
+  
+  it "does not have an id if it's new" do
+    r = ActsAsIcontact::Resource.new("foo" => "bar")
+    r.id.should be_nil
+  end
+  
+  it "has its own connection if it's not new" do
+    r = ActsAsIcontact::Resource.first
+    r.connection.url.should == ActsAsIcontact.connection['resources/1'].url
+  end
+  
+  it "does not have a connection if it's new" do
+    r = ActsAsIcontact::Resource.new("foo" => "bar")
+    r.connection.should be_nil
   end
   
   it "knows its REST base resource" do
@@ -140,7 +164,7 @@ describe ActsAsIcontact::Resource do
       end
         
       it "throws an exception with a bang" do
-        lambda{@bad.save!}.should raise(ActsAsIcontact::SaveError,"You did not provide a foo. foo is a required field. Please provide a foo")
+        lambda{@bad.save!}.should raise_error(ActsAsIcontact::RecordNotSaved,"You did not provide a foo. foo is a required field. Please provide a foo")
       end
     end
     

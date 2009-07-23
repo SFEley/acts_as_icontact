@@ -7,14 +7,24 @@ module ActsAsIcontact
   class Resource
     
     # Creates a new resource object from a values hash.  (Which is passed to us via the magic of JSON.)
-    def initialize(properties=nil)
-      if properties
-        @properties = properties
-        @new_record = !@properties.has_key?(self.class.primary_key)
-      else
-        @properties = {}
-        @new_record = true
-      end
+    def initialize(properties={})
+      @properties = properties
+      @new_record = !@properties.has_key?(self.class.primary_key)
+      # Initialize other useful attributes
+      @errors = []
+      
+    end
+    
+    # Returns the primary key ID for an existing resource.  Returns nil if the resource is a new record.
+    def id
+      @properties[self.class.primary_key].to_i unless new_record?
+    end
+    
+    # Returns the specific RestClient connection for an existing resource.  (E.g., the connection
+    # to "http://api.icontact.com/icp/a/12345" for account 12345.)  Returns nil if the resource
+    # is a new record.
+    def connection
+      self.class.connection[id] unless new_record?
     end
     
     # Enables keys from the iContact resource to act as attribute methods.
@@ -40,10 +50,33 @@ module ActsAsIcontact
       @new_record
     end
     
+    # Sends changes to iContact.  Returns true if the save was successful (i.e. we receive
+    # an updated object back from them); if it was not, returns false and populates the
+    # +errors+ array with the warnings iContact sends to us.  If iContact returns an HTTP
+    # error, raises an exception with it.
+    def save
+      result = connection.post(update_fields.to_json) 
+    end
+    
+    # Like +save+, but raises an ActsAsIcontact::RecordNotSaved exception if the save
+    # failed.  The exception message contains the first error from iContact.
+    def save!
+      save or raise ActsAsIcontact::RecordNotSaved.new(errors)
+    end
+    
+    # The first message from the +errors+ array.
+    def error
+      errors.first
+    end
+    
+    # The warning messages sent back by iContact on a failed request.
+    def errors
+      @errors
+    end
     
     # Returns an array of resources starting at the base.
     def self.find(type, options={})
-      uri_extension = uri_component + build_query(options).to_s
+      uri_extension = uri_component + build_query(options)
       response = base[uri_extension].get
       parsed = JSON.parse(response)
       case type
@@ -98,6 +131,12 @@ module ActsAsIcontact
       collection_name
     end
     
+    # The RestClient resource object for this resource class.  Its own find/update methods
+    # will call on this, and singular objects will derive from it.
+    def self.connection
+      base[uri_component]
+    end
+    
     # The primary key field for this resource.  Used on updates.
     def self.primary_key
       resource_name + "Id"
@@ -125,7 +164,7 @@ module ActsAsIcontact
     
     private
     def self.build_query(options={})
-      return nil if options.empty?
+      return "" if options.empty?
       terms = options.collect{|k,v| "#{k}=#{URI.escape(v.to_s)}"}
       build = "?" + terms.join('&')
     end

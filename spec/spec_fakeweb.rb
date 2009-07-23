@@ -9,7 +9,7 @@ FakeWeb.register_uri(:get, "https://app.beta.icontact.com/icp/resources?limit=5"
 FakeWeb.register_uri(:get, "https://app.beta.icontact.com/icp/resources?offset=5", :body => %q<{"resources":[{"foo":"ear","resourceId":"6"},{"foo":"gar","resourceId":"7"},{"foo":"har","resourceId":"8"},{"foo":"iar","resourceId":"9"},{"foo":"jar","resourceId":"10"},{"foo":"kar","resourceId":"11"},{"foo":"yar","resourceId":"12"}],"total":12,"limit":20,"offset":5}>)
 FakeWeb.register_uri(:get, "https://app.beta.icontact.com/icp/resources?offset=5&limit=5", :body => %q<{"resources":[{"foo":"ear","resourceId":"6"},{"foo":"gar","resourceId":"7"},{"foo":"har","resourceId":"8"},{"foo":"iar","resourceId":"9"},{"foo":"jar","resourceId":"10"}],"total":12,"limit":5,"offset":5}>)
 FakeWeb.register_uri(:get, "https://app.beta.icontact.com/icp/resources?offset=10&limit=5", :body => %q<{"resources":[{"foo":"kar","resourceId":"11"},{"foo":"yar","resourceId":"12"}],"total":12,"limit":5,"offset":10}>)
-
+FakeWeb.register_uri(:post, "https://app.beta.icontact.com/icp/resources/1", :body => '')
 # Time
 FakeWeb.register_uri(:get, "https://app.beta.icontact.com/icp/time", :body => %q<{"time":"2009-07-13T01:28:18-04:00","timestamp":1247462898}>)
 
