@@ -10,7 +10,14 @@ begin
     gem.homepage = "http://github.com/SFEley/acts_as_icontact"
     gem.authors = ["Stephen Eley"]
     gem.rubyforge_project = "actsasicontact"
+    gem.extra_rdoc_files = ["README.markdown"]
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
+    gem.description = <<ENDDESC
+ActsAsIcontact connects Ruby applications with the iContact e-mail marketing service using the iContact API v2.0.  Building on the RestClient gem, it offers two significant feature sets:
+
+* Simple, consistent access to all resources in the iContact API; and
+* Automatic synchronizing between ActiveRecord models and iContact contact lists for Rails applications.
+ENDDESC
   end
 
   Jeweler::RubyforgeTasks.new

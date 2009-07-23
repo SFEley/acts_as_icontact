@@ -3,21 +3,40 @@ module ActsAsIcontact
   # required by the iContact API for authentication.
   module Config
     
-    # Sets the 'beta' flag.  This changes the AppId and URL.
-    def self.beta=(val)
-      @beta = val
+    # Sets :production or :beta.  This changes the AppId and URL.
+    def self.mode=(val)
+      @mode = val
     end
     
-    # Determines whether to return the beta or production AppId and URL.  Aliased to #beta?
-    def self.beta?
-      @beta ||= (ENV["RAILS_ENV"] == 'production' || ENV["RACK_ENV"] == 'production')
+    # Determines whether to return the beta or production AppId and URL.  
+    # If not explicitly set, it will first look for an ICONTACT_MODE environment variable.
+    # If it doesn't find one, it will attempt to detect a Rails or Rack environment; in either
+    # case it will default to :production if RAILS_ENV or RACK_ENV is 'production', and :beta
+    # otherwise.  If none of these conditions apply, it assumes :production.  (Because that
+    # probably means someone's doing ad hoc queries.)
+    def self.mode
+      @mode ||= case
+      when ENV["ICONTACT_MODE"] 
+        ENV["ICONTACT_MODE"].to_sym
+      when Object.const_defined?(:Rails)
+        (ENV["RAILS_ENV"] == 'production' ? :production : :beta)
+      when Object.const_defined?(:Rack)
+        (ENV["RACK_ENV"] == 'production' ? :production : :beta)
+      else
+        :production
+      end
     end
     
     
     # Passed in the header of every request as the *API-AppId:* parameter. You should not need
     # to change this.  Ever.
     def self.app_id
-      beta? ? "Ml5SnuFhnoOsuZeTOuZQnLUHTbzeUyhx" : "IYDOhgaZGUKNjih3hl1ItLln7zpAtWN2"
+      case mode
+      when :beta
+        "Ml5SnuFhnoOsuZeTOuZQnLUHTbzeUyhx" 
+      when :production
+        "IYDOhgaZGUKNjih3hl1ItLln7zpAtWN2"
+      end
     end
     
     # The API version that this code is designed to interface with.
@@ -29,7 +48,12 @@ module ActsAsIcontact
     # need (e.g. working against a testing server, or if iContact takes their API out of beta and 
     # changes the URI before the gem gets updated), but for the most part you can leave it alone.
     def self.url
-      @url ||= (beta? ? "https://app.beta.icontact.com/icp/" : "https://app.icontact.com/icp/")
+      @url ||= case mode
+      when :beta
+        "https://app.beta.icontact.com/icp/"
+      when :production
+        "https://app.icontact.com/icp/"
+      end
     end
     
     # Overrides the base URL for the API request.  

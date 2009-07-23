@@ -20,6 +20,4 @@ describe ActsAsIcontact::ResourceCollection do
     @this[1].yoo.should == "yar"
   end
     
-  
-    
 end

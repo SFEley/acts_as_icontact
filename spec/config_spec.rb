@@ -1,6 +1,8 @@
 require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
 
 describe "Configuration" do
+  Rails = "dummy"
+  Rack = "dummy"
   before(:all) do
     # Copy our configuration to a safe place, then wipe it
     @old_config = {}
@@ -10,54 +12,108 @@ describe "Configuration" do
     end
   end
   
-  context "in beta" do
-    it "can set the beta attribute manually" do
-      ActsAsIcontact::Config.beta = true
-      ActsAsIcontact::Config.beta?.should be_true
+  context "mode" do
+    it "defaults to production if nothing else is set" do
+      ActsAsIcontact::Config.mode.should == :production
     end
     
-    it "is true if RAILS_ENV is in production" do
-      old_rails_env = ENV["RAILS_ENV"]
-      ENV["RAILS_ENV"] = 'production'
-      ActsAsIcontact::Config.should be_beta
-      ENV["RAILS_ENV"] = old_rails_env
+    it "can set the mode attribute manually" do
+      ActsAsIcontact::Config.mode = :foo
+      ActsAsIcontact::Config.mode.should == :foo
     end
+
+    it "reads the ICONTACT_MODE environment variable" do
+      @old_mode = ENV["ICONTACT_MODE"]
+      ENV["ICONTACT_MODE"] = 'bar'
+      ActsAsIcontact::Config.mode.should == :bar
+      ENV["ICONTACT_MODE"] = @old_mode 
+    end
+      
+    context "within a Rails application" do
+      before(:all) do
+        @old_rails_env = ENV["RAILS_ENV"]
+      end
+      
+      before(:each) do
+        Object.expects(:const_defined?).with(:Rails).returns(true)
+      end
+      
+      it "is beta if RAILS_ENV is not production" do
+        ENV["RAILS_ENV"] = 'staging'
+        ActsAsIcontact::Config.mode.should == :beta
+      end
+      
+      it "is production if RAILS_ENV is production" do
+        ENV["RAILS_ENV"] = 'production'
+        ActsAsIcontact::Config.mode.should == :production
+      end
+      
+      after(:all) do
+        ENV["RAILS_ENV"] = @old_rails_env 
+      end
+    end
+
+    context "within a Rack environment" do
+      before(:all) do
+        @old_rack_env = ENV["RACK_ENV"]
+      end
+      before(:each) do
+        Object.expects(:const_defined?).with(:Rails).returns(false)
+        Object.expects(:const_defined?).with(:Rack).returns(true)
+      end
+      
+      it "is beta if RACK_ENV is not production" do
+        ENV["RACK_ENV"] = 'staging'
+        ActsAsIcontact::Config.mode.should == :beta
+      end
+      
+      it "is production if RACK_ENV is production" do
+        ENV["RACK_ENV"] = 'production'
+        ActsAsIcontact::Config.mode.should == :production
+      end
+      
+      after(:all) do
+        ENV["RACK_ENV"] = @old_rack_env
+      end
+    end
+
     
-    it "is true if RACK_ENV is in production" do
-      old_rack_env = ENV["RACK_ENV"]
-      ENV["RACK_ENV"] = 'production'
-      ActsAsIcontact::Config.should be_beta
-      ENV["RACK_ENV"] = old_rack_env
-    end
+    context ":beta" do
+      before(:each) do
+        ActsAsIcontact::Config.mode = :beta        
+      end
+      
+      it "returns the beta AppId" do
+        ActsAsIcontact::Config.app_id.should == "Ml5SnuFhnoOsuZeTOuZQnLUHTbzeUyhx"
+      end
     
-    it "is false if neither RAILS_ENV nor RACK_ENV are in production" do
-      ActsAsIcontact::Config.should_not be_beta
+      it "returns the beta URL" do
+        ActsAsIcontact::Config.url.should == "https://app.beta.icontact.com/icp/"
+      end
+      
+      after(:each) do
+        ActsAsIcontact::Config.mode = nil
+      end
     end
-    
-    it "returns the beta AppId" do
-      ActsAsIcontact::Config.beta = true
-      ActsAsIcontact::Config.app_id.should == "Ml5SnuFhnoOsuZeTOuZQnLUHTbzeUyhx"
-    end
-    
-    it "returns the beta URL" do
-      ActsAsIcontact::Config.beta = true
-      ActsAsIcontact::Config.url.should == "https://app.beta.icontact.com/icp/"
-    end
-  end
   
-  context "in production" do
-    before(:each) do
-      ActsAsIcontact::Config.beta = false
-    end
+    context ":production" do
+      before(:each) do
+        ActsAsIcontact::Config.mode = :production        
+      end
+          
+      it "returns the production AppId" do
+        ActsAsIcontact::Config.app_id.should == "IYDOhgaZGUKNjih3hl1ItLln7zpAtWN2"
+      end
     
-    it "returns the production AppId" do
-      ActsAsIcontact::Config.app_id.should == "IYDOhgaZGUKNjih3hl1ItLln7zpAtWN2"
+      it "returns the production URL" do
+        ActsAsIcontact::Config.url.should == "https://app.icontact.com/icp/"
+      end
+      
+      after(:each) do
+        ActsAsIcontact::Config.mode = nil
+      end
+      
     end
-    
-    it "returns the production URL" do
-      ActsAsIcontact::Config.url.should == "https://app.icontact.com/icp/"
-    end
-    
   end
   
   it "knows it's version 2.0" do
