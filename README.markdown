@@ -23,20 +23,20 @@ Using ActsAsIcontact is easy, but going through iContact's authorization process
 
        $ sudo gem install acts_as_icontact
 
-2. _Optional but recommended:_ Go to <http://beta.icontact.com> and sign up for an iContact Beta account. ActsAsIcontact will use your Beta credentials and API URL by default if the `RAILS_ENV` or `RACK_ENV` variables are set to anything but 'production', or if you tell it to in configuration.
+2. _Optional but recommended:_ Go to <http://beta.icontact.com> and sign up for an iContact Beta account. This will let you test your app without risk of blowing away your production mailing lists.
 
 3. Enable the ActsAsIcontact gem for use with your iContact account. The URL and credentials you'll use are different between the beta and production environments:  
   
      * **BETA:** Go to <http://app.beta.icontact.com/icp/core/externallogin> and enter `Ml5SnuFhnoOsuZeTOuZQnLUHTbzeUyhx` for the Application Id. Choose a password for ActsAsIcontact that's different from your account password.  
   
-     * **PRODUCTION:** Go to [http://app.icontact.com/icp/core/externallogin](http://app.icontact.com/icp/core/externallogin) and enter `IYDOhgaZGUKNjih3hl1ItLln7zpAtWN2` for the Application Id. Choose a password for ActsAsIcontact that's different from your account password.
+     * **PRODUCTION:** Go to <http://app.icontact.com/icp/core/externallogin> and enter `IYDOhgaZGUKNjih3hl1ItLln7zpAtWN2` for the Application Id. Choose a password for ActsAsIcontact that's different from your account password.
   
-4. Set your _(beta, if applicable)_ account username and the password you just chose for API access. You can either set the environment variables `ICONTACT_USERNAME` and `ICONTACT_PASSWORD`, or you can explicitly do it with calls to the Config module:  
+4. Set your _(beta, if applicable)_ account username and the password you just chose for API access. You can either set the environment variables `ICONTACT_MODE`, `ICONTACT_USERNAME`, and `ICONTACT_PASSWORD`, or you can explicitly do it with calls to the Config module:  
 
         require 'rubygems'
         require 'acts_as_icontact'
     
-        ActsAsIcontact::Config.beta = true
+        ActsAsIcontact::Config.mode = :beta
         ActsAsIcontact::Config.username = my_beta_username
         ActsAsIcontact::Config.password = my_api_password  
   
@@ -123,16 +123,17 @@ The _real_ power of ActsAsIcontact is its automatic syncing with ActiveRecord.  
 First add the line `config.gem 'acts_as_icontact'` to your **config/environment.rb** file.  Then create an initializer (e.g. **config/initializers/acts\_as\_icontact.rb**) and set it up with your username and password.  If applicable, you can give it both the beta _and_ production credentials:
 
     module ActsAsIcontact
-      if Config.beta?
+      case Config.mode
+			when :beta
         Config.username = my_beta_username
         Config.password = my_beta_password
-      else
+      when :production
         Config.username = my_production_username
         Config.password = my_production_password
       end
     end
 
-The default behavior is to set `beta` to _false_ if `RAILS_ENV` is equal to "production" and _true_ if it's anything else.
+If ActsAsIcontact detects that it's running in a Rails app, the default behavior is to set the mode to `:production` if RAILS\_ENV is equal to "production" and `:beta` if RAILS\_ENV is set to anything else.  (Incidentally, if you're _not_ in a Rails app but running Rack, the same logic applies for the RACK\_ENV environment variable.)
 
 Finally, enable one of your models to synchronize with iContact with a simple declaration:
 
