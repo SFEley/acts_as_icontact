@@ -88,10 +88,62 @@ describe ActsAsIcontact::Resource do
       @res.zoo.should == "flar"
     end
     
-    it "updates with the minimum set of properties that changed or must be sent" do
+    it "knows the minimum set of properties that changed or must be sent" do
       @res.too = "tar"
       @res.send(:update_fields).should == {"resourceId" => "1", "too" => "tar"}
     end
+    
+    context "with successful save" do
+      before(:each) do
+        @res.too = "sar"
+        @result = @res.save
+      end
+      
+      it "returns success" do
+        @result.should be_true
+      end
+      
+      it "updates itself with the new values" do
+        @res.too.should == "sar"
+      end
+      
+      it "has no errors" do
+        @res.errors.should be_empty
+      end
+      
+      it "has no error" do
+        @res.error.should be_nil
+      end
+      
+      it "can be called with a bang" do
+        @res.save!.should be_true
+      end
+    end
+
+    context "with failed save" do
+      before(:each) do
+        @bad = ActsAsIcontact::Resource.all[2]
+        @bad.foo = nil
+        @result = @bad.save
+      end
+      
+      it "returns failure" do
+        @result.should be_false
+      end
+      
+      it "returns the errors list" do
+        @bad.errors.should == ["You did not provide a foo. foo is a required field. Please provide a foo","This was not a good record"]
+      end
+      
+      it "returns the top error" do
+        @bad.error.should == "You did not provide a foo. foo is a required field. Please provide a foo"
+      end
+        
+      it "throws an exception with a bang" do
+        lambda{@bad.save!}.should raise(ActsAsIcontact::SaveError,"You did not provide a foo. foo is a required field. Please provide a foo")
+      end
+    end
+    
   end
   
   context "creating records" do

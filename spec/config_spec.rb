@@ -13,6 +13,10 @@ describe "Configuration" do
   end
   
   context "mode" do
+    before(:all) do
+      @old_mode = ENV["ICONTACT_MODE"]
+      ENV["ICONTACT_MODE"] = nil
+    end
     it "defaults to production if nothing else is set" do
       ActsAsIcontact::Config.mode.should == :production
     end
@@ -23,7 +27,6 @@ describe "Configuration" do
     end
 
     it "reads the ICONTACT_MODE environment variable" do
-      @old_mode = ENV["ICONTACT_MODE"]
       ENV["ICONTACT_MODE"] = 'bar'
       ActsAsIcontact::Config.mode.should == :bar
       ENV["ICONTACT_MODE"] = @old_mode 
@@ -91,9 +94,6 @@ describe "Configuration" do
         ActsAsIcontact::Config.url.should == "https://app.beta.icontact.com/icp/"
       end
       
-      after(:each) do
-        ActsAsIcontact::Config.mode = nil
-      end
     end
   
     context ":production" do
@@ -109,11 +109,17 @@ describe "Configuration" do
         ActsAsIcontact::Config.url.should == "https://app.icontact.com/icp/"
       end
       
-      after(:each) do
-        ActsAsIcontact::Config.mode = nil
-      end
-      
     end
+
+    after(:each) do
+      ActsAsIcontact::Config.mode = nil
+      ENV["ICONTACT_MODE"] = nil
+    end
+    
+    after(:all) do
+      ENV["ICONTACT_MODE"] = @old_mode
+    end
+    
   end
   
   it "knows it's version 2.0" do
