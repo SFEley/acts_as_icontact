@@ -8,18 +8,38 @@ module ActsAsIcontact
     
     # Creates a new resource object from a values hash.  (Which is passed to us via the magic of JSON.)
     def initialize(properties=nil)
-      @properties = properties
+      if properties
+        @properties = properties
+        @new_record = !@properties.has_key?(self.class.primary_key)
+      else
+        @properties = {}
+        @new_record = true
+      end
     end
     
     # Enables keys from the iContact resource to act as attribute methods.
     def method_missing(method, *params)
       property = method.to_s
-      if @properties.has_key?(property)
-        @properties[property]
+      if property =~ /(.*)=$/  # It's a value assignment
+        @newvalues ||= []
+        @newvalues << $1
+        @properties[$1] = params[0]
       else
-        raise
+        if @properties.has_key?(property)
+          @properties[property]
+        else
+          super
+        end
       end
     end
+    
+    # Returns true if the resource object did not originate from iContact.  We determine this 
+    # by the rather naive method of checking upon creation whether one of the properties passed
+    # was the primary key.
+    def new_record?
+      @new_record
+    end
+    
     
     # Returns an array of resources starting at the base.
     def self.find(type, options={})
@@ -45,6 +65,15 @@ module ActsAsIcontact
     end
     
     protected
+    # The minimum set of fields that must be sent back to iContact on an update.
+    # Includes any fields that changed or were added, the primary key, and anything
+    # else from the "required_on_update" set from the class definition.  It excludes
+    # anything from the "never_on_update" set.
+    def update_fields
+      fieldlist = self.class.required_on_update + @newvalues.to_a - self.class.never_on_update
+      @properties.select{|key, value| fieldlist.include?(key)}
+    end
+    
     # The base RestClient resource that this particular class nests from.  Starts with 
     # the resource connection at 'https://api.icontact.com/icp/' and works its way up.
     def self.base
@@ -67,6 +96,31 @@ module ActsAsIcontact
     # collection name; exceptions include accounts ('a') and clientFolders ('c').
     def self.uri_component
       collection_name
+    end
+    
+    # The primary key field for this resource.  Used on updates.
+    def self.primary_key
+      resource_name + "Id"
+    end
+    
+    # Fields that _must_ be included for this resource upon creation.
+    def self.required_on_create
+      []
+    end
+    
+    # Fields that _must_ be included for this resource upon updating.
+    def self.required_on_update
+      [primary_key]
+    end
+    
+    # Fields that _cannot_ be included for this resource upon creation.
+    def self.never_on_create
+      [primary_key]
+    end
+    
+    # Fields that _cannot_ be included for this resource upon updating.
+    def self.never_on_update
+      []
     end
     
     private
