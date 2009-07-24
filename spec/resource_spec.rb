@@ -144,9 +144,9 @@ describe ActsAsIcontact::Resource do
       end
     end
 
-    context "with failed save" do
+    context "with failed save but status 200" do
       before(:each) do
-        @bad = ActsAsIcontact::Resource.all[2]
+        @bad = ActsAsIcontact::Resource.all[1]
         @bad.foo = nil
         @result = @bad.save
       end
@@ -165,6 +165,30 @@ describe ActsAsIcontact::Resource do
         
       it "throws an exception with a bang" do
         lambda{@bad.save!}.should raise_error(ActsAsIcontact::RecordNotSaved,"You did not provide a foo. foo is a required field. Please provide a foo")
+      end
+    end
+    
+    context "with failed save on HTTP failure exception" do
+      before(:each) do
+        @bad = ActsAsIcontact::Resource.all[2]
+        @bad.foo = nil
+        @result = @bad.save
+      end
+      
+      it "returns failure" do
+        @result.should be_false
+      end
+      
+      it "returns the errors list" do
+        @bad.errors.should == ["You did not provide a clue. Clue is a required field. Please provide a clue"]
+      end
+      
+      it "returns the top error" do
+        @bad.error.should == "You did not provide a clue. Clue is a required field. Please provide a clue"
+      end
+        
+      it "throws an exception with a bang" do
+        lambda{@bad.save!}.should raise_error(ActsAsIcontact::RecordNotSaved,"You did not provide a clue. Clue is a required field. Please provide a clue")
       end
     end
     

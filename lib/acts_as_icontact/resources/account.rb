@@ -4,7 +4,12 @@ module ActsAsIcontact
   class Account < Resource
     def self.uri_component
       'a'
-    end     
+    end
+    
+    # Accounts can't pass back a userName or password on updating
+    def self.never_on_update     
+      ['userName','password']
+    end
   end
   
   # The accountId retrieved from iContact.  Can also be set manually for performance optimization,

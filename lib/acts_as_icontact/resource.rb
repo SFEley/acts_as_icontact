@@ -55,7 +55,23 @@ module ActsAsIcontact
     # +errors+ array with the warnings iContact sends to us.  If iContact returns an HTTP
     # error, raises an exception with it.
     def save
-      result = connection.post(update_fields.to_json) 
+      result_type = self.class.resource_name
+      response = connection.post(update_fields.to_json)
+      parsed = JSON.parse(response)
+      if parsed[result_type].empty?
+        @errors = parsed["warnings"]
+        false
+      else
+        @properties = parsed[result_type]
+        @new_record = false
+        @errors = []
+        true
+      end 
+    rescue RestClient::RequestFailed => e
+      response = e.response.body
+      parsed = JSON.parse(response)
+      @errors = parsed["errors"] || [e.message]
+      false
     end
     
     # Like +save+, but raises an ActsAsIcontact::RecordNotSaved exception if the save
