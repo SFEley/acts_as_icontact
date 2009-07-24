@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{acts_as_icontact}
-  s.version = "0.1.3"
+  s.version = "0.1.4"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Stephen Eley"]
@@ -33,6 +33,7 @@ Gem::Specification.new do |s|
      "lib/acts_as_icontact/resources/account.rb",
      "lib/acts_as_icontact/resources/client.rb",
      "lib/acts_as_icontact/resources/contact.rb",
+     "lib/acts_as_icontact/resources/list.rb",
      "spec/config_spec.rb",
      "spec/connection_spec.rb",
      "spec/resource_collection_spec.rb",
@@ -40,6 +41,7 @@ Gem::Specification.new do |s|
      "spec/resources/account_spec.rb",
      "spec/resources/client_spec.rb",
      "spec/resources/contact_spec.rb",
+     "spec/resources/list_spec.rb",
      "spec/spec.opts",
      "spec/spec_fakeweb.rb",
      "spec/spec_helper.rb"
@@ -58,6 +60,7 @@ Gem::Specification.new do |s|
      "spec/resources/account_spec.rb",
      "spec/resources/client_spec.rb",
      "spec/resources/contact_spec.rb",
+     "spec/resources/list_spec.rb",
      "spec/spec_fakeweb.rb",
      "spec/spec_helper.rb"
   ]
