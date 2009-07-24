@@ -51,6 +51,30 @@ describe ActsAsIcontact::Resource do
       r.first.foo.should == "kar"
       r[1].foo.should == "yar"
     end
+    
+    it "defaults to a limit of 500" do
+      ActsAsIcontact::Resource.base.expects(:[]).with(regexp_matches(/limit=500/)).returns(stub(:get => '{"resources":[]}'))
+      r = ActsAsIcontact::Resource.find(:all)
+    end
+    
+    it "throws an exception if a limit higher than 500 is attempted" do
+      lambda{r = ActsAsIcontact::Resource.find(:all, :limit => 501)}.should raise_error(ActsAsIcontact::QueryError, "Limit must be between 1 and 500")
+    end
+
+    it "throws an exception if a limit lower than 500 is attempted" do
+      lambda{r = ActsAsIcontact::Resource.find(:all, :limit => 501)}.should raise_error(ActsAsIcontact::QueryError, "Limit must be between 1 and 500")
+    end
+    
+    it "maps the 'first' method to find(:first)" do
+      ActsAsIcontact::Resource.expects(:find).with(:first,{:foo=>:bar}).returns(nil)
+      ActsAsIcontact::Resource.first(:foo=>:bar)
+    end
+      
+    it "maps the 'all' method to find(:all)" do
+      ActsAsIcontact::Resource.expects(:find).with(:all,{:foo=>:bar}).returns(nil)
+      ActsAsIcontact::Resource.all(:foo=>:bar)
+    end
+    
   end
   
   it "knows its properties" do
@@ -94,6 +118,7 @@ describe ActsAsIcontact::Resource do
     ActsAsIcontact::Resource.never_on_create.should == ["resourceId"]
   end
   
+    
   context "updating records" do
     before(:each) do
       @res = ActsAsIcontact::Resource.first
@@ -115,6 +140,11 @@ describe ActsAsIcontact::Resource do
     it "knows the minimum set of properties that changed or must be sent" do
       @res.too = "tar"
       @res.send(:update_fields).should == {"resourceId" => "1", "too" => "tar"}
+    end
+    
+    it "throws an exception if required fields aren't included" do
+      @res.resourceId = nil
+      lambda{@res.save}.should raise_error(ActsAsIcontact::ValidationError, "Missing required fields: resourceId")
     end
     
     context "with successful save" do

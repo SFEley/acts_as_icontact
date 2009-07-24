@@ -2,6 +2,12 @@ module ActsAsIcontact
   # Thrown when a configuration value isn't provided or is invalid.
   class ConfigError < StandardError; end
   
+  # Thrown when a bad parameter is passed to a resource find.
+  class QueryError < StandardError; end
+  
+  # Thrown before saving if iContact validation rules are not met.
+  class ValidationError < StandardError; end
+  
   # Thrown when a resource calls save! and fails. Contains the +.errors+ array from
   # the resource.
   class RecordNotSaved < StandardError

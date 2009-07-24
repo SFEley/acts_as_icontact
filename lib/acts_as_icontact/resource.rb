@@ -33,10 +33,18 @@ module ActsAsIcontact
       if property =~ /(.*)=$/  # It's a value assignment
         @newvalues ||= []
         @newvalues << $1
-        @properties[$1] = params[0]
+        if self.class.boolean_fields.include?($1)
+          @properties[$1] = params[0] ? 1 : 0
+        else
+          @properties[$1] = params[0]
+        end
       else
         if @properties.has_key?(property)
-          @properties[property]
+          if self.class.boolean_fields.include?(property)
+            (@properties[property] == 1)
+          else
+            @properties[property]
+          end
         else
           super
         end
@@ -56,11 +64,15 @@ module ActsAsIcontact
     # error, raises an exception with it.
     def save
       if new_record?
+        fields = create_fields
+        validate_on_create(fields)
         result_type = self.class.collection_name
-        response = self.class.connection.post([create_fields].to_json)
+        response = self.class.connection.post([fields].to_json)
       else
+        fields = update_fields
+        validate_on_update(fields)
         result_type = self.class.resource_name
-        response = connection.post(update_fields.to_json)
+        response = connection.post(fields.to_json)
       end
       parsed = JSON.parse(response)
       if parsed[result_type].empty?
@@ -97,7 +109,10 @@ module ActsAsIcontact
     
     # Returns an array of resources starting at the base.
     def self.find(type, options={})
-      uri_extension = uri_component + build_query(options)
+      query_options = default_options.merge(options)
+      query_options.merge(:limit => 1) if type == :first  # Minor optimization
+      validate_options(query_options)
+      uri_extension = uri_component + build_query(query_options)
       response = base[uri_extension].get
       parsed = JSON.parse(response)
       case type
@@ -109,13 +124,13 @@ module ActsAsIcontact
     end
     
     # Returns an array of resources starting at the base.
-    def self.all
-      find(:all)
+    def self.all(options={})
+      find(:all, options)
     end
     
     # Returns the first account associated with this username.
-    def self.first
-      find(:first)
+    def self.first(options={})
+      find(:first, options)
     end
     
     protected
@@ -173,6 +188,11 @@ module ActsAsIcontact
       resource_name + "Id"
     end
     
+    # Options that are always passed on 'find' requests unless overridden.
+    def self.default_options
+      {:limit => 500}
+    end
+      
     # Fields that _must_ be included for this resource upon creation.
     def self.required_on_create
       []
@@ -193,11 +213,41 @@ module ActsAsIcontact
       []
     end
     
+    # Fields that operate as 0/1 boolean toggles.  Can be assigned to with true and false.
+    def self.boolean_fields
+      []
+    end
+    
+    # Validation rules that ensure proper parameters are passed to iContact on querying.
+    def self.validate_options(options)
+      # See: http://developer.icontact.com/forums/api-beta-moderated-support/there-upper-limit-result-sets#comment-136
+      raise ActsAsIcontact::QueryError, "Limit must be between 1 and 500" if options[:limit].to_i < 1 or options[:limit].to_i > 500 
+    end
+    
+    # Validation rules that ensure proper data is passed to iContact on resource creation.
+    def validate_on_create(fields)
+      check_required_fields(fields, self.class.required_on_create)
+    end
+
+    # Validation rules that ensure proper data is passed to iContact on resource update.
+    def validate_on_update(fields)
+      check_required_fields(fields, self.class.required_on_update)
+    end
+    
     private
     def self.build_query(options={})
       return "" if options.empty?
       terms = options.collect{|k,v| "#{k}=#{URI.escape(v.to_s)}"}
       build = "?" + terms.join('&')
+    end
+    
+    def check_required_fields(fields, required)
+      # Check that all required fields are filled in
+      missing = required.select{|f| fields[f].blank?}
+      unless missing.empty?
+        missing_fields = missing.join(', ')
+        raise ActsAsIcontact::ValidationError, "Missing required fields: #{missing_fields}"
+      end
     end
   end
 end
