@@ -23,6 +23,7 @@ Gem::Specification.new do |s|
      "README.markdown",
      "Rakefile",
      "VERSION",
+     "acts_as_icontact.gemspec",
      "lib/acts_as_icontact.rb",
      "lib/acts_as_icontact/config.rb",
      "lib/acts_as_icontact/connection.rb",
