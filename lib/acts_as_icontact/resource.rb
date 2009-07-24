@@ -57,8 +57,7 @@ module ActsAsIcontact
     def save
       if new_record?
         result_type = self.class.collection_name
-        payload = {self.class.collection_name => [create_fields]}
-        response = self.class.connection.post(payload.to_json)
+        response = self.class.connection.post([create_fields].to_json)
       else
         result_type = self.class.resource_name
         response = connection.post(update_fields.to_json)
