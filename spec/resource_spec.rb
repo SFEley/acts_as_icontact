@@ -201,5 +201,101 @@ describe ActsAsIcontact::Resource do
     it "knows it's a new record" do
       @res.should be_a_new_record
     end
+    
+    it "can set new values on existing fields" do
+      @res.foo = "zar"
+      @res.foo.should == "zar"
+    end
+  
+    it "can add new fields" do
+      @res.zoo = "flar"
+      @res.zoo.should == "flar"
+    end
+    
+    it "knows the full set of properties that were added or are required" do
+      ActsAsIcontact::Resource.stubs(:required_on_create).returns(["shoo"])
+      @res.send(:create_fields).should == {"foo" => "flar", "kroo" => "krar", "shoo" => ""}
+    end
+    
+    context "with successful save" do
+      before(:each) do
+        FakeWeb.register_uri(:post, "https://app.beta.icontact.com/icp/resources", :body => %q<{"resources":[{"resourceId":"100","foo":"flar","kroo":"krar","too":"sar"}]}>)
+        @res.too = "sar"
+      end
+      
+      it "returns success" do
+        @res.save.should be_true
+      end
+      
+      it "updates itself with the new values" do
+        @res.save
+        @res.too.should == "sar"
+      end
+      
+      it "has no errors" do
+        @res.save
+        @res.errors.should be_empty
+      end
+      
+      it "has no error" do
+        @res.save
+        @res.error.should be_nil
+      end
+      
+      it "can be called with a bang" do
+        @res.save!.should be_true
+      end
+    end
+
+    context "with failed save but status 200" do
+      before(:each) do
+        FakeWeb.register_uri(:post, "https://app.beta.icontact.com/icp/resources", :body => %q<{"resources":[],"warnings":["You did not provide a foo. foo is a required field. Please provide a foo","This was not a good record"]}>)
+        @res = ActsAsIcontact::Resource.new
+        @res.foo = nil
+        @result = @res.save
+      end
+      
+      it "returns failure" do
+        @result.should be_false
+      end
+      
+      it "returns the errors list" do
+        @res.errors.should == ["You did not provide a foo. foo is a required field. Please provide a foo","This was not a good record"]
+      end
+      
+      it "returns the top error" do
+        @res.error.should == "You did not provide a foo. foo is a required field. Please provide a foo"
+      end
+        
+      it "throws an exception with a bang" do
+        lambda{@res.save!}.should raise_error(ActsAsIcontact::RecordNotSaved,"You did not provide a foo. foo is a required field. Please provide a foo")
+      end
+    end
+    
+    context "with failed save on HTTP failure exception" do
+      before(:each) do
+        FakeWeb.register_uri(:post, "https://app.beta.icontact.com/icp/resources", :status => ["400","Bad Request"], :body => %q<{"errors":["You did not provide a clue. Clue is a required field. Please provide a clue"]}>)
+        @res = ActsAsIcontact::Resource.new
+        @res.foo = nil
+        @result = @res.save
+      end
+      
+      it "returns failure" do
+        @result.should be_false
+      end
+      
+      it "returns the errors list" do
+        @res.errors.should == ["You did not provide a clue. Clue is a required field. Please provide a clue"]
+      end
+      
+      it "returns the top error" do
+        @res.error.should == "You did not provide a clue. Clue is a required field. Please provide a clue"
+      end
+        
+      it "throws an exception with a bang" do
+        lambda{@res.save!}.should raise_error(ActsAsIcontact::RecordNotSaved,"You did not provide a clue. Clue is a required field. Please provide a clue")
+      end
+    end
+    
   end
 end

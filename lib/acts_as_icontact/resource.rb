@@ -55,14 +55,20 @@ module ActsAsIcontact
     # +errors+ array with the warnings iContact sends to us.  If iContact returns an HTTP
     # error, raises an exception with it.
     def save
-      result_type = self.class.resource_name
-      response = connection.post(update_fields.to_json)
+      if new_record?
+        result_type = self.class.collection_name
+        payload = {self.class.collection_name => [create_fields]}
+        response = self.class.connection.post(payload.to_json)
+      else
+        result_type = self.class.resource_name
+        response = connection.post(update_fields.to_json)
+      end
       parsed = JSON.parse(response)
       if parsed[result_type].empty?
         @errors = parsed["warnings"]
         false
       else
-        @properties = parsed[result_type]
+        @properties = (new_record? ? parsed[result_type].first : parsed[result_type])
         @new_record = false
         @errors = []
         true
@@ -121,6 +127,16 @@ module ActsAsIcontact
     def update_fields
       fieldlist = self.class.required_on_update + @newvalues.to_a - self.class.never_on_update
       @properties.select{|key, value| fieldlist.include?(key)}
+    end
+
+    # The minimum set of fields that must be sent back to iContact on a create.
+    # Includes any fields that were added and anything
+    # else from the "required_on_create" set from the class definition.  It excludes
+    # anything from the "never_on_create" set.
+    def create_fields
+      self.class.required_on_create.each{|key| @properties[key] ||= ""} # Add required fields
+      self.class.never_on_create.each{|key| @properties.delete(key)} # Remove prohibited fields
+      @properties
     end
     
     # The base RestClient resource that this particular class nests from.  Starts with 
