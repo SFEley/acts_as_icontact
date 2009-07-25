@@ -27,6 +27,9 @@ describe ActsAsIcontact::List do
       @list = ActsAsIcontact::List.first(:name => "First Test")
     end
     it "knows its subscribers"
-    it "knows its welcome message"
+    
+    it "knows its welcome message" do
+      @list.welcomeMessage.should == ActsAsIcontact::Message.find(555555)
+    end
   end
 end

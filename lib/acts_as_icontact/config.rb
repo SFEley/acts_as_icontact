@@ -32,7 +32,7 @@ module ActsAsIcontact
     # to change this.  Ever.
     def self.app_id
       case mode
-      when :sandbox
+      when :beta, :sandbox
         "Ml5SnuFhnoOsuZeTOuZQnLUHTbzeUyhx" 
       when :production
         "IYDOhgaZGUKNjih3hl1ItLln7zpAtWN2"

@@ -15,5 +15,6 @@ module ActsAsIcontact
     def self.default_options
       super.merge(:status=>:total)
     end
+    
   end
 end

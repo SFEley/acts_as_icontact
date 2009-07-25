@@ -20,7 +20,7 @@ module ActsAsIcontact
   # The accountId retrieved from iContact.  Can also be set manually for performance optimization,
   # but remembers it so that it won't be pulled more than once anyway.
   def self.account_id
-    @account_id ||= Account.first.accountId.to_i
+    @account_id ||= Account.first.id.to_i
   end
   
   # Manually sets the accountId used in subsequent calls.  Setting this in your initializer will save

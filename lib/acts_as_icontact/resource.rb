@@ -8,11 +8,10 @@ module ActsAsIcontact
     
     # Creates a new resource object from a values hash.  (Which is passed to us via the magic of JSON.)
     def initialize(properties={})
-      @properties = properties.stringify_keys
+      @properties = clean_properties(properties)
       @new_record = !@properties.has_key?(self.class.primary_key)
       # Initialize other useful attributes
       @errors = []
-      
     end
     
     # Returns the primary key ID for an existing resource.  Returns nil if the resource is a new record.
@@ -33,12 +32,8 @@ module ActsAsIcontact
       if property =~ /(.*)=$/  # It's a value assignment
         @newvalues ||= []
         @newvalues << $1
-        if self.class.boolean_fields.include?($1)
-          @properties[$1] = (params[0] && params[0] != 0) ? 1 : 0
-        else
-          @properties[$1] = params[0]
-        end
-      else
+        @properties[$1] = clean_value(params[0])
+       else
         if @properties.has_key?(property)
           if self.class.boolean_fields.include?(property)
             (@properties[property] == 1)
@@ -109,28 +104,46 @@ module ActsAsIcontact
     
     # Returns an array of resources starting at the base.
     def self.find(type, options={})
-      query_options = default_options.merge(options)
-      query_options.merge(:limit => 1) if type == :first  # Minor optimization
-      validate_options(query_options)
-      uri_extension = uri_component + build_query(query_options)
-      response = base[uri_extension].get
-      parsed = JSON.parse(response)
       case type
-      when :first then
-        self.new(parsed[collection_name].first) if parsed[collection_name]
-      when :all then
-        ResourceCollection.new(self, parsed)
+      when :first
+        first(options)
+      when :all
+        all(options)
+      when Integer
+        find_by_id(type)
+      else
+        raise ActsAsIcontact::QueryError, "Don't know how to find '#{type.to_s}'"
       end
     end
     
     # Returns an array of resources starting at the base.
     def self.all(options={})
-      find(:all, options)
+      query_options = default_options.merge(options)
+      validate_options(query_options)
+      result = query_collection(query_options)
+      ResourceCollection.new(self, result)
     end
     
     # Returns the first account associated with this username.
     def self.first(options={})
-      find(:first, options)
+      query_options = default_options.merge(options).merge(:limit => 1) # Minor optimization
+      validate_options(query_options)
+      result = query_collection(query_options)
+      self.new(result[collection_name].first)
+    end
+    
+    # Returns the single resource at the URL identified by the passed integer.  Takes no options; this is 
+    # not a search, this is a single record retrieval.  Raises an exception if the record can't be found.
+    def self.find_by_id(id)
+      response = self.connection[id].get
+      parsed = JSON.parse(response)
+      raise ActsAsiContact::QueryError, "iContact's response did not contain a #{resource_name}!" unless parsed[resource_name]
+      self.new(parsed[resource_name])
+    end
+    
+    # Two resources are identical if they have exactly the same property array.
+    def ==(obj)
+      properties == obj.properties
     end
     
     protected
@@ -241,11 +254,49 @@ module ActsAsIcontact
     def validate_on_save(fields)
     end
     
+    # Finesses the properties hash passed in to make iContact and Ruby idioms compatible.  
+    # Turns symbol keys into strings and runs the clean_value method on values.
+    # Subclasses may add additional conversions.
+    def clean_properties(properties)
+      newhash = {}
+      properties.each_pair do |key, value|
+        newhash[key.to_s] = clean_value(value)
+      end
+      newhash
+    end
+    
+    # Finesses values passed in to properties to make iContact and Ruby idioms compatible.
+    # Turns symbols into strings, numbers into integers or floats, true/false into 1 and 0,
+    # and empty strings into nil. Subclasses may add additional conversions.
+    def clean_value(value)
+      case value
+      when Symbol then value.to_s
+      when TrueClass then 1
+      when FalseClass then 0
+      when /^\d+$/ then value.to_i  # Integer
+      when /^\d+(\.\d+)?([eE]\d+)?$/ then value.to_f  # Float
+      when blank? then nil
+      else value
+      end 
+    end
+    
+    # The properties array, for comparison against other resources or debugging.
+    def properties
+      @properties
+    end
+    
     private
     def self.build_query(options={})
       return "" if options.empty?
       terms = options.collect{|k,v| "#{k}=#{URI.escape(v.to_s)}"}
       build = "?" + terms.join('&')
+    end
+    
+    def self.query_collection(options={})
+      uri_extension = uri_component + build_query(options)
+      response = base[uri_extension].get
+      parsed = JSON.parse(response)
+      parsed
     end
     
     def check_required_fields(fields, required)

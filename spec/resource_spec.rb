@@ -66,14 +66,19 @@ describe ActsAsIcontact::Resource do
     end
     
     it "maps the 'first' method to find(:first)" do
-      ActsAsIcontact::Resource.expects(:find).with(:first,{:foo=>:bar}).returns(nil)
-      ActsAsIcontact::Resource.first(:foo=>:bar)
+      ActsAsIcontact::Resource.expects(:first).with({:foo=>:bar}).returns(nil)
+      ActsAsIcontact::Resource.find(:first, :foo=>:bar)
     end
       
     it "maps the 'all' method to find(:all)" do
-      ActsAsIcontact::Resource.expects(:find).with(:all,{:foo=>:bar}).returns(nil)
-      ActsAsIcontact::Resource.all(:foo=>:bar)
+      ActsAsIcontact::Resource.expects(:all).with({:foo=>:bar}).returns(nil)
+      ActsAsIcontact::Resource.find(:all, :foo=>:bar)
     end
+    
+    it "can find a single resource by ID" do
+      a = ActsAsIcontact::Resource.find(1)
+      a.too.should == "sar"
+    end 
     
   end
   
@@ -123,6 +128,11 @@ describe ActsAsIcontact::Resource do
     a.foofoo.should == "bunny"
   end
   
+  it "typecasts all integer property values if it can" do
+    a = ActsAsIcontact::Resource.new("indianaPi" => "3")
+    a.indianaPi.should == 3
+  end
+  
   context "updating records" do
     before(:each) do
       @res = ActsAsIcontact::Resource.first
@@ -143,7 +153,7 @@ describe ActsAsIcontact::Resource do
     
     it "knows the minimum set of properties that changed or must be sent" do
       @res.too = "tar"
-      @res.send(:update_fields).should == {"resourceId" => "1", "too" => "tar"}
+      @res.send(:update_fields).should == {"resourceId" => 1, "too" => "tar"}
     end
     
     it "throws an exception if required fields aren't included" do

@@ -13,5 +13,12 @@ module ActsAsIcontact
     def self.boolean_fields
       super << "emailOwnerOnChange" << "welcomeOnManualAdd" << "welcomeOnSignupAdd"
     end
+    
+    # The welcome message pointed to by the welcomeMessageId.
+    def welcomeMessage
+      return nil unless welcomeMessageId
+      ActsAsIcontact::Message.find(welcomeMessageId)
+    end
+    
   end
 end
