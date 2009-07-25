@@ -41,9 +41,9 @@ describe "Configuration" do
         Object.expects(:const_defined?).with(:Rails).returns(true)
       end
       
-      it "is beta if RAILS_ENV is not production" do
+      it "is sandbox if RAILS_ENV is not production" do
         ENV["RAILS_ENV"] = 'staging'
-        ActsAsIcontact::Config.mode.should == :beta
+        ActsAsIcontact::Config.mode.should == :sandbox
       end
       
       it "is production if RAILS_ENV is production" do
@@ -65,9 +65,9 @@ describe "Configuration" do
         Object.expects(:const_defined?).with(:Rack).returns(true)
       end
       
-      it "is beta if RACK_ENV is not production" do
+      it "is sandbox if RACK_ENV is not production" do
         ENV["RACK_ENV"] = 'staging'
-        ActsAsIcontact::Config.mode.should == :beta
+        ActsAsIcontact::Config.mode.should == :sandbox
       end
       
       it "is production if RACK_ENV is production" do
@@ -81,17 +81,17 @@ describe "Configuration" do
     end
 
     
-    context ":beta" do
+    context ":sandbox" do
       before(:each) do
-        ActsAsIcontact::Config.mode = :beta        
+        ActsAsIcontact::Config.mode = :sandbox        
       end
       
-      it "returns the beta AppId" do
+      it "returns the sandbox AppId" do
         ActsAsIcontact::Config.app_id.should == "Ml5SnuFhnoOsuZeTOuZQnLUHTbzeUyhx"
       end
     
-      it "returns the beta URL" do
-        ActsAsIcontact::Config.url.should == "https://app.beta.icontact.com/icp/"
+      it "returns the sandbox URL" do
+        ActsAsIcontact::Config.url.should == "https://app.sandbox.icontact.com/icp/"
       end
       
     end

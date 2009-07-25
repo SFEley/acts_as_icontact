@@ -34,7 +34,7 @@ module ActsAsIcontact
         @newvalues ||= []
         @newvalues << $1
         if self.class.boolean_fields.include?($1)
-          @properties[$1] = params[0] ? 1 : 0
+          @properties[$1] = (params[0] && params[0] != 0) ? 1 : 0
         else
           @properties[$1] = params[0]
         end

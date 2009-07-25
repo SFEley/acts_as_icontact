@@ -3,15 +3,15 @@ module ActsAsIcontact
   # required by the iContact API for authentication.
   module Config
     
-    # Sets :production or :beta.  This changes the AppId and URL.
+    # Sets :production or :sandbox.  This changes the AppId and URL.
     def self.mode=(val)
       @mode = val
     end
     
-    # Determines whether to return the beta or production AppId and URL.  
+    # Determines whether to return the sandbox or production AppId and URL.  
     # If not explicitly set, it will first look for an ICONTACT_MODE environment variable.
     # If it doesn't find one, it will attempt to detect a Rails or Rack environment; in either
-    # case it will default to :production if RAILS_ENV or RACK_ENV is 'production', and :beta
+    # case it will default to :production if RAILS_ENV or RACK_ENV is 'production', and :sandbox
     # otherwise.  If none of these conditions apply, it assumes :production.  (Because that
     # probably means someone's doing ad hoc queries.)
     def self.mode
@@ -19,9 +19,9 @@ module ActsAsIcontact
       when ENV["ICONTACT_MODE"] 
         ENV["ICONTACT_MODE"].to_sym
       when Object.const_defined?(:Rails)
-        (ENV["RAILS_ENV"] == 'production' ? :production : :beta)
+        (ENV["RAILS_ENV"] == 'production' ? :production : :sandbox)
       when Object.const_defined?(:Rack)
-        (ENV["RACK_ENV"] == 'production' ? :production : :beta)
+        (ENV["RACK_ENV"] == 'production' ? :production : :sandbox)
       else
         :production
       end
@@ -32,7 +32,7 @@ module ActsAsIcontact
     # to change this.  Ever.
     def self.app_id
       case mode
-      when :beta
+      when :sandbox
         "Ml5SnuFhnoOsuZeTOuZQnLUHTbzeUyhx" 
       when :production
         "IYDOhgaZGUKNjih3hl1ItLln7zpAtWN2"
@@ -45,14 +45,16 @@ module ActsAsIcontact
     end
     
     # Prefixed to the beginning of every API request.  You can override this if you have some special 
-    # need (e.g. working against a testing server, or if iContact takes their API out of beta and 
-    # changes the URI before the gem gets updated), but for the most part you can leave it alone.
+    # need (e.g. working against a testing server, or if iContact changes their URL and you have to
+    # fix it before the gem gets updated), but for the most part you can leave it alone.
     def self.url
       @url ||= case mode
-      when :beta
-        "https://app.beta.icontact.com/icp/"
       when :production
         "https://app.icontact.com/icp/"
+      when :sandbox
+        "https://app.sandbox.icontact.com/icp/"
+      when :beta  # The 'beta' environment still works as of 7/25/2009
+        "https://app.beta.icontact.com/icp/"
       end
     end
     

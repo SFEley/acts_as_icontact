@@ -2,7 +2,7 @@ require 'rubygems'
 require 'fakeweb'
 
 FakeWeb.allow_net_connect = false
-i = "https://app.beta.icontact.com/icp"
+i = "https://app.sandbox.icontact.com/icp"
 ic = "#{i}/a/111111/c/222222"
 
 # Resources (this one's a fake stub for pure testing)

@@ -249,7 +249,7 @@ describe ActsAsIcontact::Resource do
     
     context "with successful save" do
       before(:each) do
-        FakeWeb.register_uri(:post, "https://app.beta.icontact.com/icp/resources", :body => %q<{"resources":[{"resourceId":"100","foo":"flar","kroo":"krar","too":"sar"}]}>)
+        FakeWeb.register_uri(:post, "https://app.sandbox.icontact.com/icp/resources", :body => %q<{"resources":[{"resourceId":"100","foo":"flar","kroo":"krar","too":"sar"}]}>)
         @res.too = "sar"
       end
       
@@ -279,7 +279,7 @@ describe ActsAsIcontact::Resource do
 
     context "with failed save but status 200" do
       before(:each) do
-        FakeWeb.register_uri(:post, "https://app.beta.icontact.com/icp/resources", :body => %q<{"resources":[],"warnings":["You did not provide a foo. foo is a required field. Please provide a foo","This was not a good record"]}>)
+        FakeWeb.register_uri(:post, "https://app.sandbox.icontact.com/icp/resources", :body => %q<{"resources":[],"warnings":["You did not provide a foo. foo is a required field. Please provide a foo","This was not a good record"]}>)
         @res = ActsAsIcontact::Resource.new
         @res.foo = nil
         @result = @res.save
@@ -304,7 +304,7 @@ describe ActsAsIcontact::Resource do
     
     context "with failed save on HTTP failure exception" do
       before(:each) do
-        FakeWeb.register_uri(:post, "https://app.beta.icontact.com/icp/resources", :status => ["400","Bad Request"], :body => %q<{"errors":["You did not provide a clue. Clue is a required field. Please provide a clue"]}>)
+        FakeWeb.register_uri(:post, "https://app.sandbox.icontact.com/icp/resources", :status => ["400","Bad Request"], :body => %q<{"errors":["You did not provide a clue. Clue is a required field. Please provide a clue"]}>)
         @res = ActsAsIcontact::Resource.new
         @res.foo = nil
         @result = @res.save

@@ -14,5 +14,5 @@ Spec::Runner.configure do |config|
   config.mock_with :mocha
   
   # Set up some reasonable testing variables
-  ActsAsIcontact::Config.mode = :beta
+  ActsAsIcontact::Config.mode = :sandbox
 end
