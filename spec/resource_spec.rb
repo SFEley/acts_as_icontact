@@ -2,7 +2,7 @@ require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
 
 describe ActsAsIcontact::Resource do
   it "has a RestClient connection" do
-    ActsAsIcontact::Resource.connection.url.should == ActsAsIcontact.connection['resources'].url
+    ActsAsIcontact::Resource.connection.url.should == ActsAsIcontact.client['resources'].url
   end
   
   it "can return all resources for the given URL" do
@@ -94,7 +94,7 @@ describe ActsAsIcontact::Resource do
   
   it "has its own connection if it's not new" do
     r = ActsAsIcontact::Resource.first
-    r.connection.url.should == ActsAsIcontact.connection['resources/1'].url
+    r.connection.url.should == ActsAsIcontact.client['resources/1'].url
   end
   
   it "does not have a connection if it's new" do
@@ -103,7 +103,7 @@ describe ActsAsIcontact::Resource do
   end
   
   it "knows its REST base resource" do
-    ActsAsIcontact::Resource.base.should == ActsAsIcontact.connection
+    ActsAsIcontact::Resource.base.should == ActsAsIcontact.client
   end
   
   it "knows its primary key" do
@@ -118,7 +118,11 @@ describe ActsAsIcontact::Resource do
     ActsAsIcontact::Resource.never_on_create.should == ["resourceId"]
   end
   
-    
+  it "accepts symbols for properties on creation" do
+    a = ActsAsIcontact::Resource.new(:foofoo => "bunny")    
+    a.foofoo.should == "bunny"
+  end
+  
   context "updating records" do
     before(:each) do
       @res = ActsAsIcontact::Resource.first
@@ -249,7 +253,7 @@ describe ActsAsIcontact::Resource do
     
     context "with successful save" do
       before(:each) do
-        FakeWeb.register_uri(:post, "https://app.sandbox.icontact.com/icp/resources", :body => %q<{"resources":[{"resourceId":"100","foo":"flar","kroo":"krar","too":"sar"}]}>)
+        FakeWeb.register_uri(:post, "https://app.sandbox.icontact.com/icp/a/111111/c/222222/resources", :body => %q<{"resources":[{"resourceId":"100","foo":"flar","kroo":"krar","too":"sar"}]}>)
         @res.too = "sar"
       end
       
@@ -279,7 +283,7 @@ describe ActsAsIcontact::Resource do
 
     context "with failed save but status 200" do
       before(:each) do
-        FakeWeb.register_uri(:post, "https://app.sandbox.icontact.com/icp/resources", :body => %q<{"resources":[],"warnings":["You did not provide a foo. foo is a required field. Please provide a foo","This was not a good record"]}>)
+        FakeWeb.register_uri(:post, "https://app.sandbox.icontact.com/icp/a/111111/c/222222/resources", :body => %q<{"resources":[],"warnings":["You did not provide a foo. foo is a required field. Please provide a foo","This was not a good record"]}>)
         @res = ActsAsIcontact::Resource.new
         @res.foo = nil
         @result = @res.save
@@ -304,7 +308,7 @@ describe ActsAsIcontact::Resource do
     
     context "with failed save on HTTP failure exception" do
       before(:each) do
-        FakeWeb.register_uri(:post, "https://app.sandbox.icontact.com/icp/resources", :status => ["400","Bad Request"], :body => %q<{"errors":["You did not provide a clue. Clue is a required field. Please provide a clue"]}>)
+        FakeWeb.register_uri(:post, "https://app.sandbox.icontact.com/icp/a/111111/c/222222/resources", :status => ["400","Bad Request"], :body => %q<{"errors":["You did not provide a clue. Clue is a required field. Please provide a clue"]}>)
         @res = ActsAsIcontact::Resource.new
         @res.foo = nil
         @result = @res.save

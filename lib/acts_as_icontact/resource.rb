@@ -8,7 +8,7 @@ module ActsAsIcontact
     
     # Creates a new resource object from a values hash.  (Which is passed to us via the magic of JSON.)
     def initialize(properties={})
-      @properties = properties
+      @properties = properties.stringify_keys
       @new_record = !@properties.has_key?(self.class.primary_key)
       # Initialize other useful attributes
       @errors = []
@@ -153,10 +153,10 @@ module ActsAsIcontact
       @properties
     end
     
-    # The base RestClient resource that this particular class nests from.  Starts with 
-    # the resource connection at 'https://api.icontact.com/icp/' and works its way up.
+    # The base RestClient resource that this particular class nests from.  Defaults to 
+    # the clientFolders path since that's the most common case.
     def self.base
-      ActsAsIcontact.connection
+      ActsAsIcontact.client
     end
     
     # The name of the singular resource type pulled from iContact.  Defaults to the lowercase
@@ -227,11 +227,18 @@ module ActsAsIcontact
     # Validation rules that ensure proper data is passed to iContact on resource creation.
     def validate_on_create(fields)
       check_required_fields(fields, self.class.required_on_create)
+      validate_on_save(fields)
     end
 
     # Validation rules that ensure proper data is passed to iContact on resource update.
     def validate_on_update(fields)
       check_required_fields(fields, self.class.required_on_update)
+      validate_on_save(fields)
+    end
+    
+    # Validation rules that apply to both creates and updates.  The method on the abstract Resource class is just a placeholder;
+    # this is intended to be used by resource subclasses.
+    def validate_on_save(fields)
     end
     
     private

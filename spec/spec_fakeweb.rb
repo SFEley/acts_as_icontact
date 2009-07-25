@@ -6,14 +6,14 @@ i = "https://app.sandbox.icontact.com/icp"
 ic = "#{i}/a/111111/c/222222"
 
 # Resources (this one's a fake stub for pure testing)
-FakeWeb.register_uri(:get, "#{i}/resources?limit=500", :body => %q<{"resources":[{"foo":"bar","resourceId":"1","too":"bar"},{"foo":"aar","resourceId":"2"},{"foo":"far","resourceId":"3"},{"foo":"car","resourceId":"4"},{"foo":"dar","resourceId":"5"},{"foo":"ear","resourceId":"6"},{"foo":"gar","resourceId":"7"},{"foo":"har","resourceId":"8"},{"foo":"iar","resourceId":"9"},{"foo":"jar","resourceId":"10"},{"foo":"kar","resourceId":"11"},{"foo":"yar","resourceId":"12"}],"total":12,"limit":20,"offset":0}>)
-FakeWeb.register_uri(:get, "#{i}/resources?limit=5", :body => %q<{"resources":[{"foo":"bar","resourceId":"1"},{"foo":"aar","resourceId":"2"},{"foo":"far","resourceId":"3"},{"foo":"car","resourceId":"4"},{"foo":"dar","resourceId":"5"}],"total":12,"limit":5,"offset":0}>)
-FakeWeb.register_uri(:get, "#{i}/resources?limit=500&offset=5", :body => %q<{"resources":[{"foo":"ear","resourceId":"6"},{"foo":"gar","resourceId":"7"},{"foo":"har","resourceId":"8"},{"foo":"iar","resourceId":"9"},{"foo":"jar","resourceId":"10"},{"foo":"kar","resourceId":"11"},{"foo":"yar","resourceId":"12"}],"total":12,"limit":20,"offset":5}>)
-FakeWeb.register_uri(:get, "#{i}/resources?offset=5&limit=5", :body => %q<{"resources":[{"foo":"ear","resourceId":"6"},{"foo":"gar","resourceId":"7"},{"foo":"har","resourceId":"8"},{"foo":"iar","resourceId":"9"},{"foo":"jar","resourceId":"10"}],"total":12,"limit":5,"offset":5}>)
-FakeWeb.register_uri(:get, "#{i}/resources?offset=10&limit=5", :body => %q<{"resources":[{"foo":"kar","resourceId":"11"},{"foo":"yar","resourceId":"12"}],"total":12,"limit":5,"offset":10}>)
-FakeWeb.register_uri(:post, "#{i}/resources/1", :body => %q<{"resource":{"foo":"bar","resourceId":"1","too":"sar"}}>)
-FakeWeb.register_uri(:post, "#{i}/resources/2", :body => %q<{"resource":{},"warnings":["You did not provide a foo. foo is a required field. Please provide a foo","This was not a good record"]}>)
-FakeWeb.register_uri(:post, "#{i}/resources/3", :status => ["400","Bad Request"], :body => %q<{"errors":["You did not provide a clue. Clue is a required field. Please provide a clue"]}>)
+FakeWeb.register_uri(:get, "#{ic}/resources?limit=500", :body => %q<{"resources":[{"foo":"bar","resourceId":"1","too":"bar"},{"foo":"aar","resourceId":"2"},{"foo":"far","resourceId":"3"},{"foo":"car","resourceId":"4"},{"foo":"dar","resourceId":"5"},{"foo":"ear","resourceId":"6"},{"foo":"gar","resourceId":"7"},{"foo":"har","resourceId":"8"},{"foo":"iar","resourceId":"9"},{"foo":"jar","resourceId":"10"},{"foo":"kar","resourceId":"11"},{"foo":"yar","resourceId":"12"}],"total":12,"limit":20,"offset":0}>)
+FakeWeb.register_uri(:get, "#{ic}/resources?limit=5", :body => %q<{"resources":[{"foo":"bar","resourceId":"1"},{"foo":"aar","resourceId":"2"},{"foo":"far","resourceId":"3"},{"foo":"car","resourceId":"4"},{"foo":"dar","resourceId":"5"}],"total":12,"limit":5,"offset":0}>)
+FakeWeb.register_uri(:get, "#{ic}/resources?limit=500&offset=5", :body => %q<{"resources":[{"foo":"ear","resourceId":"6"},{"foo":"gar","resourceId":"7"},{"foo":"har","resourceId":"8"},{"foo":"iar","resourceId":"9"},{"foo":"jar","resourceId":"10"},{"foo":"kar","resourceId":"11"},{"foo":"yar","resourceId":"12"}],"total":12,"limit":20,"offset":5}>)
+FakeWeb.register_uri(:get, "#{ic}/resources?offset=5&limit=5", :body => %q<{"resources":[{"foo":"ear","resourceId":"6"},{"foo":"gar","resourceId":"7"},{"foo":"har","resourceId":"8"},{"foo":"iar","resourceId":"9"},{"foo":"jar","resourceId":"10"}],"total":12,"limit":5,"offset":5}>)
+FakeWeb.register_uri(:get, "#{ic}/resources?offset=10&limit=5", :body => %q<{"resources":[{"foo":"kar","resourceId":"11"},{"foo":"yar","resourceId":"12"}],"total":12,"limit":5,"offset":10}>)
+FakeWeb.register_uri(:post, "#{ic}/resources/1", :body => %q<{"resource":{"foo":"bar","resourceId":"1","too":"sar"}}>)
+FakeWeb.register_uri(:post, "#{ic}/resources/2", :body => %q<{"resource":{},"warnings":["You did not provide a foo. foo is a required field. Please provide a foo","This was not a good record"]}>)
+FakeWeb.register_uri(:post, "#{ic}/resources/3", :status => ["400","Bad Request"], :body => %q<{"errors":["You did not provide a clue. Clue is a required field. Please provide a clue"]}>)
 
 # Time
 FakeWeb.register_uri(:get, "#{i}/time", :body => %q<{"time":"2009-07-13T01:28:18-04:00","timestamp":1247462898}>)
@@ -30,3 +30,9 @@ FakeWeb.register_uri(:get, "#{ic}/contacts?limit=500&status=total&firstName=John
 #  Lists
 FakeWeb.register_uri(:get, "#{ic}/lists?limit=500&name=First%20Test", :body => %q<{"lists":[{"listId":"444444","name":"First Test","emailOwnerOnChange":"0","welcomeOnManualAdd":"0","welcomeOnSignupAdd":"0","welcomeMessageId":"555555","description":"Just a test list."}]}>)
 
+# Message
+#### Test message for List association
+FakeWeb.register_uri(:get, "#{ic}/messages?limit=500&subject=Test%20Message", :body => %q<{"messages":[{"messageId":"555555","subject":"Welcome!","messageType":"welcome","textBody":"Welcome to the Test List!","htmlBody":"<p>Welcome to the <b>Test List</b>!</p>","createDate":"20090725 14:55:12"}]}>)
+
+#### Test message for associations originating from Message spec
+FakeWeb.register_uri(:get, "#{ic}/messages?limit=500&subject=Test%20Message", :body => %q<{"messages":[{"messageId":"666666","subject":"Test Message","messageType":"normal","textBody":"Hi there!\nThis is just a test.","htmlBody":"<p><b>Hi there!</b></p><p>This is just a <i>test.</i></p>","createDate":"20090725 14:53:33"}]}>)

@@ -2,6 +2,11 @@ module ActsAsIcontact
   # The nested Client Folder resource from iContact.  Currently only supports retrieval -- and is 
   # highly targeted toward the _first_ client folder, since that seems to be the dominant use case.
   class Client < Resource
+    # Derives from the Account resource.
+    def self.base
+      ActsAsIcontact.account
+    end
+    
     def self.resource_name
       'clientfolder'
     end

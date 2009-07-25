@@ -2,6 +2,11 @@ module ActsAsIcontact
   # The top-level Accounts resource from iContact.  Currently only supports retrieval -- and is 
   # highly targeted toward the _first_ account, since that seems to be the dominant use case.
   class Account < Resource
+    # This is the one major resource that comes directly from the main path.
+    def self.base
+      ActsAsIcontact.connection
+    end
+    
     def self.uri_component
       'a'
     end
