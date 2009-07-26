@@ -152,9 +152,13 @@ When you call the `acts_as_icontact` method in an ActiveRecord class declaration
 4. If an `icontact_status` field exists, creates named scopes on the model class for each iContact status.  _(Pending)_
 
 ### Options
-Option values and field mappings can be passed to the `acts_as_icontact` declaration to set default behavior for the model class.  Right now there's only one option:
+Option values and field mappings can be passed to the `acts_as_icontact` declaration to set default behavior for the model class.
 
-`default_lists` -- _The name or ID number of a list to subscribe new contacts to automatically, or an array of said names or numbers_
+`list` -- _The name or ID number of a list to subscribe new contacts to automatically_  
+`lists` -- _Like `list` but takes an array of names or numbers; new contacts will be subscribed to all of them_  
+`exception_on_failure` -- _If true, throws an ActsAsIcontact::SyncError when synchronization fails.  Defaults to false._  
+
+A note about failure: problems with synchronization are always logged to the standard Rails log.  For most applications, however, updating iContact is a secondary consideration; if a new user is registering, you _probably_ don't want exceptions bubbling up and the whole transaction rolling back just because of a transient iContact server outage.  So exceptions are something you have to deliberately enable.
 
 ### Field Mappings
 You can add contact integration to any ActiveRecord model that tracks an email address.  (If your model _doesn't_ include email but you want to use iContact with it, you are very, very confused.)
@@ -162,13 +166,13 @@ You can add contact integration to any ActiveRecord model that tracks an email a
 Any fields that are named the same as iContact's personal information fields, or custom fields you've previously declared, will be autodiscovered.  Otherwise you can map them:
 
     class Customer < ActiveRecord::Base
-      acts_as_icontact :default_lists => ['New Customers', 'All Users']  # Puts new contact on two lists
-                       :given_name => :firstName, # Key is Rails field, value is iContact field
-                       :family_name => :lastName,
-                       :address1 => :street,
-                       :address2 => :street2,
-                       :id => :rails_id, # Custom field created in iContact
-                       :preferred? => :preferred_customer # Custom field
+      acts_as_icontact :lists => ['New Customers', 'All Users']  # Puts new contact on two lists
+                       :firstName => :given_name, # Key is iContact field, value is Rails field
+                       :lastName => :family_name,
+                       :street => :address1,
+                       :street2 => :address2,
+                       :rails_id => :id  # Custom field created in iContact
+                       :preferred_customer => :preferred? # Custom field
     end
 
 A few iContact-specific fields are exceptions, and have different autodiscovery names to avoid collisions with other attributes in your application:
