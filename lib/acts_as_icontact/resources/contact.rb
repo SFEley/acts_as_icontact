@@ -3,7 +3,7 @@ module ActsAsIcontact
     
     # Email is required
     def self.required_on_create
-      super << ['email']
+      super << 'email'
     end
     
     # Derived from clientFolder

@@ -30,6 +30,7 @@ FakeWeb.register_uri(:get, "#{i}/a/111111/c?limit=500", :body => %q<{"clientfold
 
 # Contacts
 FakeWeb.register_uri(:get, "#{ic}/contacts?limit=1&status=total&firstName=John&lastName=Test", :body => %q<{"contacts":[{"email":"john@example.org","firstName":"John","lastName":"Test","status":"normal","contactId":"333333","createDate":"2009-07-24 01:00:00"}]}>)
+FakeWeb.register_uri(:post, "#{ic}/contacts", :body => %q<{"contacts":[{"email":"john@example.org","firstName":"John","lastName":"Smith","status":"normal","contactId":"333444","createDate":"2009-07-24 01:00:00","street":"","street2":"","prefix":"","suffix":"","fax":"","phone":"","city":"","state":"","postalCode":"","bounceCount":0,"custom_field":"","test_field":"","business":""}]}>)
 
 #  Lists
 FakeWeb.register_uri(:get, "#{ic}/lists?limit=1&name=First%20Test", :body => %q<{"lists":[{"listId":"444444","name":"First Test","emailOwnerOnChange":"0","welcomeOnManualAdd":"0","welcomeOnSignupAdd":"0","welcomeMessageId":"555555","description":"Just a test list."}]}>)

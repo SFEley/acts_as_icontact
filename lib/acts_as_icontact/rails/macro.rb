@@ -16,6 +16,10 @@ module ActsAsIcontact
           
           # Set up field mappings
           set_mappings(options)
+          
+          # If we haven't flaked out so far, we must be doing okay.  Make magic happen.
+          include ActsAsIcontact::Rails::Callbacks
+          after_create :icontact_after_create
         end
 
       end
