@@ -40,9 +40,22 @@ share_as :Mappings do
     it "maps custom fields" do
       @class.icontact_mappings[:custom_field].should == :custom_field
     end
+  end
+  
+  context "identity mapping" do
+    it "looks for contactId first" do
+      @class.acts_as_icontact
+      @class.icontact_identity_map.should == [:icontact_id, :contactId]
+    end
     
-    it "knows its identity field"
-      
-
+    it "looks for a Rails ID custom field second" do
+      @class.acts_as_icontact :icontact_id => nil, :id => :test_field
+      @class.icontact_identity_map.should == [:id, :test_field]
+    end
+    
+    it "uses email as last resort" do
+      @class.acts_as_icontact :icontact_id => nil
+      @class.icontact_identity_map.should == [:email, :email]
+    end
   end
 end

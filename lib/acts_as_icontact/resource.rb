@@ -102,7 +102,7 @@ module ActsAsIcontact
       @errors
     end
     
-    # Returns an array of resources starting at the base.
+    # Returns a resource or collection of resources.  
     def self.find(type, options={})
       case type
       when :first
@@ -111,6 +111,8 @@ module ActsAsIcontact
         all(options)
       when Integer
         find_by_id(type)
+      when String
+        find_by_string(type)  # Implemented in subclasses
       else
         raise ActsAsIcontact::QueryError, "Don't know how to find '#{type.to_s}'"
       end
@@ -137,8 +139,10 @@ module ActsAsIcontact
     def self.find_by_id(id)
       response = self.connection[id].get
       parsed = JSON.parse(response)
-      raise ActsAsiContact::QueryError, "iContact's response did not contain a #{resource_name}!" unless parsed[resource_name]
+      raise ActsAsIcontact::QueryError, "iContact's response did not contain a #{resource_name}!" unless parsed[resource_name]
       self.new(parsed[resource_name])
+    rescue RestClient::ResourceNotFound
+      raise ActsAsIcontact::QueryError, "The #{resource_name} with id #{id} could not be found"
     end
     
     # Two resources are identical if they have exactly the same property array.
@@ -194,6 +198,11 @@ module ActsAsIcontact
     # will call on this, and singular objects will derive from it.
     def self.connection
       base[uri_component]
+    end
+    
+    # Allows some subclasses to implement finding by a key identifier string.  The base resource just throws an exception.
+    def self.find_by_string(value)
+      raise ActsAsIcontact::QueryError, "You cannot search on #{collection_name} with a string value!"
     end
     
     # The primary key field for this resource.  Used on updates.

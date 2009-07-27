@@ -80,6 +80,11 @@ describe ActsAsIcontact::Resource do
       a.too.should == "sar"
     end 
     
+    it "can attempt to find a single resource by string identifier" do
+      ActsAsIcontact::Resource.expects(:find_by_string).returns(nil)
+      ActsAsIcontact::Resource.find("bar")
+    end
+    
   end
   
   it "knows its properties" do

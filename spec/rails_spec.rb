@@ -77,5 +77,6 @@ describe "Rails integration" do
   end
   
   include Mappings
+  include Callbacks
     
 end

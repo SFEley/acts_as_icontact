@@ -5,6 +5,11 @@ module ActsAsIcontact
       ActsAsIcontact.client
     end
     
+    # Searches on list name.
+    def self.find_by_string(value)
+      first(:name => value)
+    end
+    
     # Requires name, emailOwnerOnChange, welcomeOnManualAdd, welcomeOnSignupAdd, and welcomeMessageId.
     def self.required_on_create
       super << "name" << "emailOwnerOnChange" << "welcomeOnManualAdd" << "welcomeOnSignupAdd" << "welcomeMessageId"

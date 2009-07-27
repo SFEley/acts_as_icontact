@@ -21,6 +21,11 @@ describe ActsAsIcontact::List do
     l.welcomeOnManualAdd.should be_true
   end
   
+  it "can find a list by name" do
+    l = ActsAsIcontact::List.find("First Test")
+    l.id.should == 444444
+  end
+  
   context "associations" do
     # Create one good list
     before(:each) do

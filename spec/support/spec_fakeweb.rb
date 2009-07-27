@@ -40,3 +40,7 @@ FakeWeb.register_uri(:get, "#{ic}/messages/555555", :body => %q<{"message":{"mes
 
 #### Test message for associations originating from Message spec
 FakeWeb.register_uri(:get, "#{ic}/messages?limit=1&subject=Test%20Message", :body => %q<{"messages":[{"messageId":"666666","subject":"Test Message","messageType":"normal","textBody":"Hi there!\nThis is just a test.","htmlBody":"<p><b>Hi there!</b></p><p>This is just a <i>test.</i></p>","createDate":"20090725 14:53:33"}]}>)
+
+# CustomField
+FakeWeb.register_uri(:get, "#{ic}/customfields?limit=500", :body => %q<{"customfields":[{"privateName":"test_field","publicName":"Test Field","displayToUser":"0","fieldType":"text"},{"privateName":"custom_field","publicName":"This is for the Rails integration specs","displayToUser":1,"fieldType":"text"}],"total":2}>)
+FakeWeb.register_uri(:get, "#{ic}/customfields/test_field", :body => %q<{"customfield":{"privateName":"test_field","publicName":"Test Field","displayToUser":"0","fieldType":"text"}}>)
