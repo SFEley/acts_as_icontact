@@ -2,17 +2,19 @@
 
 Gem::Specification.new do |s|
   s.name = %q{acts_as_icontact}
-  s.version = "0.2.0"
+  s.version = "0.2.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Stephen Eley"]
-  s.date = %q{2009-07-26}
+  s.date = %q{2009-07-27}
+  s.default_executable = %q{icontact}
   s.description = %q{ActsAsIcontact connects Ruby applications with the iContact e-mail marketing service using the iContact API v2.0.  Building on the RestClient gem, it offers two significant feature sets:
 
 * Simple, consistent access to all resources in the iContact API; and
 * Automatic synchronizing between ActiveRecord models and iContact contact lists for Rails applications.
 }
   s.email = %q{sfeley@gmail.com}
+  s.executables = ["icontact"]
   s.extra_rdoc_files = [
     "README.markdown"
   ]
@@ -24,18 +26,22 @@ Gem::Specification.new do |s|
      "Rakefile",
      "VERSION",
      "acts_as_icontact.gemspec",
+     "bin/icontact",
      "init.rb",
      "lib/acts_as_icontact.rb",
      "lib/acts_as_icontact/config.rb",
      "lib/acts_as_icontact/connection.rb",
      "lib/acts_as_icontact/exceptions.rb",
      "lib/acts_as_icontact/rails.rb",
+     "lib/acts_as_icontact/rails/callbacks.rb",
      "lib/acts_as_icontact/rails/macro.rb",
+     "lib/acts_as_icontact/rails/mappings.rb",
      "lib/acts_as_icontact/resource.rb",
      "lib/acts_as_icontact/resource_collection.rb",
      "lib/acts_as_icontact/resources/account.rb",
      "lib/acts_as_icontact/resources/client.rb",
      "lib/acts_as_icontact/resources/contact.rb",
+     "lib/acts_as_icontact/resources/custom_field.rb",
      "lib/acts_as_icontact/resources/list.rb",
      "lib/acts_as_icontact/resources/message.rb",
      "rails/init.rb",
@@ -43,11 +49,14 @@ Gem::Specification.new do |s|
      "spec/connection_spec.rb",
      "spec/examples/schema.rb",
      "spec/rails_spec.rb",
+     "spec/rails_spec/callbacks_spec.rb",
+     "spec/rails_spec/mappings_spec.rb",
      "spec/resource_collection_spec.rb",
      "spec/resource_spec.rb",
      "spec/resources/account_spec.rb",
      "spec/resources/client_spec.rb",
      "spec/resources/contact_spec.rb",
+     "spec/resources/custom_field_spec.rb",
      "spec/resources/list_spec.rb",
      "spec/resources/message_spec.rb",
      "spec/spec.opts",
@@ -60,18 +69,21 @@ Gem::Specification.new do |s|
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
   s.rubyforge_project = %q{actsasicontact}
-  s.rubygems_version = %q{1.3.4}
+  s.rubygems_version = %q{1.3.5}
   s.summary = %q{Automatic bridge between iContact e-mail marketing service and Rails ActiveRecord}
   s.test_files = [
     "spec/config_spec.rb",
      "spec/connection_spec.rb",
      "spec/examples/schema.rb",
+     "spec/rails_spec/callbacks_spec.rb",
+     "spec/rails_spec/mappings_spec.rb",
      "spec/rails_spec.rb",
      "spec/resource_collection_spec.rb",
      "spec/resource_spec.rb",
      "spec/resources/account_spec.rb",
      "spec/resources/client_spec.rb",
      "spec/resources/contact_spec.rb",
+     "spec/resources/custom_field_spec.rb",
      "spec/resources/list_spec.rb",
      "spec/resources/message_spec.rb",
      "spec/spec_helper.rb",
