@@ -25,5 +25,9 @@ module ActsAsIcontact
       ActsAsIcontact::Message.find(welcomeMessageId)
     end
     
+    # TODO: use the new 'forwardTo' parameter to the ResourceClass constructor
+    def subscribers
+    end
+    
   end
 end

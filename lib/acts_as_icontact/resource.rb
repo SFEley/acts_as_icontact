@@ -266,7 +266,7 @@ module ActsAsIcontact
     # Finesses the properties hash passed in to make iContact and Ruby idioms compatible.  
     # Turns symbol keys into strings and runs the clean_value method on values.
     # Subclasses may add additional conversions.
-    def clean_properties(properties)
+    def clean_properties(properties={})
       newhash = {}
       properties.each_pair do |key, value|
         newhash[key.to_s] = clean_value(value)
