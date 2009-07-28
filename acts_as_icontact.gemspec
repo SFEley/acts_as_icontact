@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{acts_as_icontact}
-  s.version = "0.2.1"
+  s.version = "0.2.3"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Stephen Eley"]
@@ -44,6 +44,7 @@ Gem::Specification.new do |s|
      "lib/acts_as_icontact/resources/custom_field.rb",
      "lib/acts_as_icontact/resources/list.rb",
      "lib/acts_as_icontact/resources/message.rb",
+     "lib/acts_as_icontact/resources/subscription.rb",
      "rails/init.rb",
      "spec/config_spec.rb",
      "spec/connection_spec.rb",
@@ -59,6 +60,7 @@ Gem::Specification.new do |s|
      "spec/resources/custom_field_spec.rb",
      "spec/resources/list_spec.rb",
      "spec/resources/message_spec.rb",
+     "spec/resources/subscription_spec.rb",
      "spec/spec.opts",
      "spec/spec_helper.rb",
      "spec/support/active_record/connection_adapters/nulldb_adapter.rb",
@@ -86,6 +88,7 @@ Gem::Specification.new do |s|
      "spec/resources/custom_field_spec.rb",
      "spec/resources/list_spec.rb",
      "spec/resources/message_spec.rb",
+     "spec/resources/subscription_spec.rb",
      "spec/spec_helper.rb",
      "spec/support/active_record/connection_adapters/nulldb_adapter.rb",
      "spec/support/nulldb_rspec.rb",
