@@ -31,7 +31,11 @@ describe ActsAsIcontact::List do
     before(:each) do
       @list = ActsAsIcontact::List.first(:name => "First Test")
     end
-    it "knows its subscribers"
+    
+    it "knows its subscribers" do
+      @list.subscribers.first.should == ActsAsIcontact::Contact.find(333444)
+      @list.subscribers.next.should == ActsAsIcontact::Contact.find(333333)
+    end
     
     it "knows its welcome message" do
       @list.welcomeMessage.should == ActsAsIcontact::Message.find(555555)

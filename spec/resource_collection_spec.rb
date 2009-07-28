@@ -20,4 +20,8 @@ describe ActsAsIcontact::ResourceCollection do
     @this[1].yoo.should == "yar"
   end
     
+  it "treats 'first' as an initial call of 'next'" do
+    @this.first.foo.should == "bar"
+    @this.next.yoo.should == "yar"
+  end
 end

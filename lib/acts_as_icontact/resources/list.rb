@@ -25,8 +25,9 @@ module ActsAsIcontact
       ActsAsIcontact::Message.find(welcomeMessageId)
     end
     
-    # TODO: use the new 'forwardTo' parameter to the ResourceClass constructor
+    # Returns the contacts subscribed to this list (via the Subscription class).
     def subscribers
+      @subscribers ||= ActsAsIcontact::Subscription.contacts(:listId => id)
     end
     
   end

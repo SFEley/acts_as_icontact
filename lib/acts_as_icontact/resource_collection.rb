@@ -26,6 +26,12 @@ module ActsAsIcontact
       resource(@collection[index]) if @collection[index]
     end
     
+    # Calls "next" to kick off the enumerator.  This is more in line with what users would expect.
+    def first
+      self.rewind
+      self.next
+    end
+    
     private 
     def resource(properties)
       if @forwardTo

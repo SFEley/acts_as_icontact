@@ -18,7 +18,10 @@ describe ActsAsIcontact::Contact do
       @john = ActsAsIcontact::Contact.first(:firstName => "John", :lastName => "Test")
     end
   
-    it "knows which lists it's subscribed to"
+    it "knows which lists it's subscribed to" do
+      @john.lists.first.should == ActsAsIcontact::List.find(444444)
+    end
+    
     it "knows its history"
   end
     

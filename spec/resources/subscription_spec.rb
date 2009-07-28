@@ -29,7 +29,7 @@ describe ActsAsIcontact::Subscription do
     collection.next.should == ActsAsIcontact::Contact.find(333333)
   end
 
-  it "can return the contacts for a query as a collection" do
+  it "can return the lists for a query as a collection" do
     collection = ActsAsIcontact::Subscription.lists(:contactId => 333444)
     collection.first.should == ActsAsIcontact::List.find(444444)
   end

@@ -15,6 +15,11 @@ module ActsAsIcontact
     def self.default_options
       super.merge(:status=>:total)
     end
+   
+    # Returns the lists to which this contact is subscribed (via the Subscription class).
+    def lists
+      @lists ||= ActsAsIcontact::Subscription.lists(:contactId => id)
+    end
     
   end
 end
