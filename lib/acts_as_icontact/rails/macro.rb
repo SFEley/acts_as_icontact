@@ -20,6 +20,7 @@ module ActsAsIcontact
           # If we haven't flaked out so far, we must be doing okay.  Make magic happen.
           include ActsAsIcontact::Rails::Callbacks
           after_create :icontact_after_create
+          after_update :icontact_after_update
         end
 
       end

@@ -30,5 +30,12 @@ module ActsAsIcontact
       @subscribers ||= ActsAsIcontact::Subscription.contacts(:listId => id)
     end
     
+    # Creates a new subscription for the specified list by the contact
+    def subscribe(contact)
+      c = ActsAsIcontact::Contact.find(contact)
+      s = ActsAsIcontact::Subscription.new(:contactId => c.id, :listId => id)
+      s.save
+    end
+    
   end
 end

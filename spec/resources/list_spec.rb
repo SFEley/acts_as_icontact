@@ -40,5 +40,13 @@ describe ActsAsIcontact::List do
     it "knows its welcome message" do
       @list.welcomeMessage.should == ActsAsIcontact::Message.find(555555)
     end
+    
+    it "can be subscribed to by a subscriber" do
+      conn = mock('Class Connection')
+      conn.expects(:post).with(regexp_matches(/444444/) && regexp_matches(/333333/)).returns('{"subscriptions":{}}')
+      ActsAsIcontact::Subscription.expects(:connection).returns(conn)
+      @list.subscribe(333333)
+    end
+      
   end
 end

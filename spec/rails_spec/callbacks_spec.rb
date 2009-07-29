@@ -5,15 +5,32 @@ share_as :Callbacks do
       @person = @class.new(:firstName => "John", :surname => "Smith", :email => "john@example.org")
     end
     
-    it "will create a new contact after record creation" do
-#      ActsAsIcontact::Contact.any_instance.expects(:save).returns(true)
-      @person.save
+    context "for creation" do
+      it "creates a new contact" do
+        conn = mock('Class Connection')
+        conn.expects(:post).with(regexp_matches(/Smith/)).returns('{"contacts":{}}')
+        ActsAsIcontact::Contact.expects(:connection).returns(conn)
+        @person.save
+      end
+      
+      it "updates the Person with the results of the contact creation" do
+        @person.save
+        @person.icontact_id.should == 333444
+      end
     end
     
-    it "updates the Person with the results of the contact save" do
-      @person.save
-      @person.icontact_id.should == 333444
+    context "for update" do
+      before(:each) do
+        @person.save
+        @person.surname = "Nielsen Hayden"
+      end
+      
+      it "updates the contact with the new fields" do
+        conn = mock('Instance Connection')
+        conn.expects(:post).with(regexp_matches(/Nielsen Hayden/)).returns('{"contact":{}}')
+        ActsAsIcontact::Contact.any_instance.expects(:connection).returns(conn)
+        @person.save
+      end
     end
-    
   end
 end

@@ -22,6 +22,13 @@ describe ActsAsIcontact::Contact do
       @john.lists.first.should == ActsAsIcontact::List.find(444444)
     end
     
+    it "can subscribe oneself to a list" do
+      conn = mock('Class Connection')
+      conn.expects(:post).with(regexp_matches(/444444/) && regexp_matches(/333333/)).returns('{"subscriptions":{}}')
+      ActsAsIcontact::Subscription.expects(:connection).returns(conn)
+      @john.subscribe(444444)
+    end
+    
     it "knows its history"
   end
     
