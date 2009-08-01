@@ -16,6 +16,7 @@ end
 if defined?(::ActiveRecord)
   module ::ActiveRecord
     class Base
+      extend ActsAsIcontact::Rails::ClassMethods::Lists
       extend ActsAsIcontact::Rails::ClassMethods::Mappings
       extend ActsAsIcontact::Rails::ClassMethods::Macro
     end

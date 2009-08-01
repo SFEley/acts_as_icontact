@@ -22,6 +22,10 @@ module ActsAsIcontact
             end
           end
           self.save
+          # Subscribe the contact to any lists
+          self.class.icontact_default_lists.each do |list|
+            c.subscribe(list)
+          end
           @icontact_in_progress = false  # Very primitive loop prevention
         end
       end

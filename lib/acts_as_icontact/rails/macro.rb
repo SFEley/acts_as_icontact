@@ -9,10 +9,9 @@ module ActsAsIcontact
           # Fail on exceptions?
           @icontact_exception_on_failure = options.delete(:exception_on_failure) || false
           
-          # Combines :list and :lists parameters into one array
-          @icontact_default_lists = []
-          @icontact_default_lists << options.delete(:list) if options.has_key?(:list)
-          @icontact_default_lists += options.delete(:lists) if options.has_key?(:lists)
+          
+          # Set up lists for autosubscribe
+          set_default_lists(options.delete(:list), options.delete(:lists))
           
           # Set up field mappings
           set_mappings(options)

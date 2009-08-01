@@ -17,6 +17,11 @@ share_as :Callbacks do
         @person.save
         @person.icontact_id.should == 333444
       end
+      
+      it "subscribes the Person to any lists" do
+        ActsAsIcontact::Contact.any_instance.expects(:subscribe).with("First Test").returns(true)
+        @person.save
+      end
     end
     
     context "for update" do

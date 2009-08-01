@@ -59,4 +59,4 @@ FakeWeb.register_uri(:get, "#{ic}/subscriptions?limit=500&listId=444444", :body 
 FakeWeb.register_uri(:get, "#{ic}/subscriptions?limit=1&contactId=333444", :body => %q<{"subscriptions":[{"status":"normal","addDate":"2009-07-27T15:36:37-04:00","contactId":333444,"listId":444444, "subscriptionId":"444444_333333","confirmationMessageId":555666}]}>)
 FakeWeb.register_uri(:get, "#{ic}/subscriptions?limit=500&contactId=333444", :body => %q<{"subscriptions":[{"status":"normal","addDate":"2009-07-27T15:36:37-04:00","contactId":333444,"listId":444444, "subscriptionId":"444444_333444","confirmationMessageId":555666}]}>)
 FakeWeb.register_uri(:get, "#{ic}/subscriptions?limit=500&contactId=333333", :body => %q<{"subscriptions":[{"status":"normal","addDate":"2009-07-27T15:36:37-04:00","contactId":333333,"listId":444444, "subscriptionId":"444444_333333","confirmationMessageId":555666}]}>)
-
+FakeWeb.register_uri(:post, "#{ic}/subscriptions", :body => %q<{"subscriptions":[{"status":"normal","addDate":"2009-07-27T15:36:37-04:00","contactId":333333,"listId":444444, "subscriptionId":"444444_333333","confirmationMessageId":555666}]}>)
