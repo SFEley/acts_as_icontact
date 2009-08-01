@@ -5,15 +5,10 @@ module ActsAsIcontact
       protected
       # Called after a new record has been saved.  Creates a new contact in iContact.
       def icontact_after_create
+        logger.debug "ActsAsIcontact creating contact for Rails ID: #{id}"
         c = ActsAsIcontact::Contact.new
-        self.class.icontact_mappings.each do |rails, iContact|
-          if (value = self.send(rails))
-            ic = (iContact.to_s + '=').to_sym   # Blah. This feels like it should be easier.
-            c.send(ic, value)
-          end
-        end
-        if c.save
-          # Update with iContact fields returned
+        update_contact_from_rails_fields(c)
+        if attempt_contact_save(c)
           @icontact_in_progress = true
           self.class.icontact_mappings.each do |rails, iContact|
             unless (value = c.send(iContact)).blank?
@@ -30,16 +25,13 @@ module ActsAsIcontact
         end
       end
 
+      # Called after an existing record has been updated.  Updates an existing contact in iContact if one
+      # can be found; otherwise creates a new one.
       def icontact_after_update
         unless @icontact_in_progress # Avoid callback loops
-          c = find_contact_by_identity
-          self.class.icontact_mappings.each do |rails, iContact|
-            if (value = self.send(rails))
-              ic = (iContact.to_s + '=').to_sym   # Blah. This feels like it should be easier.
-              c.send(ic, value)
-            end
-          end
-          c.save
+          c = find_contact_by_identity or ActsAsIcontact::Contact.new
+          update_contact_from_rails_fields(c)
+          attempt_contact_save(c)
           # No need to update the record this time; iContact field changes don't have side effects
         end
       end
@@ -58,6 +50,31 @@ module ActsAsIcontact
         nil
       end
       
+      def update_contact_from_rails_fields(contact)
+        self.class.icontact_mappings.each do |rails, iContact|
+          if (value = self.send(rails))
+            ic = (iContact.to_s + '=').to_sym   # Blah. This feels like it should be easier.
+            contact.send(ic, value)
+          end
+        end
+      end
+      
+      def attempt_contact_save(contact)
+        if self.class.icontact_exception_on_failure
+          contact.save!
+          logger.info "ActsAsIcontact contact created. Rails ID: #{id}; iContact ID: #{contact.id}"
+          true
+        else
+          if contact.save
+            logger.info "ActsAsIcontact contact created. Rails ID: #{id}; iContact ID: #{contact.id}"
+            true
+          else
+            logger.warn "ActsAsIcontact contact creation failed! iContact says: #{contact.error}"
+            false
+          end
+        end
+      end
+        
     end
   end
 end

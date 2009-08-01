@@ -11,6 +11,7 @@ describe "Rails integration" do
   before(:all) do
     ActiveRecord::Base.establish_connection :adapter => :nulldb,
                                             :schema => File.dirname(__FILE__) + '/examples/schema.rb'
+    
   end
   
   before(:each) do
@@ -40,11 +41,16 @@ describe "Rails integration" do
         def self.name
           "Person"
         end
+        
       end
       
     end
     
     @class = @module.module_eval("Person")
+    # Stub out the logger
+    @class.stubs(:logger).returns(stub('Logger', :info => true, :warn => true, :error => true, :debug => true))
+    @class.any_instance.stubs(:logger).returns(stub('Logger', :info => true, :warn => true, :error => true, :debug => true))
+
   end
 
   it "allows the acts_as_icontact macro method" do

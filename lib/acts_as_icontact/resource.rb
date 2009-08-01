@@ -71,7 +71,7 @@ module ActsAsIcontact
       end
       parsed = JSON.parse(response)
       if parsed[result_type].empty?
-        @errors = parsed["warnings"]
+        @errors = parsed["warnings"] || []
         false
       else
         @properties = (new_record? ? parsed[result_type].first : parsed[result_type])
