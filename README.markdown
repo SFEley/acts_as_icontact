@@ -1,19 +1,20 @@
 ActsAsIcontact
 ==============
-ActsAsIcontact connects Ruby applications with the [iContact e-mail marketing service](http://icontact.com) using the iContact API v2.0.  Building on the [RestClient](http://rest-client.heroku.com) gem, it offers two significant feature sets:
+ActsAsIcontact connects Ruby applications with the [iContact e-mail marketing service][1] using the iContact API v2.0.  Building on the [RestClient][2] gem, it offers three significant feature sets:
 
-* Simple, consistent access to all resources in the iContact API; and
+* Simple, consistent access to all resources in the iContact API; 
+* A simple command-line client; and
 * Automatic synchronizing between ActiveRecord models and iContact contact lists for Rails applications.
 
 Prerequisites
 -------------
 You'll need the following to use this gem properly:
 
-1. **Ruby 1.9** Yeah, we know, change is _scary_ and a zillion of your other gems only work in 1.8. But ActsAsIcontact makes use of a few 1.9 features for efficiency, such as Enumerators.  It's _possible_ that this might work in 1.8.7 if you install the **JSON** gem and `require 'enumerator'` explicitly -- but the author hasn't tested it.  If you need it to work in 1.8, speak up.  Or better yet, make it work and submit a patch.
+1. **Ruby 1.9:** Yes, we know, many other gems still only work in 1.8. But ActsAsIcontact makes use of a few 1.9.1 features for efficiency, such as fiber-based Enumerators to step through large collections without instantiating a thousand objects at once.  It's _possible_ that this might work in 1.8.7 if you install the **JSON** gem and `require 'enumerator'` explicitly -- but the author hasn't tested it.  If you need it to work in 1.8, speak up.  Or better yet, make it work and submit a patch.
 
-2. **Rails 2.1** _(If using Rails integration)_ We use ActiveRecord's 'dirty fields' feature that first appeared in 2.1 to determine whether iContact needs updating.  If you're on a version of Rails older than this, it's probably worth your while to update anyway.
+2. **Rails 2.1 or higher:** _(If using Rails integration)_ We use ActiveRecord's 'dirty fields' feature that first appeared in 2.1 to determine whether iContact needs updating.  If you're on a version of Rails older than this, it's probably worth your while to update anyway.
 
-3. **rest-client** This gem _should_ install when you install the **acts\_as\_icontact** gem.  But we include it here for completeness.
+3. **Other gems:** This gem requires the [RestClient][2], [ActiveSupport][3] and [Bond][4] gems in order to work.  Simply doing a `gem install` _should_ install these dependencies as well.
 
 Setting Up
 ----------
@@ -31,21 +32,36 @@ Using ActsAsIcontact is easy, but going through iContact's authorization process
   
      * **PRODUCTION:** Go to <http://app.icontact.com/icp/core/externallogin> and enter `IYDOhgaZGUKNjih3hl1ItLln7zpAtWN2` for the Application Id. Choose a password for ActsAsIcontact that's different from your account password.
   
-4. Set your _(sandbox, if applicable)_ account username and the password you just chose for API access. You can either set the environment variables `ICONTACT_MODE`, `ICONTACT_USERNAME`, and `ICONTACT_PASSWORD`, or you can explicitly do it with calls to the Config module:  
+4. Set your _(sandbox, if applicable)_ account username and the password you just chose for API access. See the next section for how to specify these.
+
+5. Rinse and repeat with production credentials when you're ready to move out of the sandbox environment.  For more information, consult the [iContact API developer documentation][5].
+
+Authentication
+--------------
+ActsAsIcontact already knows iContact's URL and its own Application Id, so the only things you need to tell it are your username, password, and whether you want to access the production or sandbox environments.  There are three simple ways to do that:
+
+1. Set the environment variables `ICONTACT_MODE`, `ICONTACT_USERNAME`, and `ICONTACT_PASSWORD`.  The `ICONTACT_MODE` environment variable should have a value of either ___production___ or ___sandbox___.
+
+2. Create a directory called **.icontact** under your home directory and place a YAML file in it titled **config.yml**:
+        ---
+        mode: production
+        username: my_username
+        password: my_password
+    This hidden directory is also used for the command line client's history file, and future versions of ActsAsIcontact may use it for caching.
+    
+3. You can explicitly set them anywhere in your code with calls to the Config module (note that the mode is a symbol, not a string):  
 
         require 'rubygems'
         require 'acts_as_icontact'
     
         ActsAsIcontact::Config.mode = :sandbox
-        ActsAsIcontact::Config.username = my_sandbox_username
-        ActsAsIcontact::Config.password = my_api_password  
+        ActsAsIcontact::Config.username = "my_sandbox_username"
+        ActsAsIcontact::Config.password = "my_api_password"  
   
     If you're using Rails, the recommended approach is to require the gem with `config.gem 'acts_as_icontact'` in your **config/environment.rb** file, and then set up an initializer (i.e. **config/initializers/acts\_as\_icontact.rb**) with the above code.  See more about Rails below.
 
-5. Rinse and repeat with production credentials when you're ready to move out of the sandbox environment.  
-
-API Access
-----------
+Using the API
+-------------
 Whether or not you're using Rails, retrieving and modifying iContact resources is simple.  The gem autodiscovers your account and client folder IDs (you only have one of each unless you're an 'agency' account), so you can jump straight to the good parts:
 
      contacts = ActsAsIcontact::Contact.find(:all)  # => <#ActsAsIcontact::ResourceCollection>
@@ -61,7 +77,7 @@ Whether or not you're using Rails, retrieving and modifying iContact resources i
   
   
 ### Nesting
-The interface is deliberately as "ActiveRecord-like" as possible, with methods linking resources that are either nested in iContact's URLs or logically related.  Messages have a Message#bounces method.  Lists have List#subscribers to list the Contacts subscribed to them, and Contacts have Contact#lists.  Read the documentation for each class to find out what you can do:
+The interface is deliberately as "ActiveRecord-like" as possible, with methods linking resources that are either nested in iContact's URLs or logically related.  Messages have a Message#bounces method.  Lists have `List#subscribers` to list the Contacts subscribed to them, and Contacts have `Contact#lists`.  Read the [documentation][5] for each class to find out what you can do:
 
 * ActsAsIcontact::Account
   * ActsAsIcontact::ClientFolder
@@ -86,17 +102,64 @@ The interface is deliberately as "ActiveRecord-like" as possible, with methods l
 * ActsAsIcontact::Time
 
 ### Searching
-Searches are handled in a sane way using the same query options that iContact accepts.  The following are all valid:
+Searches are handled using the same query options that iContact accepts, but with a syntax based on ActiveRecord.  At this time, special searches (i.e. _gte_, _bet_ etc.) are not yet supported.  Fields requiring dates must be given a string corresponding to the ISO8601 timestamp (e.g. `2006-09-16T14:30:00-06:00`); proper date/time conversion will happen soon.  See the [iContact developer docs][5] for available search options.
 
-`Messages.all` -- *Same as `Messages.find(:all)`*  
-`Messages.first` -- *Same as `Messages.find(:first)`*  
-`Messages.find(:all, :limit => 20)` -- *First 20 messages*  
-`Messages.find(:all, :limit => 20, :offset => 40)` -- *Messages 41-60*  
-`Messages.first(:subject => "Fnord")` -- *First message with the given subject*  
-`Messages.all(:orderby => createDate, :desc => true)` -- *Messages ordered by most recent first*  
-`Messages.all(:messageType => "welcome", :campaignId => 11)` -- *Welcome messages from the given campaign*  
+The following class methods are offered (using the Message class as an example):
 
-At this time, special searches are not yet supported.  Fields requiring dates must also be given a string corresponding to the ISO8601 timestamp (e.g. `2006-09-16T14:30:00-06:00`).  Proper date/time conversion will happen soon.
+#### Message.first
+
+Returns a single Message.  With no parameters, it returns the first Message in iContact's system, which may be arbitrary.  You can specify one or more search parameters as an options hash (note the Ruby 1.9 syntax):
+    Message.first(messageType: "welcome")  # => The first welcome message
+    Message.first(orderby: "createDate:desc")  # => Most recent message
+    
+If no records can be found matching the parameters, the **first** method returns nil.
+    
+#### Message.all
+
+Returns a collection of Messages matching the search parameters.  The _limit_ and _offset_ parameters are important here; if no _limit_ is provided, a default limit of 500 records is used.  (That default is also the maximum, at the request of iContact's technical staff.)
+
+The collection is an object of type ResourceCollection, and it acts both as an array and an enumerator.  For efficiency, individual Message objects are instantiated only when you access them.  
+    Message.all(messageType: "confirmation")  # => All confirmation messages (up to 500)
+    Message.all(limit: 20)  # => The first 20 messages
+    Message.all(limit: 20, offset: 40)  # => Messages 41-60
+    Message.all(offset:500)  # => Messages 501-1000
+    
+    # Example of collection iteration
+    @messages = Message.all  # => Assigns the first 500 messages to @messages
+    @messages.count  # => Number of messages
+    @messages[11]    # => Twelfth message in the collection (arrays are 0-based)
+    @messages.first  # => First message
+    @messages.next   # => Second message
+    @messages.next   # => Third message (et cetera)
+    
+If no records can be found matching the parameters, the **all** method returns nil.
+
+#### Message.find
+
+Like its ActiveRecord role model, #find has several behaviors depending on its parameter list:
+
+    Message.find(:first, messageType: "welcome")  # => Identical to Message.first(messageType: "welcome")
+    Message.find(:all, limit: 20)  # => Identical to Message.all(limit: 20)
+    Message.find(7)  # => Single Message found with messageId of 7
+    Message.find("foo")  # => Single Message found with subject of "foo"
+
+The _integer_ and _string_ parameter modes warrant some explanation.  Passing an integer to **find** on most resource classes will do a primary key lookup.  So Accounts will match on the accountId, Contacts will match on the contactId, etc.  The integer variant is unsupported for the CustomField and Subscription classes, which use string-based primary keys.
+
+Passing a string to **find** on most resource classes will do a single-record search based on the field most likely to be unique and important:
+
+* **Account:** userName
+* **Campaign:** name
+* **ClientFolder:** name
+* **Contact:** email
+* **CustomField:** customFieldId _(primary key)_
+* **List:** name
+* **Message:** subject
+* **Segment:** name
+* **Subscription:** subscriptionId _(primary key)_
+* **User:** userName
+
+If no records can be found using **find**, the _:first_ and _:all_ variants will return nil (just like **first** and **all**).  The _integer_ and _string_ variants will return an exception, on the assumption that you knew exactly what you were looking for and expected it to be there.  (I.e., matching the behavior of ActiveRecord.)
+
 
 ### Updating
 
@@ -107,11 +170,11 @@ Again, think ActiveRecord.  When you initialize an object, you can optionally pa
                     :email => "bob@example.org")
     c.address = "123 Test Street"
 
-Each resource class has a `#save` method which returns true or false.  If false, the `#error` method contains the reply back from iContact about what went wrong.  (Which may or may not be informative, but we can't tell you more than they do.)  There's also a`#save!`method which throws an exception instead.
+Each resource object has a **#save** method which returns true or false.  If false, the **#error** method contains the reply back from iContact about what went wrong.  (Which may or may not be informative, but we can't tell you more than they do.)  There's also a **#save!** method which throws an exception on failure instead of returning false.
 
-Nested resources can be created using the `build_` method (which returns an object but doesn't save it right away) or `create_` method (which does save it upon creation).  The full panoply of ActiveRecord association methods are not implemented yet.  (Hey, we said it was AR-_like._)
+Nested resources can be created using the **build\_foo** method (which returns an object but doesn't save it right away) or **create\_foo** method (which does save it upon creation).  The full panoply of ActiveRecord association methods are not implemented yet.  (Hey, we said it was AR-_like._)
 
-The `#delete` method on each class works as you'd expect, assuming iContact allows deletes on that resource.  Resource collections containing the resource are not updated, however, so you may need to requery.
+The **#delete** method on each object works as you'd expect, assuming iContact allows deletes on that resource.  Resource collections containing the resource are not updated, however, so you may need to requery.
 
 Multiple-record updates are not implemented at this time.
 
@@ -198,3 +261,9 @@ iContact's interface is really quite good at handling pretty much every other re
 Copyright
 ---------
 Copyright (c) 2009 Stephen Eley. See LICENSE for details.
+
+[1]: http://icontact.com "iContact"
+[2]: http://rest-client.heroku.com "Rest-Client"
+[3]: http://as.rubyonrails.org/ "ActiveSupport"
+[4]: http://tagaholic.me/bond "Bond"
+[5]: http://developer.icontact.com/ "iContact Developer Portal"
