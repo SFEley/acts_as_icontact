@@ -173,7 +173,7 @@ module ActsAsIcontact
     # The base RestClient resource that this particular class nests from.  Defaults to 
     # the clientFolders path since that's the most common case.
     def self.base
-      ActsAsIcontact.client
+      ActsAsIcontact.clientfolder
     end
     
     # The name of the singular resource type pulled from iContact.  Defaults to the lowercase

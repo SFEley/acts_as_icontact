@@ -1,9 +1,5 @@
 module ActsAsIcontact
   class List < Resource
-    # Derives from clientFolder.
-    def self.base
-      ActsAsIcontact.client
-    end
     
     # Searches on list name.
     def self.find_by_string(value)

@@ -2,7 +2,7 @@ require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
 
 describe ActsAsIcontact::Resource do
   it "has a RestClient connection" do
-    ActsAsIcontact::Resource.connection.url.should == ActsAsIcontact.client['resources'].url
+    ActsAsIcontact::Resource.connection.url.should == ActsAsIcontact.clientfolder['resources'].url
   end
   
   it "can return all resources for the given URL" do
@@ -104,7 +104,7 @@ describe ActsAsIcontact::Resource do
   
   it "has its own connection if it's not new" do
     r = ActsAsIcontact::Resource.first
-    r.connection.url.should == ActsAsIcontact.client['resources/1'].url
+    r.connection.url.should == ActsAsIcontact.clientfolder['resources/1'].url
   end
   
   it "does not have a connection if it's new" do
@@ -113,7 +113,7 @@ describe ActsAsIcontact::Resource do
   end
   
   it "knows its REST base resource" do
-    ActsAsIcontact::Resource.base.should == ActsAsIcontact.client
+    ActsAsIcontact::Resource.base.should == ActsAsIcontact.clientfolder
   end
   
   it "knows its primary key" do
