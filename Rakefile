@@ -10,7 +10,17 @@ begin
     gem.homepage = "http://github.com/SFEley/acts_as_icontact"
     gem.authors = ["Stephen Eley"]
     gem.rubyforge_project = "actsasicontact"
+    gem.executables = "bin/icontact"
+    gem.has_rdoc = true
     gem.extra_rdoc_files = ["README.markdown"]
+    gem.add_dependency 'rest-client', '>= 1.0'
+    gem.add_dependency 'activesupport', '>= 2.3.2'
+    gem.add_dependency 'bond', '>= 0.1.4'
+    gem.add_development_dependency 'rspec'
+    gem.add_development_dependency 'mocha'
+    gem.add_development_dependency 'fakeweb'
+    
+    
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
     gem.description = <<ENDDESC
 ActsAsIcontact connects Ruby applications with the iContact e-mail marketing service using the iContact API v2.0.  Building on the RestClient gem, it offers two significant feature sets:
@@ -40,7 +50,7 @@ end
 
 task :default => :spec
 
-require 'hanna/rdoctask'
+require 'rake/rdoctask'
 Rake::RDocTask.new do |rdoc|
   if File.exist?('VERSION.yml')
     config = YAML.load(File.read('VERSION.yml'))
