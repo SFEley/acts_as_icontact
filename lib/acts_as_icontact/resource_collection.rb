@@ -1,15 +1,17 @@
 module ActsAsIcontact
   class ResourceCollection < Enumerator
-    attr_reader :total, :retrieved
+    attr_reader :total, :retrieved, :offset, :collection_name
     
     def initialize(klass, collection, forwardTo=nil)
       @klass = klass
       @forwardTo = forwardTo
       
-      @collection = collection[klass.collection_name]
+      @collection_name = klass.collection_name
+      @collection = collection[collection_name]
       # Get number of elements
       @retrieved = @collection.size
       @total = collection["total"]
+      @offset = collection["offset"]
       
       enumcode = Proc.new do |yielder|
         counter = 0
@@ -30,6 +32,18 @@ module ActsAsIcontact
     def first
       self.rewind
       self.next
+    end
+    
+    # Returns a nice formatted string for command line use.
+    def inspect
+      if offset.to_i > 0
+        "#{retrieved} out of #{total} #{collection_name} (offset #{offset})"
+      elsif retrieved != total
+        "#{retrieved} out of #{total} #{collection_name}"
+      else
+        "#{total} #{collection_name}"
+      end
+      
     end
     
     private 

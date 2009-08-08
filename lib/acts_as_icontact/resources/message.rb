@@ -15,5 +15,14 @@ module ActsAsIcontact
       messageType = %w(normal autoresponder welcome confirmation)
       raise ActsAsIcontact::ValidationError, "messageType must be one of: " + messageType.join(', ') unless messageType.include?(fields["messageType"])
     end
+    
+    # Returns the Campaign resource associated with this message, if campaignId is set.  Otherwise returns nil.  Returns an exception if the campaignId is set but the campaign cannot be found.
+    def campaign
+      if (c = campaignId.to_i) > 0
+        Campaign.find(c)
+      else
+        nil
+      end
+    end
   end
 end

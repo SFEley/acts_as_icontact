@@ -1,5 +1,6 @@
 require 'activesupport'
 require 'uri'
+require 'YAML'
 
 module ActsAsIcontact
   # Base class for shared functionality between iContact resources.  Supports getting, finding, saving,
@@ -148,6 +149,11 @@ module ActsAsIcontact
     # Two resources are identical if they have exactly the same property array.
     def ==(obj)
       properties == obj.properties
+    end
+    
+    # Returns a nice formatted string for command line use.
+    def inspect
+      properties.to_yaml
     end
     
     protected

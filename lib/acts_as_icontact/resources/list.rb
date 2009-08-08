@@ -11,6 +11,7 @@ module ActsAsIcontact
       super << "name" << "emailOwnerOnChange" << "welcomeOnManualAdd" << "welcomeOnSignupAdd" << "welcomeMessageId"
     end
     
+    # The following can be set with true or false: emailOwnerOnChange, welcomeOnManualAdd, welcomeOnSignupAdd
     def self.boolean_fields
       super << "emailOwnerOnChange" << "welcomeOnManualAdd" << "welcomeOnSignupAdd"
     end

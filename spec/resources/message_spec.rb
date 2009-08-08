@@ -22,7 +22,9 @@ describe ActsAsIcontact::Message do
       @message = ActsAsIcontact::Message.first(:subject => "Test Message")
     end
   
-    it "knows which campaign it has (if any)"
+    it "knows which campaign it has (if any)" do
+      @message.campaign.name.should == "Test Campaign"
+    end 
   end
     
 end

@@ -7,7 +7,7 @@ ic = "#{i}/a/111111/c/222222"
 
 # Resources (this one's a fake stub for pure testing)
 FakeWeb.register_uri(:get, "#{ic}/resources?limit=500", :body => %q<{"resources":[{"foo":"bar","resourceId":"1","too":"bar"},{"foo":"aar","resourceId":"2"},{"foo":"far","resourceId":"3"},{"foo":"car","resourceId":"4"},{"foo":"dar","resourceId":"5"},{"foo":"ear","resourceId":"6"},{"foo":"gar","resourceId":"7"},{"foo":"har","resourceId":"8"},{"foo":"iar","resourceId":"9"},{"foo":"jar","resourceId":"10"},{"foo":"kar","resourceId":"11"},{"foo":"yar","resourceId":"12"}],"total":12,"limit":20,"offset":0}>)
-FakeWeb.register_uri(:get, "#{ic}/resources?limit=1", :body => %q<{"resources":[{"foo":"bar","resourceId":"1","too":"bar"},{"foo":"aar","resourceId":"2"},{"foo":"far","resourceId":"3"},{"foo":"car","resourceId":"4"},{"foo":"dar","resourceId":"5"},{"foo":"ear","resourceId":"6"},{"foo":"gar","resourceId":"7"},{"foo":"har","resourceId":"8"},{"foo":"iar","resourceId":"9"},{"foo":"jar","resourceId":"10"},{"foo":"kar","resourceId":"11"},{"foo":"yar","resourceId":"12"}],"total":12,"limit":20,"offset":0}>)
+FakeWeb.register_uri(:get, "#{ic}/resources?limit=1", :body => %q<{"resources":[{"foo":"bar","resourceId":"1","too":"bar"}],"total":12,"limit":1,"offset":0}>)
 FakeWeb.register_uri(:get, "#{ic}/resources?limit=5", :body => %q<{"resources":[{"foo":"bar","resourceId":"1"},{"foo":"aar","resourceId":"2"},{"foo":"far","resourceId":"3"},{"foo":"car","resourceId":"4"},{"foo":"dar","resourceId":"5"}],"total":12,"limit":5,"offset":0}>)
 FakeWeb.register_uri(:get, "#{ic}/resources?limit=500&offset=5", :body => %q<{"resources":[{"foo":"ear","resourceId":"6"},{"foo":"gar","resourceId":"7"},{"foo":"har","resourceId":"8"},{"foo":"iar","resourceId":"9"},{"foo":"jar","resourceId":"10"},{"foo":"kar","resourceId":"11"},{"foo":"yar","resourceId":"12"}],"total":12,"limit":20,"offset":5}>)
 FakeWeb.register_uri(:get, "#{ic}/resources?offset=5&limit=5", :body => %q<{"resources":[{"foo":"ear","resourceId":"6"},{"foo":"gar","resourceId":"7"},{"foo":"har","resourceId":"8"},{"foo":"iar","resourceId":"9"},{"foo":"jar","resourceId":"10"}],"total":12,"limit":5,"offset":5}>)
@@ -40,12 +40,14 @@ FakeWeb.register_uri(:get, "#{ic}/lists/444444", :body => %q<{"list":{"listId":"
 
 # Message
 #### Test welcome message for List association
-FakeWeb.register_uri(:get, "#{ic}/messages/555555", :body => %q<{"message":{"messageId":"555555","subject":"Welcome!","messageType":"welcome","textBody":"Welcome to the Test List!","htmlBody":"<p>Welcome to the <b>Test List</b>!</p>","createDate":"20090725 14:55:12"}}>)
+FakeWeb.register_uri(:get, "#{ic}/messages/555555", :body => %q<{"message":{"messageId":"555555","subject":"Welcome!","messageType":"welcome","textBody":"Welcome to the Test List!","htmlBody":"<p>Welcome to the <b>Test List</b>!</p>","createDate":"20090725 14:55:12","campaignId":"777777"}}>)
 #### Test confirmation message
-FakeWeb.register_uri(:get, "#{ic}/messages/555666", :body => %q<{"message":{"messageId":"555666","subject":"Confirm!","messageType":"confirmation","textBody":"Please confirm your subscription.","htmlBody":"<p>Please confirm your subscription.</p>","createDate":"20090727 14:55:12"}}>)
-
+FakeWeb.register_uri(:get, "#{ic}/messages/555666", :body => %q<{"message":{"messageId":"555666","subject":"Confirm!","messageType":"confirmation","textBody":"Please confirm your subscription.","htmlBody":"<p>Please confirm your subscription.</p>","createDate":"20090727 14:55:12","campaignId":"777777"}}>)
+#### Searches from campaignId
+FakeWeb.register_uri(:get, "#{ic}/messages?limit=500&campaignId=777777", :body => %q<{"messages":[{"messageId":"555555","subject":"Welcome!","messageType":"welcome","textBody":"Welcome to the Test List!","htmlBody":"<p>Welcome to the <b>Test List</b>!</p>","createDate":"20090725 14:55:12","campaignId":"777777"},{"messageId":"555666","subject":"Confirm!","messageType":"confirmation","textBody":"Please confirm your subscription.","htmlBody":"<p>Please confirm your subscription.</p>","createDate":"20090727 14:55:12","campaignId":"777777"}],"count":2}>)
+FakeWeb.register_uri(:get, "#{ic}/messages?limit=500&campaignId=777777&messageType=welcome", :body => %q<{"messages":[{"messageId":"555555","subject":"Welcome!","messageType":"welcome","textBody":"Welcome to the Test List!","htmlBody":"<p>Welcome to the <b>Test List</b>!</p>","createDate":"20090725 14:55:12","campaignId":"777777"}],"count":1}>)
 #### Test message for associations originating from Message spec
-FakeWeb.register_uri(:get, "#{ic}/messages?limit=1&subject=Test%20Message", :body => %q<{"messages":[{"messageId":"666666","subject":"Test Message","messageType":"normal","textBody":"Hi there!\nThis is just a test.","htmlBody":"<p><b>Hi there!</b></p><p>This is just a <i>test.</i></p>","createDate":"20090725 14:53:33"}]}>)
+FakeWeb.register_uri(:get, "#{ic}/messages?limit=1&subject=Test%20Message", :body => %q<{"messages":[{"messageId":"666666","subject":"Test Message","messageType":"normal","textBody":"Hi there!\nThis is just a test.","htmlBody":"<p><b>Hi there!</b></p><p>This is just a <i>test.</i></p>","createDate":"20090725 14:53:33","campaignId":"777777"}]}>)
 
 # CustomField
 FakeWeb.register_uri(:get, "#{ic}/customfields?limit=500", :body => %q<{"customfields":[{"privateName":"test_field","publicName":"Test Field","displayToUser":"0","fieldType":"text"},{"privateName":"custom_field","publicName":"This is for the Rails integration specs","displayToUser":1,"fieldType":"text"}],"total":2}>)
@@ -60,3 +62,7 @@ FakeWeb.register_uri(:get, "#{ic}/subscriptions?limit=1&contactId=333444", :body
 FakeWeb.register_uri(:get, "#{ic}/subscriptions?limit=500&contactId=333444", :body => %q<{"subscriptions":[{"status":"normal","addDate":"2009-07-27T15:36:37-04:00","contactId":333444,"listId":444444, "subscriptionId":"444444_333444","confirmationMessageId":555666}]}>)
 FakeWeb.register_uri(:get, "#{ic}/subscriptions?limit=500&contactId=333333", :body => %q<{"subscriptions":[{"status":"normal","addDate":"2009-07-27T15:36:37-04:00","contactId":333333,"listId":444444, "subscriptionId":"444444_333333","confirmationMessageId":555666}]}>)
 FakeWeb.register_uri(:post, "#{ic}/subscriptions", :body => %q<{"subscriptions":[{"status":"normal","addDate":"2009-07-27T15:36:37-04:00","contactId":333333,"listId":444444, "subscriptionId":"444444_333333","confirmationMessageId":555666}]}>)
+
+# Campaign
+FakeWeb.register_uri(:get, "#{ic}/campaigns?limit=1", :body => %q<{"campaigns":[{"campaignId":"777777","name":"Test Campaign","fromName":"Bob Smith","fromEmail":"bob@example.org","forwardToFriend":0,"subscriptionManagement":1,"clickTrackMode":1,"useAccountAddress":0,"archiveByDefault":0,"description":""}],"count":1}>)
+FakeWeb.register_uri(:get, "#{ic}/campaigns/777777", :body => %q<{"campaign":{"campaignId":"777777","name":"Test Campaign","fromName":"Bob Smith","fromEmail":"bob@example.org","forwardToFriend":0,"subscriptionManagement":1,"clickTrackMode":1,"useAccountAddress":0,"archiveByDefault":0,"description":""}}>)

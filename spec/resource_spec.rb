@@ -13,6 +13,13 @@ describe ActsAsIcontact::Resource do
     ActsAsIcontact::Resource.first.should be_a_kind_of(ActsAsIcontact::Resource)
   end
   
+  it "has a nice string representation" do
+    r = ActsAsIcontact::Resource.first
+    r.inspect.should =~ /foo: bar/m
+    r.inspect.should =~ /resourceId: 1/m
+    r.inspect.should =~ /too: bar/m
+  end
+  
   describe "find method" do
     it "returns a ResourceCollection when given :all" do
       r = ActsAsIcontact::Resource.find(:all)
