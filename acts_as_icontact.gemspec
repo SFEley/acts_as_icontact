@@ -74,7 +74,7 @@ Gem::Specification.new do |s|
      "spec/support/spec_fakeweb.rb"
   ]
   s.homepage = %q{http://github.com/SFEley/acts_as_icontact}
-  s.rdoc_options = ["--charset=UTF-8"]
+  s.rdoc_options = ["--charset=UTF-8", "--all"]
   s.require_paths = ["lib"]
   s.rubyforge_project = %q{actsasicontact}
   s.rubygems_version = %q{1.3.5}

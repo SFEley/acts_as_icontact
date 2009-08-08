@@ -10,9 +10,10 @@ begin
     gem.homepage = "http://github.com/SFEley/acts_as_icontact"
     gem.authors = ["Stephen Eley"]
     gem.rubyforge_project = "actsasicontact"
-    gem.executables = "bin/icontact"
+    gem.executables = "icontact"
     gem.has_rdoc = true
     gem.extra_rdoc_files = ["README.markdown"]
+    gem.rdoc_options << '--all'
     gem.add_dependency 'rest-client', '>= 1.0'
     gem.add_dependency 'activesupport', '>= 2.3.2'
     gem.add_dependency 'bond', '>= 0.1.4'
