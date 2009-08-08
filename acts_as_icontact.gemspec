@@ -5,19 +5,19 @@
 
 Gem::Specification.new do |s|
   s.name = %q{acts_as_icontact}
-  s.version = "0.3.1"
+  s.version = "0.3.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Stephen Eley"]
   s.date = %q{2009-08-08}
-  s.default_executable = %q{bin/icontact}
+  s.default_executable = %q{icontact}
   s.description = %q{ActsAsIcontact connects Ruby applications with the iContact e-mail marketing service using the iContact API v2.0.  Building on the RestClient gem, it offers two significant feature sets:
 
 * Simple, consistent access to all resources in the iContact API; and
 * Automatic synchronizing between ActiveRecord models and iContact contact lists for Rails applications.
 }
   s.email = %q{sfeley@gmail.com}
-  s.executables = ["bin/icontact"]
+  s.executables = ["icontact"]
   s.extra_rdoc_files = [
     "README.markdown"
   ]
