@@ -8,6 +8,9 @@ module ActsAsIcontact
   # Thrown before saving if iContact validation rules are not met.
   class ValidationError < StandardError; end
   
+  # Thrown by attempts to save a read-only resource.
+  class ReadOnlyError < StandardError; end
+  
   # Thrown when a resource calls save! and fails. Contains the +.errors+ array from
   # the resource.
   class SaveError < StandardError

@@ -35,7 +35,7 @@ module ActsAsIcontact
       query_options = default_options.merge(options)
       validate_options(query_options)
       result = query_collection(query_options)
-      ResourceCollection.new(self, result, forwardTo)
+      ResourceCollection.new(self, result, :forwardTo => forwardTo)
     end
     
     # Returns a collection of all contacts matching the query.  Unfortunately, this has to be performed by looking up

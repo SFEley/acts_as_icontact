@@ -2,9 +2,10 @@ module ActsAsIcontact
   class ResourceCollection < Enumerator
     attr_reader :total, :retrieved, :offset, :collection_name
     
-    def initialize(klass, collection, forwardTo=nil)
+    def initialize(klass, collection, options={})
       @klass = klass
-      @forwardTo = forwardTo
+      @forwardTo = options.delete(:forwardTo)
+      @parent = options.delete(:parent)
       
       @collection_name = klass.collection_name
       @collection = collection[collection_name]
@@ -48,6 +49,10 @@ module ActsAsIcontact
     
     private 
     def resource(properties)
+      # If this is a subresource, include the parent object as a property
+      properties.merge!(:parent => @parent) if @parent
+      
+      # "Forward to" is used to link Contacts and Lists via Subscriptions in a has_many :through
       if @forwardTo
         id = @forwardTo.primary_key
         @forwardTo.find(properties[id])

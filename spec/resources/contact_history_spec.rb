@@ -31,6 +31,6 @@ describe ActsAsIcontact::ContactHistory do
   end
   
   it "requires a contactId" do
-    ActsAsIcontact::ContactHistory.new(contactId: nil).should raise_error(ActsAsIcontact::ValidationError, "Contact History requires a Contact ID")
+    lambda{ActsAsIcontact::ContactHistory.new(contact: nil)}.should raise_error(ActsAsIcontact::ValidationError, "Contact History requires a Contact")
   end
 end
