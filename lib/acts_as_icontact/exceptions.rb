@@ -10,7 +10,7 @@ module ActsAsIcontact
   
   # Thrown when a resource calls save! and fails. Contains the +.errors+ array from
   # the resource.
-  class RecordNotSaved < StandardError
+  class SaveError < StandardError
     attr_reader :errors
     
     def initialize(errors = [])

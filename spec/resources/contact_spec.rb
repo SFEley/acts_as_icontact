@@ -29,7 +29,9 @@ describe ActsAsIcontact::Contact do
       @john.subscribe(444444)
     end
     
-    it "knows its history"
+    it "knows its history" do
+      @john.history.count.should == 4
+    end
   end
     
 end

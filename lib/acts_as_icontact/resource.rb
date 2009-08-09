@@ -87,10 +87,10 @@ module ActsAsIcontact
       false
     end
     
-    # Like +save+, but raises an ActsAsIcontact::RecordNotSaved exception if the save
+    # Like +save+, but raises an ActsAsIcontact::SaveError exception if the save
     # failed.  The exception message contains the first error from iContact.
     def save!
-      save or raise ActsAsIcontact::RecordNotSaved.new(errors)
+      save or raise ActsAsIcontact::SaveError.new(errors)
     end
     
     # The first message from the +errors+ array.

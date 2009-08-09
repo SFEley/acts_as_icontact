@@ -220,7 +220,7 @@ describe ActsAsIcontact::Resource do
       end
         
       it "throws an exception with a bang" do
-        lambda{@bad.save!}.should raise_error(ActsAsIcontact::RecordNotSaved,"You did not provide a foo. foo is a required field. Please provide a foo")
+        lambda{@bad.save!}.should raise_error(ActsAsIcontact::SaveError,"You did not provide a foo. foo is a required field. Please provide a foo")
       end
     end
     
@@ -244,7 +244,7 @@ describe ActsAsIcontact::Resource do
       end
         
       it "throws an exception with a bang" do
-        lambda{@bad.save!}.should raise_error(ActsAsIcontact::RecordNotSaved,"You did not provide a clue. Clue is a required field. Please provide a clue")
+        lambda{@bad.save!}.should raise_error(ActsAsIcontact::SaveError,"You did not provide a clue. Clue is a required field. Please provide a clue")
       end
     end
     
@@ -324,7 +324,7 @@ describe ActsAsIcontact::Resource do
       end
         
       it "throws an exception with a bang" do
-        lambda{@res.save!}.should raise_error(ActsAsIcontact::RecordNotSaved,"You did not provide a foo. foo is a required field. Please provide a foo")
+        lambda{@res.save!}.should raise_error(ActsAsIcontact::SaveError,"You did not provide a foo. foo is a required field. Please provide a foo")
       end
     end
     
@@ -349,7 +349,7 @@ describe ActsAsIcontact::Resource do
       end
         
       it "throws an exception with a bang" do
-        lambda{@res.save!}.should raise_error(ActsAsIcontact::RecordNotSaved,"You did not provide a clue. Clue is a required field. Please provide a clue")
+        lambda{@res.save!}.should raise_error(ActsAsIcontact::SaveError,"You did not provide a clue. Clue is a required field. Please provide a clue")
       end
     end
     
