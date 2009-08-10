@@ -156,6 +156,11 @@ module ActsAsIcontact
       properties.to_yaml
     end
     
+    # An array of all defined property keys for this resource.
+    def property_names
+      properties.symbolize_keys.keys
+    end
+    
     protected
     # The minimum set of fields that must be sent back to iContact on an update.
     # Includes any fields that changed or were added, the primary key, and anything
