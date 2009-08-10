@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{acts_as_icontact}
-  s.version = "0.3.2"
+  s.version = "0.4.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Stephen Eley"]
-  s.date = %q{2009-08-08}
+  s.date = %q{2009-08-10}
   s.default_executable = %q{icontact}
   s.description = %q{ActsAsIcontact connects Ruby applications with the iContact e-mail marketing service using the iContact API v2.0.  Building on the RestClient gem, it offers two significant feature sets:
 
@@ -32,6 +32,8 @@ Gem::Specification.new do |s|
      "bin/icontact",
      "init.rb",
      "lib/acts_as_icontact.rb",
+     "lib/acts_as_icontact/command_line/completion.rb",
+     "lib/acts_as_icontact/command_line/variables.rb",
      "lib/acts_as_icontact/config.rb",
      "lib/acts_as_icontact/connection.rb",
      "lib/acts_as_icontact/exceptions.rb",
@@ -46,6 +48,7 @@ Gem::Specification.new do |s|
      "lib/acts_as_icontact/resources/campaign.rb",
      "lib/acts_as_icontact/resources/client.rb",
      "lib/acts_as_icontact/resources/contact.rb",
+     "lib/acts_as_icontact/resources/contact_history.rb",
      "lib/acts_as_icontact/resources/custom_field.rb",
      "lib/acts_as_icontact/resources/list.rb",
      "lib/acts_as_icontact/resources/message.rb",
@@ -62,6 +65,7 @@ Gem::Specification.new do |s|
      "spec/resources/account_spec.rb",
      "spec/resources/campaign_spec.rb",
      "spec/resources/clientfolder_spec.rb",
+     "spec/resources/contact_history_spec.rb",
      "spec/resources/contact_spec.rb",
      "spec/resources/custom_field_spec.rb",
      "spec/resources/list_spec.rb",
@@ -91,6 +95,7 @@ Gem::Specification.new do |s|
      "spec/resources/account_spec.rb",
      "spec/resources/campaign_spec.rb",
      "spec/resources/clientfolder_spec.rb",
+     "spec/resources/contact_history_spec.rb",
      "spec/resources/contact_spec.rb",
      "spec/resources/custom_field_spec.rb",
      "spec/resources/list_spec.rb",
