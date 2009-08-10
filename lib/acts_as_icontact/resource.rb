@@ -1,6 +1,5 @@
 require 'activesupport'
 require 'uri'
-require 'YAML'
 
 module ActsAsIcontact
   # Base class for shared functionality between iContact resources.  Supports getting, finding, saving,

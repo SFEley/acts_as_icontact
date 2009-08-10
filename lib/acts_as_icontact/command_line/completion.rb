@@ -38,5 +38,13 @@ end
   
 
 # ActsAsIcontact resource properties
-Bond.complete(:on=>/([^.\s]+)\.([^.\s]*)$/, :object => "Object", :action => :icontact_properties)
+Bond.complete(:on=>/([^.\s]+)\.([^.\s]*)$/, :search => false) do |input|
+  receiver = ActsAsIcontact.instance_eval(input.matched[1])
+  if receiver.respond_to?(:property_names)
+    methods = (receiver.property_names + receiver.methods - Object.methods).sort
+  else
+    methods = (receiver.methods - Object.methods).sort
+  end
+  methods.grep(/^#{input.matched[2]}/i).collect{|m| "#{input.matched[1]}.#{m}"}  
+end
 
