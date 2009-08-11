@@ -25,6 +25,23 @@ describe ActsAsIcontact::Message do
     it "knows which campaign it has (if any)" do
       @message.campaign.name.should == "Test Campaign"
     end 
+    
+    it "knows its bounces" do
+      @message.bounces.first.contact.email.should == "john@example.org"
+    end
+    
+    it "knows its clicks" do
+      @message.clicks.first.clickLink.should == "http://www.yahoo.com"
+    end
+    
+    it "knows its opens" do
+      @message.opens.first.contact.email.should == "john@example.org"
+    end
+    
+    it "knows its statistics" do
+      @message.statistics.delivered.should == 3
+    end
+    
   end
     
 end

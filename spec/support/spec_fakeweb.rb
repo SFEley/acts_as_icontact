@@ -53,6 +53,19 @@ FakeWeb.register_uri(:get, "#{ic}/messages?limit=500&campaignId=777777&messageTy
 #### Test message for associations originating from Message spec
 FakeWeb.register_uri(:get, "#{ic}/messages?limit=1&subject=Test%20Message", :body => %q<{"messages":[{"messageId":"666666","subject":"Test Message","messageType":"normal","textBody":"Hi there!\nThis is just a test.","htmlBody":"<p><b>Hi there!</b></p><p>This is just a <i>test.</i></p>","createDate":"20090725 14:53:33","campaignId":"777777"}]}>)
 
+# Message Bounces
+FakeWeb.register_uri(:get, "#{ic}/messages/666666/bounces?limit=500", :body => %q<{"bounces":[{"contactId":"333333","bounceTime":"2008-04-15T12:05:00-04:00"},{"contactId":"333333","bounceTime":"2008-04-16T12:05:00-04:00"}],"total":2,"limit":500,"offset":0}>)
+
+# Message Clicks
+FakeWeb.register_uri(:get, "#{ic}/messages/666666/clicks?limit=500", :body => %q<{"clicks":[{"contactId":"333333","clickTime":"2008-04-17T12:07:00-04:00","clickLink":"http://www.yahoo.com"},{"contactId":"333333","clickTime":"2008-04-17T12:07:30-04:00","clickLink":"http://google.com"}],"total":2,"limit":500,"offset":0}>)
+
+# Message Opens
+FakeWeb.register_uri(:get, "#{ic}/messages/666666/opens?limit=500", :body => %q<{"opens":[{"contactId":"333333","openTime":"2008-04-17T12:06:00-04:00"},{"contactId":"333444","bounceTime":"2008-04-17T12:06:15-04:00"}],"total":2,"limit":500,"offset":0}>)
+
+# Message Statistics
+FakeWeb.register_uri(:get, "#{ic}/messages/666666/statistics", :body => %q<{"statistics":{"bounces":2,"delivered":3,"unsubscribes":0,"opens":{"unique":2,"total":2},"clicks":{"unique":2,"total":2},"forwards":0,"comments":0,"complaints":0}}>)
+
+
 # CustomField
 FakeWeb.register_uri(:get, "#{ic}/customfields?limit=500", :body => %q<{"customfields":[{"privateName":"test_field","publicName":"Test Field","displayToUser":"0","fieldType":"text"},{"privateName":"custom_field","publicName":"This is for the Rails integration specs","displayToUser":1,"fieldType":"text"}],"total":2}>)
 FakeWeb.register_uri(:get, "#{ic}/customfields/test_field", :body => %q<{"customfield":{"privateName":"test_field","publicName":"Test Field","displayToUser":"0","fieldType":"text"}}>)

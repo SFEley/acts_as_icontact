@@ -24,5 +24,27 @@ module ActsAsIcontact
         nil
       end
     end
+    
+    # Returns a collection of MessageBounces resources for this message.  The usual iContact search options (limit, offset, search terms, etc.) can be passed.
+    def bounces(options={})
+      @bounces ||= ActsAsIcontact::MessageBounces.scoped_find(self, options)
+    end
+    
+    # Returns a collection of MessageClicks resources for this message.  The usual iContact search options (limit, offset, search terms, etc.) can be passed.
+    def clicks(options={})
+      @clicks ||= ActsAsIcontact::MessageClicks.scoped_find(self, options)
+    end
+    
+    # Returns a collection of MessageOpens resources for this message.  The usual iContact search options (limit, offset, search terms, etc.) can be passed.
+    def opens(options={})
+      @opens ||= ActsAsIcontact::MessageOpens.scoped_find(self, options)
+    end
+    
+    # Returns the Statistics record for this contact.  This is a singleton resource and does not accept find, etc.
+    def statistics(options={})
+      @statistics ||= ActsAsIcontact::MessageStatistics.scoped_first(self)
+    end
+    
+    
   end
 end

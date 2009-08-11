@@ -25,7 +25,7 @@ module ActsAsIcontact
     
     # Returns a collection of ContactHistory resources for this contact.  The usual iContact search options (limit, offset, search terms, etc.) can be passed.
     def history(options={})
-      ActsAsIcontact::ContactHistory.scoped_find(self, options)
+      @history ||= ActsAsIcontact::ContactHistory.scoped_find(self, options)
     end
   end
 end

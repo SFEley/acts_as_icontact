@@ -35,9 +35,8 @@ module ActsAsIcontact
     end
     
   protected
-    # An oddball resource class; iContact's URL for it is 'actions', not 'contact_histories'.
     def self.resource_name
-      'action'
+      parent_method.singularize
     end
     
     def self.readable_name
