@@ -20,12 +20,7 @@ describe ActsAsIcontact, "clientfolder method" do
   it "returns a RestClient resource" do
     ActsAsIcontact.clientfolder.should be_a_kind_of(RestClient::Resource)
   end
-  
-  it "builds upon the 'account' object" do
-    ActsAsIcontact.expects(:account).returns(ActsAsIcontact.instance_variable_get(:@account))
-    ActsAsIcontact.clientfolder.should_not be_nil
-  end
-  
+    
   it "can be cleared with the reset_account! method" do
     ActsAsIcontact.reset_clientfolder!
     ActsAsIcontact.instance_variable_get(:@clientfolder).should be_nil

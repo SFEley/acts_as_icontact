@@ -83,3 +83,9 @@ FakeWeb.register_uri(:post, "#{ic}/subscriptions", :body => %q<{"subscriptions":
 # Campaign
 FakeWeb.register_uri(:get, "#{ic}/campaigns?limit=1", :body => %q<{"campaigns":[{"campaignId":"777777","name":"Test Campaign","fromName":"Bob Smith","fromEmail":"bob@example.org","forwardToFriend":0,"subscriptionManagement":1,"clickTrackMode":1,"useAccountAddress":0,"archiveByDefault":0,"description":""}],"count":1}>)
 FakeWeb.register_uri(:get, "#{ic}/campaigns/777777", :body => %q<{"campaign":{"campaignId":"777777","name":"Test Campaign","fromName":"Bob Smith","fromEmail":"bob@example.org","forwardToFriend":0,"subscriptionManagement":1,"clickTrackMode":1,"useAccountAddress":0,"archiveByDefault":0,"description":""}}>)
+
+# Segment
+FakeWeb.register_uri(:get, "#{ic}/segments?limit=1&name=People%20Named%20John", :body => %q<{"segments":[{"segmentId":"888888","listId":"444444","name":"People Named John","description":"All the people named John"}],"total":1,"limit":1,"offset":1}>)
+
+# Segment Criteria
+FakeWeb.register_uri(:get, "#{ic}/segments/888888/criteria?limit=500", :body => %q<{"criteria":[{"criterionId":0,"fieldName":"firstName","operator":"eq","values":["John"]}]}>)
