@@ -7,6 +7,8 @@ require 'acts_as_icontact/config'
 require 'acts_as_icontact/connection'
 require 'acts_as_icontact/resource'
 require 'acts_as_icontact/resource_collection'
+require 'acts_as_icontact/subresource'
+require 'acts_as_icontact/readonly'
 
 # Load all of our resource files
 Dir[File.join(File.dirname(__FILE__), 'acts_as_icontact', 'resources', '*.rb')].sort.each do |path|

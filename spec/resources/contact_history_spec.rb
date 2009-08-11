@@ -19,15 +19,15 @@ describe ActsAsIcontact::ContactHistory do
   end
       
   it "does not allow .find" do
-    lambda{ActsAsIcontact::ContactHistory.find(:all)}.should raise_error(ActsAsIcontact::QueryError, "Contact History must be obtained using the contact.history method.")
+    lambda{ActsAsIcontact::ContactHistory.find(:all)}.should raise_error(ActsAsIcontact::QueryError, "Contact History must be obtained using the Contact#history method.")
   end
 
   it "does not allow .first" do
-    lambda{ActsAsIcontact::ContactHistory.first}.should raise_error(ActsAsIcontact::QueryError, "Contact History must be obtained using the contact.history method.")
+    lambda{ActsAsIcontact::ContactHistory.first}.should raise_error(ActsAsIcontact::QueryError, "Contact History must be obtained using the Contact#history method.")
   end
 
   it "does not allow .all" do
-    lambda{ActsAsIcontact::ContactHistory.all}.should raise_error(ActsAsIcontact::QueryError, "Contact History must be obtained using the contact.history method.")
+    lambda{ActsAsIcontact::ContactHistory.all}.should raise_error(ActsAsIcontact::QueryError, "Contact History must be obtained using the Contact#history method.")
   end
   
   it "requires a contactId" do
