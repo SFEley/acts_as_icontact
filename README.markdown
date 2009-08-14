@@ -258,9 +258,21 @@ The reason to add contacts to iContact is to put them on mailing lists.  We know
 ### Why Just Contacts?
 iContact's interface is really quite good at handling pretty much every other resource.  Campaigns, segments, etc. can usually stand alone.  It's less likely that you'll need to keep copies of them in your Rails app.  But contacts are highly entangled.  If you're using iContact to communicate with your app's users or subjects, you'll want to keep iContact up-to-date when they change.  And if someone bounces or unsubscribes in iContact, odds are good you'll want to know about it.  So this is the strongest point of coupling and the highest priority feature.  (Lists will likely come next, followed by messages.)
 
-Copyright
----------
-Copyright (c) 2009 Stephen Eley. See LICENSE for details.
+Copyright and License
+---------------------
+Copyright 2009 Stephen Eley
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this library except in compliance with the License.
+    You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
 
 [1]: http://icontact.com "iContact"
 [2]: http://rest-client.heroku.com "Rest-Client"
