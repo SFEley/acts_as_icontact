@@ -1,0 +1,717 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang='en' xml:lang='en' xmlns='http://www.w3.org/1999/xhtml'>
+  <head>
+    <title>lib/acts_as_icontact/config.rb</title>
+    <link href="screen.css" media="screen" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="rcov.js"></script>
+  </head>
+  <body>
+    <h3>lib/acts_as_icontact/config.rb</h3>
+    <p>Generated on 2009-08-11 00:53:51 -0400 with <a href="http://github.com/relevance/rcov">rcov 0.8.5.2</a></p>
+    
+    <hr />
+      <pre>
+        <span class='marked'>Code reported as executed by Ruby looks like this...</span><span class='marked1'>and this: this line is also marked as covered.</span><span class='inferred'>Lines considered as run by rcov, but not reported by Ruby, look like this,</span><span class='inferred1'>and this: these lines were inferred by rcov (using simple heuristics).</span><span class='uncovered'>Finally, here&apos;s a line marked as not executed.</span>
+      </pre>
+    <table class='report'>
+      <thead>
+        <tr>
+          <td class='heading'>Name</td>
+          <td class='heading'>Total lines</td>
+          <td class='heading'>Lines of code</td>
+          <td class='heading'>Total coverage</td>
+          <td class='heading'>Code coverage</td>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- alternate light/dark here -->
+        <tr class='light'>
+          <td>lib/acts_as_icontact/config.rb</td>
+          <td class='lines_total'><tt>108</tt></td>
+          <td class='lines_code'><tt>68</tt></td>
+          <td>
+            <table cellspacing='0' cellpadding='0' align='right'>
+              <tr>
+                <td><tt class='coverage_total'>37.04%</tt>&nbsp;</td>
+                <td>
+                  <table cellspacing='0' class='percent_graph' cellpadding='0' width='100'>
+                    <tr>
+                      <td class='covered' width='37'></td>
+                      <td class='uncovered' width='63'></td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+          <td>
+            <table cellspacing='0' cellpadding='0' align='right'>
+              <tr>
+                <td><tt class='coverage_code'>55.88%</tt>&nbsp;</td>
+                <td>
+                  <table cellspacing='0' class='percent_graph' cellpadding='0' width='100'>
+                    <tr>
+                      <td class='covered' width='56'/>
+                      <td class='uncovered' width='44'/>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line1"></a>1 module ActsAsIcontact</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line2"></a>2   # Predefined and user-supplied parameters for interfacing with iContact. Most of these are</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line3"></a>3   # required by the iContact API for authentication.</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line4"></a>4   module Config</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line5"></a>5     </pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line6"></a>6     # Sets :production or :sandbox.  This changes the AppId and URL.</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line7"></a>7     def self.mode=(val)</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line8"></a>8       @mode = val</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line9"></a>9     end</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line10"></a>10     </pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line11"></a>11     # Determines whether to return the sandbox or production AppId and URL.  </pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line12"></a>12     # If not explicitly set, it will first look for an ICONTACT_MODE environment variable.</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line13"></a>13     # If it doesn't find one, it will attempt to detect a Rails or Rack environment; in either</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line14"></a>14     # case it will default to :production if RAILS_ENV or RACK_ENV is 'production', and :sandbox</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line15"></a>15     # otherwise.  If none of these conditions apply, it assumes :production.  (Because that</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line16"></a>16     # probably means someone's doing ad hoc queries.)</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line17"></a>17     def self.mode</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line18"></a>18       @mode ||= case</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line19"></a>19       when ENV[&quot;ICONTACT_MODE&quot;] </pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line20"></a>20         ENV[&quot;ICONTACT_MODE&quot;].to_sym</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line21"></a>21       when Object.const_defined?(:Rails)</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line22"></a>22         (ENV[&quot;RAILS_ENV&quot;] == 'production' ? :production : :sandbox)</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line23"></a>23       when Object.const_defined?(:Rack)</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line24"></a>24         (ENV[&quot;RACK_ENV&quot;] == 'production' ? :production : :sandbox)</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line25"></a>25       else</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line26"></a>26         :production</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line27"></a>27       end</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line28"></a>28     end</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line29"></a>29     </pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line30"></a>30     </pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line31"></a>31     # Passed in the header of every request as the *API-AppId:* parameter. You should not need</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line32"></a>32     # to change this.  Ever.</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line33"></a>33     def self.app_id</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line34"></a>34       case mode</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line35"></a>35       when :beta, :sandbox</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line36"></a>36         &quot;Ml5SnuFhnoOsuZeTOuZQnLUHTbzeUyhx&quot; </pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line37"></a>37       when :production</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line38"></a>38         &quot;IYDOhgaZGUKNjih3hl1ItLln7zpAtWN2&quot;</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line39"></a>39       end</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="inferred">
+          <td colspan="5"><pre><a name="line40"></a>40     end</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line41"></a>41     </pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line42"></a>42     # The API version that this code is designed to interface with.</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line43"></a>43     def self.api_version</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line44"></a>44       2.0</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line45"></a>45     end</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line46"></a>46     </pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line47"></a>47     # Prefixed to the beginning of every API request.  You can override this if you have some special </pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line48"></a>48     # need (e.g. working against a testing server, or if iContact changes their URL and you have to</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line49"></a>49     # fix it before the gem gets updated), but for the most part you can leave it alone.</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line50"></a>50     def self.url</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line51"></a>51       @url ||= case mode</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line52"></a>52       when :production</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line53"></a>53         &quot;https://app.icontact.com/icp/&quot;</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line54"></a>54       when :sandbox</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line55"></a>55         &quot;https://app.sandbox.icontact.com/icp/&quot;</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line56"></a>56       when :beta  # The 'beta' environment still works as of 7/25/2009</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line57"></a>57         &quot;https://app.beta.icontact.com/icp/&quot;</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line58"></a>58       end</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line59"></a>59     end</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line60"></a>60     </pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line61"></a>61     # Overrides the base URL for the API request.  </pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line62"></a>62     def self.url=(val)</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line63"></a>63       @url = val</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line64"></a>64     end</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line65"></a>65     </pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line66"></a>66     # Used in the &quot;Accept:&quot; and &quot;Content-Type:&quot; headers of every API request.  Defaults to JSON, and</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line67"></a>67     # if you're simply using the gem methods there's no reason you should ever change this, as the</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line68"></a>68     # results are auto-parsed into Ruby structures.  But you can set it to text/xml if you want to.</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line69"></a>69     def self.content_type</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line70"></a>70       @content_type ||= &quot;application/json&quot;</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line71"></a>71     end</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line72"></a>72     </pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line73"></a>73     # If you change this to anything other than application/json or text/xml you'll get an error.</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line74"></a>74     # So sayeth iContact; so say we all.</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line75"></a>75     def self.content_type=(val)</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line76"></a>76       case val</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line77"></a>77       when &quot;text/xml&quot;</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line78"></a>78         @content_type = val</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line79"></a>79       when &quot;application/json&quot;</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line80"></a>80         @content_type = val</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line81"></a>81       else</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line82"></a>82         raise ActsAsIcontact::ConfigError, &quot;Content Type must be application/json or text/xml&quot;</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line83"></a>83       end</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="inferred">
+          <td colspan="5"><pre><a name="line84"></a>84     end</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line85"></a>85     </pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line86"></a>86     # Required for every API request.  If you're using these methods in a Rails app, the recommended</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line87"></a>87     # way to set the username is in a Rails initializer file.  You can also set the ICONTACT_USERNAME</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line88"></a>88     # environment variable.</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line89"></a>89     def self.username</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line90"></a>90       @username ||= ENV['ICONTACT_USERNAME']</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line91"></a>91     end</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line92"></a>92     </pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line93"></a>93     def self.username=(val)</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line94"></a>94       @username = val</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line95"></a>95     end</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line96"></a>96 </pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line97"></a>97     # Required for every API request.  If you're using these methods in a Rails app, the recommended</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line98"></a>98     # way to set the password is in a Rails initializer file.  You can also set the ICONTACT_PASSWORD</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line99"></a>99     # environment variable.</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line100"></a>100     def self.password</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line101"></a>101       @password ||= ENV['ICONTACT_PASSWORD']</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line102"></a>102     end</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line103"></a>103     </pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line104"></a>104     def self.password=(val)</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line105"></a>105       @password = val</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line106"></a>106     end</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="inferred">
+          <td colspan="5"><pre><a name="line107"></a>107   end</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line108"></a>108 end</pre></td>
+        </tr>
+      
+      </tbody>
+    </table>
+    <hr/>
+    <p>Generated on 2009-08-11 00:53:51 -0400 with <a href="http://github.com/relevance/rcov">rcov 0.8.5.2</a></p>
+  </body>
+</html>

@@ -1,0 +1,1371 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang='en' xml:lang='en' xmlns='http://www.w3.org/1999/xhtml'>
+  <head>
+    <title>spec/support/active_record/connection_adapters/nulldb_adapter.rb</title>
+    <link href="screen.css" media="screen" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="rcov.js"></script>
+  </head>
+  <body>
+    <h3>spec/support/active_record/connection_adapters/nulldb_adapter.rb</h3>
+    <p>Generated on 2009-08-11 00:53:51 -0400 with <a href="http://github.com/relevance/rcov">rcov 0.8.5.2</a></p>
+    
+    <hr />
+      <pre>
+        <span class='marked'>Code reported as executed by Ruby looks like this...</span><span class='marked1'>and this: this line is also marked as covered.</span><span class='inferred'>Lines considered as run by rcov, but not reported by Ruby, look like this,</span><span class='inferred1'>and this: these lines were inferred by rcov (using simple heuristics).</span><span class='uncovered'>Finally, here&apos;s a line marked as not executed.</span>
+      </pre>
+    <table class='report'>
+      <thead>
+        <tr>
+          <td class='heading'>Name</td>
+          <td class='heading'>Total lines</td>
+          <td class='heading'>Lines of code</td>
+          <td class='heading'>Total coverage</td>
+          <td class='heading'>Code coverage</td>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- alternate light/dark here -->
+        <tr class='light'>
+          <td>spec/support/active_record/connection_adapters/nulldb_adapter.rb</td>
+          <td class='lines_total'><tt>217</tt></td>
+          <td class='lines_code'><tt>164</tt></td>
+          <td>
+            <table cellspacing='0' cellpadding='0' align='right'>
+              <tr>
+                <td><tt class='coverage_total'>48.85%</tt>&nbsp;</td>
+                <td>
+                  <table cellspacing='0' class='percent_graph' cellpadding='0' width='100'>
+                    <tr>
+                      <td class='covered' width='49'></td>
+                      <td class='uncovered' width='51'></td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+          <td>
+            <table cellspacing='0' cellpadding='0' align='right'>
+              <tr>
+                <td><tt class='coverage_code'>56.10%</tt>&nbsp;</td>
+                <td>
+                  <table cellspacing='0' class='percent_graph' cellpadding='0' width='100'>
+                    <tr>
+                      <td class='covered' width='56'/>
+                      <td class='uncovered' width='44'/>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line1"></a>1 require 'logger'</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line2"></a>2 require 'stringio'</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line3"></a>3 require 'singleton'</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line4"></a>4 require 'activerecord'</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line5"></a>5 require 'active_record/connection_adapters/abstract_adapter'</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line6"></a>6 </pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line7"></a>7 class ActiveRecord::Base</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line8"></a>8   # Instantiate a new NullDB connection.  Used by ActiveRecord internally.</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line9"></a>9   def self.nulldb_connection(config)</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line10"></a>10     ActiveRecord::ConnectionAdapters::NullDBAdapter.new(config)</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line11"></a>11   end</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="inferred">
+          <td colspan="5"><pre><a name="line12"></a>12 end</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line13"></a>13 </pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line14"></a>14 class ActiveRecord::ConnectionAdapters::NullDBAdapter &lt;</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line15"></a>15     ActiveRecord::ConnectionAdapters::AbstractAdapter</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line16"></a>16 </pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line17"></a>17   class Statement</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line18"></a>18     attr_reader :entry_point, :content</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line19"></a>19 </pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line20"></a>20     def initialize(entry_point, content = &quot;&quot;)</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line21"></a>21       @entry_point, @content = entry_point, content</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line22"></a>22     end</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line23"></a>23 </pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line24"></a>24     def ==(other)</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line25"></a>25       self.entry_point == other.entry_point</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="inferred">
+          <td colspan="5"><pre><a name="line26"></a>26     end</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="inferred">
+          <td colspan="5"><pre><a name="line27"></a>27   end</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line28"></a>28 </pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line29"></a>29   class Checkpoint &lt; Statement</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line30"></a>30     def initialize</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line31"></a>31       super(:checkpoint, &quot;&quot;)</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="inferred">
+          <td colspan="5"><pre><a name="line32"></a>32     end</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line33"></a>33 </pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line34"></a>34     def ==(other)</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line35"></a>35       self.class == other.class</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="inferred">
+          <td colspan="5"><pre><a name="line36"></a>36     end</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="inferred">
+          <td colspan="5"><pre><a name="line37"></a>37   end</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line38"></a>38 </pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line39"></a>39   TableDefinition = ActiveRecord::ConnectionAdapters::TableDefinition</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line40"></a>40 </pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line41"></a>41   class NullObject</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line42"></a>42     def method_missing(*args, &amp;block)</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line43"></a>43       nil</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="inferred">
+          <td colspan="5"><pre><a name="line44"></a>44     end</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="inferred">
+          <td colspan="5"><pre><a name="line45"></a>45   end</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line46"></a>46 </pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line47"></a>47   # A convenience method for integratinginto RSpec.  See README for example of</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line48"></a>48   # use.</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line49"></a>49   def self.insinuate_into_spec(config)</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line50"></a>50     config.before :all do</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line51"></a>51       ActiveRecord::Base.establish_connection(:adapter =&gt; :nulldb)</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line52"></a>52     end</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line53"></a>53 </pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line54"></a>54     config.after :all do</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line55"></a>55       ActiveRecord::Base.establish_connection(:test)</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line56"></a>56     end</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line57"></a>57   end</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line58"></a>58 </pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line59"></a>59   # Recognized options:</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line60"></a>60   #</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line61"></a>61   # [+:schema+] path to the schema file, relative to RAILS_ROOT</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line62"></a>62   def initialize(config={})</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line63"></a>63     @log            = StringIO.new</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line64"></a>64     @logger         = Logger.new(@log)</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line65"></a>65     @last_unique_id = 0</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line66"></a>66     @tables         = {'schema_info' =&gt;  TableDefinition.new(nil)}</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line67"></a>67     @schema_path    = config.fetch(:schema){ &quot;db/schema.rb&quot; }</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line68"></a>68     super(nil, @logger)</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line69"></a>69   end</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line70"></a>70 </pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line71"></a>71   # A log of every statement that has been &quot;executed&quot; by this connection adapter</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line72"></a>72   # instance.</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line73"></a>73   def execution_log</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line74"></a>74     (@execution_log ||= [])</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line75"></a>75   end</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line76"></a>76 </pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line77"></a>77   # A log of every statement that has been &quot;executed&quot; since the last time</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line78"></a>78   # #checkpoint! was called, or since the connection was created.</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line79"></a>79   def execution_log_since_checkpoint</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line80"></a>80     checkpoint_index = @execution_log.rindex(Checkpoint.new)</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line81"></a>81     checkpoint_index = checkpoint_index ? checkpoint_index + 1 : 0</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line82"></a>82     @execution_log[(checkpoint_index..-1)]</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line83"></a>83   end</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line84"></a>84 </pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line85"></a>85   # Inserts a checkpoint in the log.  See also #execution_log_since_checkpoint.</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line86"></a>86   def checkpoint!</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line87"></a>87     self.execution_log &lt;&lt; Checkpoint.new</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="inferred">
+          <td colspan="5"><pre><a name="line88"></a>88   end</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line89"></a>89 </pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line90"></a>90   def adapter_name</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line91"></a>91     &quot;NullDB&quot;</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="inferred">
+          <td colspan="5"><pre><a name="line92"></a>92   end</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line93"></a>93 </pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line94"></a>94   def supports_migrations?</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line95"></a>95     true</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="inferred">
+          <td colspan="5"><pre><a name="line96"></a>96   end</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line97"></a>97 </pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line98"></a>98   def create_table(table_name, options = {})</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line99"></a>99     table_definition = ActiveRecord::ConnectionAdapters::TableDefinition.new(self)</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line100"></a>100     unless options[:id] == false</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line101"></a>101       table_definition.primary_key(options[:primary_key] || &quot;id&quot;)</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line102"></a>102     end</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line103"></a>103 </pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line104"></a>104     yield table_definition</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line105"></a>105 </pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line106"></a>106     @tables[table_name] = table_definition</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line107"></a>107   end</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line108"></a>108 </pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line109"></a>109   def add_fk_constraint(*args)</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line110"></a>110     # NOOP</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line111"></a>111   end</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line112"></a>112 </pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line113"></a>113   def add_pk_constraint(*args)</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line114"></a>114     # NOOP</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line115"></a>115   end</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line116"></a>116 </pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line117"></a>117   # Retrieve the table names defined by the schema</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line118"></a>118   def tables</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line119"></a>119     @tables.keys.map(&amp;:to_s)</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="inferred">
+          <td colspan="5"><pre><a name="line120"></a>120   end</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line121"></a>121 </pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line122"></a>122   # Retrieve table columns as defined by the schema</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line123"></a>123   def columns(table_name, name = nil)</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line124"></a>124     if @tables.size &lt;= 1</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line125"></a>125       ActiveRecord::Migration.verbose = false</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line126"></a>126       Kernel.load(File.join(@schema_path))</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line127"></a>127     end</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line128"></a>128     table = @tables[table_name]</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line129"></a>129     table.columns.map do |col_def|</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line130"></a>130       ActiveRecord::ConnectionAdapters::Column.new(col_def.name.to_s,</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line131"></a>131                                                     col_def.default,</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="inferred">
+          <td colspan="5"><pre><a name="line132"></a>132                                                     col_def.type,</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="inferred">
+          <td colspan="5"><pre><a name="line133"></a>133                                                     col_def.null)</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="inferred">
+          <td colspan="5"><pre><a name="line134"></a>134     end</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="inferred">
+          <td colspan="5"><pre><a name="line135"></a>135   end</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line136"></a>136 </pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line137"></a>137   def execute(statement, name = nil)</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line138"></a>138     self.execution_log &lt;&lt; Statement.new(entry_point, statement)</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line139"></a>139     NullObject.new</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line140"></a>140   end</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line141"></a>141 </pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line142"></a>142   def insert(statement, name, primary_key, object_id, sequence_name)</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line143"></a>143     returning(object_id || next_unique_id) do</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line144"></a>144       with_entry_point(:insert) do</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line145"></a>145         super(statement, name, primary_key, object_id, sequence_name)</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line146"></a>146       end</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="inferred">
+          <td colspan="5"><pre><a name="line147"></a>147     end</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="inferred">
+          <td colspan="5"><pre><a name="line148"></a>148   end</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line149"></a>149 </pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line150"></a>150   def update(statement, name=nil)</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line151"></a>151     with_entry_point(:update) do</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line152"></a>152       super(statement, name)</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line153"></a>153     end</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="inferred">
+          <td colspan="5"><pre><a name="line154"></a>154   end</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line155"></a>155 </pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line156"></a>156   def delete(statement, name=nil)</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line157"></a>157     with_entry_point(:delete) do</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line158"></a>158       super(statement, name)</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line159"></a>159     end</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line160"></a>160   end</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line161"></a>161 </pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line162"></a>162   def select_all(statement, name=nil)</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line163"></a>163     with_entry_point(:select_all) do</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line164"></a>164       super(statement, name)</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line165"></a>165     end</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line166"></a>166   end</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line167"></a>167 </pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line168"></a>168   def select_one(statement, name=nil)</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line169"></a>169     with_entry_point(:select_one) do</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line170"></a>170       super(statement, name)</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line171"></a>171     end</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line172"></a>172   end</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line173"></a>173 </pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line174"></a>174   def select_value(statement, name=nil)</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line175"></a>175     with_entry_point(:select_value) do</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line176"></a>176       super(statement, name)</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line177"></a>177     end</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line178"></a>178   end</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line179"></a>179 </pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line180"></a>180   protected</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line181"></a>181 </pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line182"></a>182   def select(statement, name)</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line183"></a>183     returning([]) do</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line184"></a>184       self.execution_log &lt;&lt; Statement.new(entry_point, statement)</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line185"></a>185     end</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line186"></a>186   end</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line187"></a>187 </pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line188"></a>188   private</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line189"></a>189 </pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line190"></a>190   def next_unique_id</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line191"></a>191     @last_unique_id += 1</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line192"></a>192   end</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line193"></a>193 </pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line194"></a>194   def with_entry_point(method)</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line195"></a>195     if entry_point.nil?</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line196"></a>196       with_thread_local_variable(:entry_point, method) do</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line197"></a>197         yield</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line198"></a>198       end</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line199"></a>199     else</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line200"></a>200       yield</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line201"></a>201     end</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line202"></a>202   end</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line203"></a>203 </pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line204"></a>204   def entry_point</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line205"></a>205     Thread.current[:entry_point]</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line206"></a>206   end</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line207"></a>207 </pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line208"></a>208   def with_thread_local_variable(name, value)</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line209"></a>209     old_value = Thread.current[name]</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line210"></a>210     Thread.current[name] = value</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line211"></a>211     begin</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line212"></a>212       yield</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line213"></a>213     ensure</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line214"></a>214       Thread.current[name] = old_value</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line215"></a>215     end</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="inferred">
+          <td colspan="5"><pre><a name="line216"></a>216   end</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="inferred">
+          <td colspan="5"><pre><a name="line217"></a>217 end</pre></td>
+        </tr>
+      
+      </tbody>
+    </table>
+    <hr/>
+    <p>Generated on 2009-08-11 00:53:51 -0400 with <a href="http://github.com/relevance/rcov">rcov 0.8.5.2</a></p>
+  </body>
+</html>

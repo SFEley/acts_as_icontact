@@ -1,0 +1,147 @@
+/*
+Author:		Donny Burnside
+Website:	http://www.ginger-ninja.net/
+*/
+
+/* Misc. */
+
+* {
+	margin:0;
+	padding:0;
+	}
+body {
+	font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-size:14px;
+	background-color:#00669c;
+	margin:25px 0 4px 0;
+	color:#222222;
+	}
+img {
+	border:0;
+	}
+p {
+	margin-bottom:20px;
+	line-height:20px;
+	color: #000;
+	}
+
+/* Structure */
+
+#wrapper {
+	width:700px;
+	margin:0 auto;
+	}
+#header {
+	height:100px;
+	line-height:100px;
+	background-image:url(images/bg-header.png);
+	background-repeat:no-repeat;
+	padding-left:15px;
+	}
+#navigation {
+	float:right;
+	margin-right:15px;
+	}
+#content {
+	background-color:#fff;
+	background-image:url(images/bg-content.gif);
+	background-repeat:no-repeat;
+	background-position:top center;
+	padding:10px 5px;
+	}
+#footer {
+	text-align:right;
+	background-image:url(images/bg-footer.png);
+	background-repeat:no-repeat;
+	background-position:center top;
+	line-height:24px;
+	color:#efefef;
+	}
+
+/* Navigation */
+
+#navigation ul {
+	list-style-type:none;
+	height: 25px;
+	margin-top: 75px;
+	line-height: 25px;
+	}
+#navigation li {
+	float:left;
+	text-align:center;
+	text-transform:lowercase;
+	}
+#navigation li a {
+	display:block;
+	width:75px;
+	text-decoration:none;
+	color:#4449BC;
+	}
+#navigation li a:hover {
+	color:#00ACE0;
+	background:url(images/bg-navigation-hover.gif);
+	background-repeat:repeat-x;
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	}
+#navigation .active {
+	color:#222222;
+	background:url(images/bg-navigation-hover.gif);
+	background-repeat:repeat-x;
+	}
+
+/* Headings */
+
+h1 {
+	color:#fff;
+	font-size:28px;
+	font-weight:normal;
+	letter-spacing:-1px;
+	display: none;
+	}
+
+/* Link Colors */
+
+
+	
+h2 {
+	margin-top: 1em;
+}
+
+#content a {
+	color:#4449BC;
+	text-decoration:none;
+	font-weight:bold;
+	}
+	
+#content a:hover {
+	color:#00ACE0;
+	text-decoration:underline;
+	}
+
+#footer a {
+	color:#ffffff;
+	text-decoration:none;
+	border-bottom:1px dotted #ffffff;
+	}
+#footer a:hover {
+	color:#ffffff;
+	}
+
+#footer a.noborder {
+	border-bottom:none;
+}
+
+#content ul, #content ol {
+	margin-left: 15px;
+	padding-left: 10px;
+}
+
+#content ul li, #content ol li {
+	line-height: 1.5em;
+	padding: 0.75em 0;
+	left: 5px;
+}
+
+.smallprint {
+	font-size:small;
+}

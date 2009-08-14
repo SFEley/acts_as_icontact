@@ -1,0 +1,285 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang='en' xml:lang='en' xmlns='http://www.w3.org/1999/xhtml'>
+  <head>
+    <title>lib/acts_as_icontact/rails/macro.rb</title>
+    <link href="screen.css" media="screen" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="rcov.js"></script>
+  </head>
+  <body>
+    <h3>lib/acts_as_icontact/rails/macro.rb</h3>
+    <p>Generated on 2009-08-11 00:53:51 -0400 with <a href="http://github.com/relevance/rcov">rcov 0.8.5.2</a></p>
+    
+    <hr />
+      <pre>
+        <span class='marked'>Code reported as executed by Ruby looks like this...</span><span class='marked1'>and this: this line is also marked as covered.</span><span class='inferred'>Lines considered as run by rcov, but not reported by Ruby, look like this,</span><span class='inferred1'>and this: these lines were inferred by rcov (using simple heuristics).</span><span class='uncovered'>Finally, here&apos;s a line marked as not executed.</span>
+      </pre>
+    <table class='report'>
+      <thead>
+        <tr>
+          <td class='heading'>Name</td>
+          <td class='heading'>Total lines</td>
+          <td class='heading'>Lines of code</td>
+          <td class='heading'>Total coverage</td>
+          <td class='heading'>Code coverage</td>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- alternate light/dark here -->
+        <tr class='light'>
+          <td>lib/acts_as_icontact/rails/macro.rb</td>
+          <td class='lines_total'><tt>36</tt></td>
+          <td class='lines_code'><tt>24</tt></td>
+          <td>
+            <table cellspacing='0' cellpadding='0' align='right'>
+              <tr>
+                <td><tt class='coverage_total'>61.11%</tt>&nbsp;</td>
+                <td>
+                  <table cellspacing='0' class='percent_graph' cellpadding='0' width='100'>
+                    <tr>
+                      <td class='covered' width='61'></td>
+                      <td class='uncovered' width='39'></td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+          <td>
+            <table cellspacing='0' cellpadding='0' align='right'>
+              <tr>
+                <td><tt class='coverage_code'>70.83%</tt>&nbsp;</td>
+                <td>
+                  <table cellspacing='0' class='percent_graph' cellpadding='0' width='100'>
+                    <tr>
+                      <td class='covered' width='71'/>
+                      <td class='uncovered' width='29'/>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line1"></a>1 module ActsAsIcontact</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line2"></a>2   module Rails</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line3"></a>3     module ClassMethods</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line4"></a>4       module Macro</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line5"></a>5 </pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line6"></a>6         # The core macro for ActsAsIcontact's Rails integration.  Establishes callbacks to keep Rails models in</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line7"></a>7         # sync with iContact.  See the README for more on what it does.</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line8"></a>8         def acts_as_icontact(options = {})</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line9"></a>9           logger.info &quot;Initializing ActsAsIcontact module...&quot;</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line10"></a>10 </pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line11"></a>11           # Fail on exceptions?</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line12"></a>12           @icontact_exception_on_failure = options.delete(:exception_on_failure) || false</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line13"></a>13           logger.info &quot;ActsAsIcontact #{'NOT ' unless @icontact_exception_on_failure}returning exceptions on failure.&quot;</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line14"></a>14           </pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line15"></a>15           # Set up lists for autosubscribe</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line16"></a>16           set_default_lists(options.delete(:list), options.delete(:lists))</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line17"></a>17           logger.info &quot;ActsAsIcontact autosubscribe lists: #{icontact_default_lists.join}&quot; unless icontact_default_lists.empty?</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line18"></a>18           </pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line19"></a>19           # Set up field mappings</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line20"></a>20           set_mappings(options)</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line21"></a>21           logger.info &quot;ActsAsIcontact field mappings: #{icontact_mappings}&quot;</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line22"></a>22           </pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line23"></a>23           # If we haven't flaked out so far, we must be doing okay.  Make magic happen.</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line24"></a>24           include ActsAsIcontact::Rails::Callbacks</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line25"></a>25           after_create :icontact_after_create</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line26"></a>26           after_update :icontact_after_update</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line27"></a>27           logger.info &quot;ActsAsIcontact callbacks created.  Have Fun.&quot;</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line28"></a>28         end</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line29"></a>29         </pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line30"></a>30         def icontact_exception_on_failure</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line31"></a>31           @icontact_exception_on_failure</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line32"></a>32         end</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="inferred">
+          <td colspan="5"><pre><a name="line33"></a>33       end</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line34"></a>34     end</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line35"></a>35   end</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line36"></a>36 end</pre></td>
+        </tr>
+      
+      </tbody>
+    </table>
+    <hr/>
+    <p>Generated on 2009-08-11 00:53:51 -0400 with <a href="http://github.com/relevance/rcov">rcov 0.8.5.2</a></p>
+  </body>
+</html>

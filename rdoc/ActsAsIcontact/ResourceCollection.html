@@ -1,0 +1,506 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+
+	<title>Class: ActsAsIcontact::ResourceCollection</title>
+
+	<link rel="stylesheet" href="../rdoc.css" type="text/css" media="screen" />
+
+	<script src="../js/jquery.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="../js/thickbox-compressed.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="../js/quicksearch.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="../js/darkfish.js" type="text/javascript"
+		charset="utf-8"></script>
+
+</head>
+<body class="class">
+
+	<div id="metadata">
+		<div id="file-metadata">
+			<div id="file-list-section" class="section">
+				<h3 class="section-header">In Files</h3>
+				<div class="section-body">
+					<ul>
+					
+						<li><a href="../lib/acts_as_icontact/resource_collection_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+							class="thickbox" title="lib/acts_as_icontact/resource_collection.rb">lib/acts_as_icontact/resource_collection.rb</a></li>
+					
+					</ul>
+				</div>
+			</div>
+
+			
+		</div>
+
+		<div id="class-metadata">
+
+			<!-- Parent Class -->
+			
+			<div id="parent-class-section" class="section">
+				<h3 class="section-header">Parent</h3>
+				
+				<p class="link">Enumerator</p>
+				
+			</div>
+			
+
+			<!-- Namespace Contents -->
+			
+
+			<!-- Method Quickref -->
+			
+			<div id="method-list-section" class="section">
+				<h3 class="section-header">Methods</h3>
+				<ul class="link-list">
+					
+					<li><a href="#M000043">::new</a></li>
+					
+					<li><a href="#M000044">#[]</a></li>
+					
+					<li><a href="#M000047">#first</a></li>
+					
+					<li><a href="#M000048">#inspect</a></li>
+					
+					<li><a href="#M000049">#resource</a></li>
+					
+				</ul>
+			</div>
+			
+
+			<!-- Included Modules -->
+			
+		</div>
+
+		<div id="project-metadata">
+			
+			
+			<div id="fileindex-section" class="section project-section">
+				<h3 class="section-header">Files</h3>
+				<ul>
+				
+					<li class="file"><a href="../README_markdown.html">README.markdown</a></li>
+				
+				</ul>
+			</div>
+			
+
+			<div id="classindex-section" class="section project-section">
+				<h3 class="section-header">Class Index
+					<span class="search-toggle"><img src="../images/find.png"
+						height="16" width="16" alt="[+]"
+						title="show/hide quicksearch" /></span></h3>
+				<form action="#" method="get" accept-charset="utf-8" class="initially-hidden">
+				<fieldset>
+					<legend>Quicksearch</legend>
+					<input type="text" name="quicksearch" value=""
+						class="quicksearch-field" />
+				</fieldset>
+				</form>
+
+				<ul class="link-list">
+				
+					<li><a href="../ActsAsIcontact.html">ActsAsIcontact</a></li>
+				
+					<li><a href="../ActsAsIcontact/Account.html">ActsAsIcontact::Account</a></li>
+				
+					<li><a href="../ActsAsIcontact/Campaign.html">ActsAsIcontact::Campaign</a></li>
+				
+					<li><a href="../ActsAsIcontact/ClientFolder.html">ActsAsIcontact::ClientFolder</a></li>
+				
+					<li><a href="../ActsAsIcontact/Config.html">ActsAsIcontact::Config</a></li>
+				
+					<li><a href="../ActsAsIcontact/ConfigError.html">ActsAsIcontact::ConfigError</a></li>
+				
+					<li><a href="../ActsAsIcontact/Contact.html">ActsAsIcontact::Contact</a></li>
+				
+					<li><a href="../ActsAsIcontact/ContactHistory.html">ActsAsIcontact::ContactHistory</a></li>
+				
+					<li><a href="../ActsAsIcontact/CustomField.html">ActsAsIcontact::CustomField</a></li>
+				
+					<li><a href="../ActsAsIcontact/List.html">ActsAsIcontact::List</a></li>
+				
+					<li><a href="../ActsAsIcontact/Message.html">ActsAsIcontact::Message</a></li>
+				
+					<li><a href="../ActsAsIcontact/MessageBounces.html">ActsAsIcontact::MessageBounces</a></li>
+				
+					<li><a href="../ActsAsIcontact/MessageClicks.html">ActsAsIcontact::MessageClicks</a></li>
+				
+					<li><a href="../ActsAsIcontact/MessageOpens.html">ActsAsIcontact::MessageOpens</a></li>
+				
+					<li><a href="../ActsAsIcontact/MessageStatistics.html">ActsAsIcontact::MessageStatistics</a></li>
+				
+					<li><a href="../ActsAsIcontact/QueryError.html">ActsAsIcontact::QueryError</a></li>
+				
+					<li><a href="../ActsAsIcontact/Rails.html">ActsAsIcontact::Rails</a></li>
+				
+					<li><a href="../ActsAsIcontact/Rails/Callbacks.html">ActsAsIcontact::Rails::Callbacks</a></li>
+				
+					<li><a href="../ActsAsIcontact/Rails/ClassMethods.html">ActsAsIcontact::Rails::ClassMethods</a></li>
+				
+					<li><a href="../ActsAsIcontact/Rails/ClassMethods/Lists.html">ActsAsIcontact::Rails::ClassMethods::Lists</a></li>
+				
+					<li><a href="../ActsAsIcontact/Rails/ClassMethods/Macro.html">ActsAsIcontact::Rails::ClassMethods::Macro</a></li>
+				
+					<li><a href="../ActsAsIcontact/Rails/ClassMethods/Mappings.html">ActsAsIcontact::Rails::ClassMethods::Mappings</a></li>
+				
+					<li><a href="../ActsAsIcontact/ReadOnly.html">ActsAsIcontact::ReadOnly</a></li>
+				
+					<li><a href="../ActsAsIcontact/ReadOnlyError.html">ActsAsIcontact::ReadOnlyError</a></li>
+				
+					<li><a href="../ActsAsIcontact/Resource.html">ActsAsIcontact::Resource</a></li>
+				
+					<li><a href="../ActsAsIcontact/ResourceCollection.html">ActsAsIcontact::ResourceCollection</a></li>
+				
+					<li><a href="../ActsAsIcontact/SaveError.html">ActsAsIcontact::SaveError</a></li>
+				
+					<li><a href="../ActsAsIcontact/Segment.html">ActsAsIcontact::Segment</a></li>
+				
+					<li><a href="../ActsAsIcontact/SegmentCriteria.html">ActsAsIcontact::SegmentCriteria</a></li>
+				
+					<li><a href="../ActsAsIcontact/Subresource.html">ActsAsIcontact::Subresource</a></li>
+				
+					<li><a href="../ActsAsIcontact/Subscription.html">ActsAsIcontact::Subscription</a></li>
+				
+					<li><a href="../ActsAsIcontact/ValidationError.html">ActsAsIcontact::ValidationError</a></li>
+				
+					<li><a href="../ActiveRecord.html">ActiveRecord</a></li>
+				
+					<li><a href="../ActiveRecord/Base.html">ActiveRecord::Base</a></li>
+				
+					<li><a href="../Bond.html">Bond</a></li>
+				
+					<li><a href="../Bond/Actions.html">Bond::Actions</a></li>
+				
+				</ul>
+				<div id="no-class-search-results" style="display: none;">No matching classes.</div>
+			</div>
+
+			
+		</div>
+	</div>
+
+	<div id="documentation">
+		<h1 class="class">ActsAsIcontact::ResourceCollection</h1>
+
+		<div id="description">
+			
+		</div>
+
+		<!-- Constants -->
+		
+
+		<!-- Attributes -->
+		
+		<div id="attribute-method-details" class="method-section section">
+			<h3 class="section-header">Attributes</h3>
+
+			
+			<div id="total-attribute-method" class="method-detail">
+				<a name="total"></a>
+				
+				<div class="method-heading attribute-method-heading">
+					<span class="method-name">total</span><span
+						class="attribute-access-type">[R]</span>
+				</div>
+
+				<div class="method-description">
+				
+				<p class="missing-docs">(Not documented)</p>
+				
+				</div>
+			</div>
+			
+			<div id="retrieved-attribute-method" class="method-detail">
+				<a name="retrieved"></a>
+				
+				<div class="method-heading attribute-method-heading">
+					<span class="method-name">retrieved</span><span
+						class="attribute-access-type">[R]</span>
+				</div>
+
+				<div class="method-description">
+				
+				<p class="missing-docs">(Not documented)</p>
+				
+				</div>
+			</div>
+			
+			<div id="offset-attribute-method" class="method-detail">
+				<a name="offset"></a>
+				
+				<div class="method-heading attribute-method-heading">
+					<span class="method-name">offset</span><span
+						class="attribute-access-type">[R]</span>
+				</div>
+
+				<div class="method-description">
+				
+				<p class="missing-docs">(Not documented)</p>
+				
+				</div>
+			</div>
+			
+			<div id="collection-name-attribute-method" class="method-detail">
+				<a name="collection_name"></a>
+				
+				<div class="method-heading attribute-method-heading">
+					<span class="method-name">collection_name</span><span
+						class="attribute-access-type">[R]</span>
+				</div>
+
+				<div class="method-description">
+				
+				<p class="missing-docs">(Not documented)</p>
+				
+				</div>
+			</div>
+			
+		</div>
+		
+
+		<!-- Methods -->
+		
+		<div id="public-class-method-details" class="method-section section">
+			<h3 class="section-header">Public Class Methods</h3>
+
+		
+			<div id="new-method" class="method-detail ">
+				<a name="M000043"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">new</span><span
+						class="method-args">(klass, collection, options={})</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p class="missing-docs">(Not documented)</p>
+					
+
+					
+					<div class="method-source-code"
+						id="new-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/acts_as_icontact/resource_collection.rb, line 5</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">klass</span>, <span class="ruby-identifier">collection</span>, <span class="ruby-identifier">options</span>={})
+      <span class="ruby-ivar">@klass</span> = <span class="ruby-identifier">klass</span>
+      <span class="ruby-ivar">@forwardTo</span> = <span class="ruby-identifier">options</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">:forwardTo</span>)
+      <span class="ruby-ivar">@parent</span> = <span class="ruby-identifier">options</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">:parent</span>)
+      
+      <span class="ruby-ivar">@collection_name</span> = <span class="ruby-identifier">klass</span>.<span class="ruby-identifier">collection_name</span>
+      <span class="ruby-ivar">@collection</span> = <span class="ruby-identifier">collection</span>[<span class="ruby-identifier">collection_name</span>]
+      <span class="ruby-comment cmt"># Get number of elements</span>
+      <span class="ruby-ivar">@retrieved</span> = <span class="ruby-ivar">@collection</span>.<span class="ruby-identifier">size</span>
+      <span class="ruby-ivar">@total</span> = <span class="ruby-identifier">collection</span>[<span class="ruby-value str">&quot;total&quot;</span>]
+      <span class="ruby-ivar">@offset</span> = <span class="ruby-identifier">collection</span>[<span class="ruby-value str">&quot;offset&quot;</span>]
+      
+      <span class="ruby-identifier">enumcode</span> = <span class="ruby-constant">Proc</span>.<span class="ruby-identifier">new</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">yielder</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">counter</span> = <span class="ruby-value">0</span>
+        <span class="ruby-keyword kw">while</span> <span class="ruby-identifier">counter</span> <span class="ruby-operator">&lt;</span> <span class="ruby-ivar">@retrieved</span>
+          <span class="ruby-identifier">yielder</span>.<span class="ruby-identifier">yield</span> <span class="ruby-identifier">resource</span>(<span class="ruby-ivar">@collection</span>[<span class="ruby-identifier">counter</span>])
+          <span class="ruby-identifier">counter</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span>
+              
+      <span class="ruby-keyword kw">super</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">enumcode</span>)
+    <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+			</div>
+
+		
+		</div>
+	
+		<div id="public-instance-method-details" class="method-section section">
+			<h3 class="section-header">Public Instance Methods</h3>
+
+		
+			<div id="--method" class="method-detail ">
+				<a name="M000044"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">[]</span><span
+						class="method-args">(index)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p class="missing-docs">(Not documented)</p>
+					
+
+					
+					<div class="method-source-code"
+						id="--source">
+<pre>
+<span class="ruby-comment cmt"># File lib/acts_as_icontact/resource_collection.rb, line 28</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-operator">[]</span>(<span class="ruby-identifier">index</span>)
+      <span class="ruby-identifier">resource</span>(<span class="ruby-ivar">@collection</span>[<span class="ruby-identifier">index</span>]) <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@collection</span>[<span class="ruby-identifier">index</span>]
+    <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+			</div>
+
+		
+			<div id="first-method" class="method-detail ">
+				<a name="M000047"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">first</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+Calls &#8220;next&#8221; to kick off the enumerator. This is more in line
+with what users would expect.
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="first-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/acts_as_icontact/resource_collection.rb, line 33</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">first</span>
+      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">rewind</span>
+      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">next</span>
+    <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+			</div>
+
+		
+			<div id="inspect-method" class="method-detail ">
+				<a name="M000048"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">inspect</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+Returns a nice formatted string for command line use.
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="inspect-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/acts_as_icontact/resource_collection.rb, line 39</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">inspect</span>
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">offset</span>.<span class="ruby-identifier">to_i</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+        <span class="ruby-node">&quot;#{retrieved} out of #{total} #{collection_name} (offset #{offset})&quot;</span>
+      <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">retrieved</span> <span class="ruby-operator">!=</span> <span class="ruby-identifier">total</span>
+        <span class="ruby-node">&quot;#{retrieved} out of #{total} #{collection_name}&quot;</span>
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-node">&quot;#{total} #{collection_name}&quot;</span>
+      <span class="ruby-keyword kw">end</span>
+      
+    <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+			</div>
+
+		
+		</div>
+	
+		<div id="private-instance-method-details" class="method-section section">
+			<h3 class="section-header">Private Instance Methods</h3>
+
+		
+			<div id="resource-method" class="method-detail ">
+				<a name="M000049"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">resource</span><span
+						class="method-args">(properties)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p class="missing-docs">(Not documented)</p>
+					
+
+					
+					<div class="method-source-code"
+						id="resource-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/acts_as_icontact/resource_collection.rb, line 51</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">resource</span>(<span class="ruby-identifier">properties</span>)
+      <span class="ruby-comment cmt"># If this is a subresource, include the parent object as a property</span>
+      <span class="ruby-identifier">properties</span>.<span class="ruby-identifier">merge!</span>(<span class="ruby-identifier">:parent</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@parent</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@parent</span>
+      
+      <span class="ruby-comment cmt"># &quot;Forward to&quot; is used to link Contacts and Lists via Subscriptions in a has_many :through</span>
+      <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@forwardTo</span>
+        <span class="ruby-identifier">id</span> = <span class="ruby-ivar">@forwardTo</span>.<span class="ruby-identifier">primary_key</span>
+        <span class="ruby-ivar">@forwardTo</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">properties</span>[<span class="ruby-identifier">id</span>])
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-ivar">@klass</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">properties</span>)
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+			</div>
+
+		
+		</div>
+	
+
+	</div>
+
+
+	<div id="rdoc-debugging-section-dump" class="debugging-section">
+	
+		<p>Disabled; run with --debug to generate this.</p>
+	
+	</div>
+
+	<div id="validator-badges">
+		<p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+		<p><small>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish
+			Rdoc Generator</a> 1.1.6</small>.</p>
+	</div>
+
+</body>
+</html>
+

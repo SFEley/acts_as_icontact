@@ -1,0 +1,297 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang='en' xml:lang='en' xmlns='http://www.w3.org/1999/xhtml'>
+  <head>
+    <title>lib/acts_as_icontact/resources/list.rb</title>
+    <link href="screen.css" media="screen" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="rcov.js"></script>
+  </head>
+  <body>
+    <h3>lib/acts_as_icontact/resources/list.rb</h3>
+    <p>Generated on 2009-08-11 00:53:51 -0400 with <a href="http://github.com/relevance/rcov">rcov 0.8.5.2</a></p>
+    
+    <hr />
+      <pre>
+        <span class='marked'>Code reported as executed by Ruby looks like this...</span><span class='marked1'>and this: this line is also marked as covered.</span><span class='inferred'>Lines considered as run by rcov, but not reported by Ruby, look like this,</span><span class='inferred1'>and this: these lines were inferred by rcov (using simple heuristics).</span><span class='uncovered'>Finally, here&apos;s a line marked as not executed.</span>
+      </pre>
+    <table class='report'>
+      <thead>
+        <tr>
+          <td class='heading'>Name</td>
+          <td class='heading'>Total lines</td>
+          <td class='heading'>Lines of code</td>
+          <td class='heading'>Total coverage</td>
+          <td class='heading'>Code coverage</td>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- alternate light/dark here -->
+        <tr class='light'>
+          <td>lib/acts_as_icontact/resources/list.rb</td>
+          <td class='lines_total'><tt>38</tt></td>
+          <td class='lines_code'><tt>25</tt></td>
+          <td>
+            <table cellspacing='0' cellpadding='0' align='right'>
+              <tr>
+                <td><tt class='coverage_total'>52.63%</tt>&nbsp;</td>
+                <td>
+                  <table cellspacing='0' class='percent_graph' cellpadding='0' width='100'>
+                    <tr>
+                      <td class='covered' width='53'></td>
+                      <td class='uncovered' width='47'></td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+          <td>
+            <table cellspacing='0' cellpadding='0' align='right'>
+              <tr>
+                <td><tt class='coverage_code'>72.00%</tt>&nbsp;</td>
+                <td>
+                  <table cellspacing='0' class='percent_graph' cellpadding='0' width='100'>
+                    <tr>
+                      <td class='covered' width='72'/>
+                      <td class='uncovered' width='28'/>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line1"></a>1 module ActsAsIcontact</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line2"></a>2   class List &lt; Resource</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line3"></a>3     </pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line4"></a>4     # Searches on list name.</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line5"></a>5     def self.find_by_string(value)</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line6"></a>6       first(:name =&gt; value)</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line7"></a>7     end</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line8"></a>8     </pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line9"></a>9     # Requires name, emailOwnerOnChange, welcomeOnManualAdd, welcomeOnSignupAdd, and welcomeMessageId.</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line10"></a>10     def self.required_on_create</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line11"></a>11       super &lt;&lt; &quot;name&quot; &lt;&lt; &quot;emailOwnerOnChange&quot; &lt;&lt; &quot;welcomeOnManualAdd&quot; &lt;&lt; &quot;welcomeOnSignupAdd&quot; &lt;&lt; &quot;welcomeMessageId&quot;</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line12"></a>12     end</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line13"></a>13     </pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line14"></a>14     # The following can be set with true or false: emailOwnerOnChange, welcomeOnManualAdd, welcomeOnSignupAdd</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line15"></a>15     def self.boolean_fields</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line16"></a>16       super &lt;&lt; &quot;emailOwnerOnChange&quot; &lt;&lt; &quot;welcomeOnManualAdd&quot; &lt;&lt; &quot;welcomeOnSignupAdd&quot;</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line17"></a>17     end</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line18"></a>18     </pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line19"></a>19     # The welcome message pointed to by the welcomeMessageId.</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line20"></a>20     def welcomeMessage</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line21"></a>21       return nil unless welcomeMessageId</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line22"></a>22       ActsAsIcontact::Message.find(welcomeMessageId)</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line23"></a>23     end</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line24"></a>24     </pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line25"></a>25     # Returns the contacts subscribed to this list (via the Subscription class).</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line26"></a>26     def subscribers</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line27"></a>27       @subscribers ||= ActsAsIcontact::Subscription.contacts(:listId =&gt; id)</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line28"></a>28     end</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line29"></a>29     </pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line30"></a>30     # Creates a new subscription for the specified list by the contact</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line31"></a>31     def subscribe(contact)</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line32"></a>32       c = ActsAsIcontact::Contact.find(contact)</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line33"></a>33       s = ActsAsIcontact::Subscription.new(:contactId =&gt; c.id, :listId =&gt; id)</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line34"></a>34       s.save</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line35"></a>35     end</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="inferred">
+          <td colspan="5"><pre><a name="line36"></a>36     </pre></td>
+        </tr>
+      
+        
+        
+        <tr class="inferred">
+          <td colspan="5"><pre><a name="line37"></a>37   end</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line38"></a>38 end</pre></td>
+        </tr>
+      
+      </tbody>
+    </table>
+    <hr/>
+    <p>Generated on 2009-08-11 00:53:51 -0400 with <a href="http://github.com/relevance/rcov">rcov 0.8.5.2</a></p>
+  </body>
+</html>

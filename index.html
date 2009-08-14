@@ -1,80 +1,79 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-
-	<title>SFEley/acts_as_icontact @ GitHub</title>
-	
-	<style type="text/css">
-		body {
-  		margin-top: 1.0em;
-  		background-color: #1d3adc;
-		  font-family: "Helvetica,Arial,FreeSans"; 
-  		color: #ffffff;
-    }
-    #container {
-      margin: 0 auto;
-      width: 700px;
-    }
-		h1 { font-size: 3.8em; color: #e2c523; margin-bottom: 3px; }
-		h1 .small { font-size: 0.4em; }
-		h1 a { text-decoration: none }
-		h2 { font-size: 1.5em; color: #e2c523; }
-    h3 { text-align: center; color: #e2c523; }
-    a { color: #e2c523; }
-    .description { font-size: 1.2em; margin-bottom: 30px; margin-top: 30px; font-style: italic;}
-    .download { float: right; }
-		pre { background: #000; color: #fff; padding: 15px;}
-    hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
-    .footer { text-align:center; padding-top:30px; font-style: italic; }
-	</style>
-	
-</head>
+	<title>ActsAsIcontact</title>
+	<link rel="stylesheet" href="style.css" type="text/css" />
+  <link rel="canonical" href="http://safebrowsingtips.org" />
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" /><style type="text/css">
+<!--
+body {
+	background-color: #00669c;
+}
+body,td,th {
+	color: #000;
+}
+-->
+</style></head>
 
 <body>
-  <a href="http://github.com/SFEley/acts_as_icontact"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" /></a>
-  
-  <div id="container">
 
-    <div class="download">
-      <a href="http://github.com/SFEley/acts_as_icontact/zipball/master">
-        <img border="0" width="90" src="http://github.com/images/modules/download/zip.png"></a>
-      <a href="http://github.com/SFEley/acts_as_icontact/tarball/master">
-        <img border="0" width="90" src="http://github.com/images/modules/download/tar.png"></a>
-    </div>
-      
-    <h1><a href="http://github.com/SFEley/acts_as_icontact">acts_as_icontact</a> 
-      <span class="small">by <a href="http://github.com/SFEley">SFEley</a></span></h1>
-
-    <div class="description">
-      Automatic bridge between iContact e-mail marketing service and Rails ActiveRecord
-    </div>
-
-    <h2>Authors</h2>
-<p>Stephen Eley (sfeley@gmail.com)<br/><br/>      </p>
-<h2>Contact</h2>
-<p>Stephen Eley (sfeley@gmail.com)<br/>      </p>
-
-
-    <h2>Download</h2>
-    <p>
-      You can download this project in either
-      <a href="http://github.com/SFEley/acts_as_icontact/zipball/master">zip</a> or
-      <a href="http://github.com/SFEley/acts_as_icontact/tarball/master">tar</a> formats.
-    </p>
-    <p>You can also clone the project with <a href="http://git-scm.com">Git</a>
-      by running:
-      <pre>$ git clone git://github.com/SFEley/acts_as_icontact</pre>
-    </p>
-      
-    <div class="footer">
-      get the source code on GitHub : <a href="http://github.com/SFEley/acts_as_icontact">SFEley/acts_as_icontact</a>
-    </div>
-    
-  </div>
-
-  
+	<div id="wrapper">
+	
+		<div id="header">
+			
+			<div id="navigation">
+				<ul>
+					<li><a href="#what">what</a></li>
+					<li><a href="#how">how</a></li>
+					<li><a href="#who">who</a></li>
+					<li></li>
+				</ul>
+			</div>
+		
+			<h1 xmlns:dc="http://purl.org/dc/elements/1.1/" href="http://purl.org/dc/dcmitype/Text" property="dc:title" rel="dc:type">ActsAsIcontact</h1>
+		
+		</div>
+		
+		<div id="content">
+		<p><a name="what" id="what"></a>ActsAsIcontact is an open source library that makes it easy to connect <a href="http://ruby-lang.org">Ruby</a> and <a href="http://rubyonrails.org">Ruby on Rails</a> applications with the popular <a href="http://icontact.com">iContact</a> email marketing service. Building on the power of iContact's API, ActsAsIcontact offers three key features:</p>
+		<ol>
+		  <li>A simple set of  classes that offer transparent, &quot;ActiveRecord&quot;-like access to all of your iContact data from your own applications.</li>
+		  <li>A powerful command line tool to query and update iContact in real time,<em> without </em>writing programs.</li>
+		  <li>An adapter for Ruby on Rails that connects your own application's models with iContact contacts &mdash; updating iContact in the background when your data changes, and subscribing new people to any number of mailing lists automatically.</li>
+		  </ol>
+		<p>For more information, see the project's <a href="http://rdoc.info/projects/SFEley/acts_as_icontact">README file</a>.</p>
+<h2><a name="how" id="how"></a>How to Use It</h2>
+		<p>The code requires Ruby 1.9.1 or higher, and (if you're using the built-in Ruby on Rails integration) Rails 2.1 or higher. Like most reusable Ruby code, ActsAsIcontact is packaged as a<a href="http://www.rubygems.org"> Ruby gem</a> that can be installed with a single command (&quot;<tt>gem install acts_as_icontact</tt>&quot;). </p>
+		<ul>
+		  <li>The installable version of the gem can be found at Rubyforge: <a href="http://rubyforge.org/projects/actsasicontact/"><br />
+		    http://rubyforge.org/projects/actsasicontact</a></li>
+		  <li>The source code and complete version  history can be found, copied, and modified at Github:<br />
+		    <a href="http://github.com/SFEley/acts_as_icontact">http://github.com/SFEley/acts_as_icontact </a></li>
+		  <li>The documentation and class reference can be found at:<br />
+		    <a href="http://rdoc.info/projects/SFEley/acts_as_icontact">http://rdoc.info/projects/SFEley/acts_as_icontact</a></li>
+		  </ul>
+		<p>The README file located at both the <a href="http://github.com/SFEley/acts_as_icontact">Github</a> and <a href="http://rdoc.info/projects/SFEley/acts_as_icontact">RDoc</a> sites is the primary reference for installing, configuring, and using the library.</p>
+		<p>ActsAsIcontact is licensed under an <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache 2.0</a> license, giving you free rights to use, modify, and redistribute the work as needed and disclaiming any warranty.</p>
+		<h2><a name="who" id="who"></a>About the Author</h2>
+		<p><a href="http://aarweb.org"><img src="images/AAR_Logo.png" alt="AAR" width="154" height="100" align="right" longdesc="http://aarweb.org" /></a>I'm Stephen Eley. I'm the Director of Technology for the<a href="http://aarweb.org"> American Academy of Religion</a>, a non-profit academic society for scholars who teach or research topics related to all forms of religion. We've been using <a href="http://icontact.com">iContact</a> for some time to manage our member communication, and as we build out the next generation of our Web services we saw a need to find better ways to keep our member information and our iContact lists in sync. Thus, the ActsAsIcontact gem was developed first with the Rails synchronization in mind; the complete set of classes were added after I saw how easy it was to use iContact's flexible REST-based API to enable consistent updates of all services.</p>
+		<p>Despite the professional association, the code was developed entirely on my personal time and I hold all copyrights. The AAR has no ownership or liability for this library and offers no support. Please <a href="mailto:sfeley@gmail.com">contact me</a> if you have questions or need help.</p>
+<p><img src="images/pod-icon64.jpg" alt="Escape Pod" width="64" height="64" align="right" longdesc="http://escapepod.org" />If you enjoy science fiction, you may also be interested in <a href="http://escapepod.org">my podcast</a>. We're the market leader in audio science fiction, offering free short stories from major authors to more than 20,000 listeners every week. </p>
+</div>
+		<div id="footer"><br />
+		 &copy; 2009 <a xmlns:cc="http://creativecommons.org/ns#" href="http://safebrowsingtips.org" property="cc:attributionName" rel="cc:attributionURL">Stephen Eley</a> | <a href="#">XHTML</a> | Design by <a href="http://www.ginger-ninja.net/">Ginger Ninja!</a> | <a class="noborder" rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/us/"><img src="http://i.creativecommons.org/l/by-sa/3.0/us/80x15.png" alt="Creative Commons License" style="border-width:0" /></a>
+		</div>
+	
+	</div>
+  <script type="text/javascript">
+  var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+  document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+  </script>
+  <script type="text/javascript">
+  try {
+  var pageTracker = _gat._getTracker("UA-10234505-1");
+  pageTracker._trackPageview();
+  } catch(err) {}</script>
 </body>
 </html>

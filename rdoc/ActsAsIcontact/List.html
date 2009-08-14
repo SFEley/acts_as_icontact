@@ -1,0 +1,445 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+
+	<title>Class: ActsAsIcontact::List</title>
+
+	<link rel="stylesheet" href="../rdoc.css" type="text/css" media="screen" />
+
+	<script src="../js/jquery.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="../js/thickbox-compressed.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="../js/quicksearch.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="../js/darkfish.js" type="text/javascript"
+		charset="utf-8"></script>
+
+</head>
+<body class="class">
+
+	<div id="metadata">
+		<div id="file-metadata">
+			<div id="file-list-section" class="section">
+				<h3 class="section-header">In Files</h3>
+				<div class="section-body">
+					<ul>
+					
+						<li><a href="../lib/acts_as_icontact/resources/list_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+							class="thickbox" title="lib/acts_as_icontact/resources/list.rb">lib/acts_as_icontact/resources/list.rb</a></li>
+					
+					</ul>
+				</div>
+			</div>
+
+			
+		</div>
+
+		<div id="class-metadata">
+
+			<!-- Parent Class -->
+			
+			<div id="parent-class-section" class="section">
+				<h3 class="section-header">Parent</h3>
+				
+				<p class="link">Resource</p>
+				
+			</div>
+			
+
+			<!-- Namespace Contents -->
+			
+
+			<!-- Method Quickref -->
+			
+			<div id="method-list-section" class="section">
+				<h3 class="section-header">Methods</h3>
+				<ul class="link-list">
+					
+					<li><a href="#M000121">::boolean_fields</a></li>
+					
+					<li><a href="#M000119">::find_by_string</a></li>
+					
+					<li><a href="#M000120">::required_on_create</a></li>
+					
+					<li><a href="#M000124">#subscribe</a></li>
+					
+					<li><a href="#M000123">#subscribers</a></li>
+					
+					<li><a href="#M000122">#welcomeMessage</a></li>
+					
+				</ul>
+			</div>
+			
+
+			<!-- Included Modules -->
+			
+		</div>
+
+		<div id="project-metadata">
+			
+			
+			<div id="fileindex-section" class="section project-section">
+				<h3 class="section-header">Files</h3>
+				<ul>
+				
+					<li class="file"><a href="../README_markdown.html">README.markdown</a></li>
+				
+				</ul>
+			</div>
+			
+
+			<div id="classindex-section" class="section project-section">
+				<h3 class="section-header">Class Index
+					<span class="search-toggle"><img src="../images/find.png"
+						height="16" width="16" alt="[+]"
+						title="show/hide quicksearch" /></span></h3>
+				<form action="#" method="get" accept-charset="utf-8" class="initially-hidden">
+				<fieldset>
+					<legend>Quicksearch</legend>
+					<input type="text" name="quicksearch" value=""
+						class="quicksearch-field" />
+				</fieldset>
+				</form>
+
+				<ul class="link-list">
+				
+					<li><a href="../ActsAsIcontact.html">ActsAsIcontact</a></li>
+				
+					<li><a href="../ActsAsIcontact/Account.html">ActsAsIcontact::Account</a></li>
+				
+					<li><a href="../ActsAsIcontact/Campaign.html">ActsAsIcontact::Campaign</a></li>
+				
+					<li><a href="../ActsAsIcontact/ClientFolder.html">ActsAsIcontact::ClientFolder</a></li>
+				
+					<li><a href="../ActsAsIcontact/Config.html">ActsAsIcontact::Config</a></li>
+				
+					<li><a href="../ActsAsIcontact/ConfigError.html">ActsAsIcontact::ConfigError</a></li>
+				
+					<li><a href="../ActsAsIcontact/Contact.html">ActsAsIcontact::Contact</a></li>
+				
+					<li><a href="../ActsAsIcontact/ContactHistory.html">ActsAsIcontact::ContactHistory</a></li>
+				
+					<li><a href="../ActsAsIcontact/CustomField.html">ActsAsIcontact::CustomField</a></li>
+				
+					<li><a href="../ActsAsIcontact/List.html">ActsAsIcontact::List</a></li>
+				
+					<li><a href="../ActsAsIcontact/Message.html">ActsAsIcontact::Message</a></li>
+				
+					<li><a href="../ActsAsIcontact/MessageBounces.html">ActsAsIcontact::MessageBounces</a></li>
+				
+					<li><a href="../ActsAsIcontact/MessageClicks.html">ActsAsIcontact::MessageClicks</a></li>
+				
+					<li><a href="../ActsAsIcontact/MessageOpens.html">ActsAsIcontact::MessageOpens</a></li>
+				
+					<li><a href="../ActsAsIcontact/MessageStatistics.html">ActsAsIcontact::MessageStatistics</a></li>
+				
+					<li><a href="../ActsAsIcontact/QueryError.html">ActsAsIcontact::QueryError</a></li>
+				
+					<li><a href="../ActsAsIcontact/Rails.html">ActsAsIcontact::Rails</a></li>
+				
+					<li><a href="../ActsAsIcontact/Rails/Callbacks.html">ActsAsIcontact::Rails::Callbacks</a></li>
+				
+					<li><a href="../ActsAsIcontact/Rails/ClassMethods.html">ActsAsIcontact::Rails::ClassMethods</a></li>
+				
+					<li><a href="../ActsAsIcontact/Rails/ClassMethods/Lists.html">ActsAsIcontact::Rails::ClassMethods::Lists</a></li>
+				
+					<li><a href="../ActsAsIcontact/Rails/ClassMethods/Macro.html">ActsAsIcontact::Rails::ClassMethods::Macro</a></li>
+				
+					<li><a href="../ActsAsIcontact/Rails/ClassMethods/Mappings.html">ActsAsIcontact::Rails::ClassMethods::Mappings</a></li>
+				
+					<li><a href="../ActsAsIcontact/ReadOnly.html">ActsAsIcontact::ReadOnly</a></li>
+				
+					<li><a href="../ActsAsIcontact/ReadOnlyError.html">ActsAsIcontact::ReadOnlyError</a></li>
+				
+					<li><a href="../ActsAsIcontact/Resource.html">ActsAsIcontact::Resource</a></li>
+				
+					<li><a href="../ActsAsIcontact/ResourceCollection.html">ActsAsIcontact::ResourceCollection</a></li>
+				
+					<li><a href="../ActsAsIcontact/SaveError.html">ActsAsIcontact::SaveError</a></li>
+				
+					<li><a href="../ActsAsIcontact/Segment.html">ActsAsIcontact::Segment</a></li>
+				
+					<li><a href="../ActsAsIcontact/SegmentCriteria.html">ActsAsIcontact::SegmentCriteria</a></li>
+				
+					<li><a href="../ActsAsIcontact/Subresource.html">ActsAsIcontact::Subresource</a></li>
+				
+					<li><a href="../ActsAsIcontact/Subscription.html">ActsAsIcontact::Subscription</a></li>
+				
+					<li><a href="../ActsAsIcontact/ValidationError.html">ActsAsIcontact::ValidationError</a></li>
+				
+					<li><a href="../ActiveRecord.html">ActiveRecord</a></li>
+				
+					<li><a href="../ActiveRecord/Base.html">ActiveRecord::Base</a></li>
+				
+					<li><a href="../Bond.html">Bond</a></li>
+				
+					<li><a href="../Bond/Actions.html">Bond::Actions</a></li>
+				
+				</ul>
+				<div id="no-class-search-results" style="display: none;">No matching classes.</div>
+			</div>
+
+			
+		</div>
+	</div>
+
+	<div id="documentation">
+		<h1 class="class">ActsAsIcontact::List</h1>
+
+		<div id="description">
+			
+		</div>
+
+		<!-- Constants -->
+		
+
+		<!-- Attributes -->
+		
+
+		<!-- Methods -->
+		
+		<div id="public-class-method-details" class="method-section section">
+			<h3 class="section-header">Public Class Methods</h3>
+
+		
+			<div id="boolean-fields-method" class="method-detail ">
+				<a name="M000121"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">boolean_fields</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+The following can be set with true or false: emailOwnerOnChange,
+welcomeOnManualAdd, welcomeOnSignupAdd
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="boolean-fields-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/acts_as_icontact/resources/list.rb, line 15</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">boolean_fields</span>
+      <span class="ruby-keyword kw">super</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;emailOwnerOnChange&quot;</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;welcomeOnManualAdd&quot;</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;welcomeOnSignupAdd&quot;</span>
+    <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+			</div>
+
+		
+			<div id="find-by-string-method" class="method-detail ">
+				<a name="M000119"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">find_by_string</span><span
+						class="method-args">(value)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+Searches on list name.
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="find-by-string-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/acts_as_icontact/resources/list.rb, line 5</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">find_by_string</span>(<span class="ruby-identifier">value</span>)
+      <span class="ruby-identifier">first</span>(<span class="ruby-identifier">:name</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">value</span>)
+    <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+			</div>
+
+		
+			<div id="required-on-create-method" class="method-detail ">
+				<a name="M000120"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">required_on_create</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+Requires name, emailOwnerOnChange, welcomeOnManualAdd, welcomeOnSignupAdd,
+and welcomeMessageId.
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="required-on-create-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/acts_as_icontact/resources/list.rb, line 10</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">required_on_create</span>
+      <span class="ruby-keyword kw">super</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;name&quot;</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;emailOwnerOnChange&quot;</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;welcomeOnManualAdd&quot;</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;welcomeOnSignupAdd&quot;</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;welcomeMessageId&quot;</span>
+    <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+			</div>
+
+		
+		</div>
+	
+		<div id="public-instance-method-details" class="method-section section">
+			<h3 class="section-header">Public Instance Methods</h3>
+
+		
+			<div id="subscribe-method" class="method-detail ">
+				<a name="M000124"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">subscribe</span><span
+						class="method-args">(contact)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+Creates a new subscription for the specified list by the contact
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="subscribe-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/acts_as_icontact/resources/list.rb, line 31</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">subscribe</span>(<span class="ruby-identifier">contact</span>)
+      <span class="ruby-identifier">c</span> = <span class="ruby-constant">ActsAsIcontact</span><span class="ruby-operator">::</span><span class="ruby-constant">Contact</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">contact</span>)
+      <span class="ruby-identifier">s</span> = <span class="ruby-constant">ActsAsIcontact</span><span class="ruby-operator">::</span><span class="ruby-constant">Subscription</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">:contactId</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">id</span>, <span class="ruby-identifier">:listId</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">id</span>)
+      <span class="ruby-identifier">s</span>.<span class="ruby-identifier">save</span>
+    <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+			</div>
+
+		
+			<div id="subscribers-method" class="method-detail ">
+				<a name="M000123"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">subscribers</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+Returns the contacts subscribed to this list (via the <a
+href="Subscription.html">Subscription</a> class).
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="subscribers-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/acts_as_icontact/resources/list.rb, line 26</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">subscribers</span>
+      <span class="ruby-ivar">@subscribers</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">ActsAsIcontact</span><span class="ruby-operator">::</span><span class="ruby-constant">Subscription</span>.<span class="ruby-identifier">contacts</span>(<span class="ruby-identifier">:listId</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">id</span>)
+    <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+			</div>
+
+		
+			<div id="welcome-essage-method" class="method-detail ">
+				<a name="M000122"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">welcomeMessage</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+The welcome message pointed to by the welcomeMessageId.
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="welcome-essage-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/acts_as_icontact/resources/list.rb, line 20</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">welcomeMessage</span>
+      <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">nil</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">welcomeMessageId</span>
+      <span class="ruby-constant">ActsAsIcontact</span><span class="ruby-operator">::</span><span class="ruby-constant">Message</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">welcomeMessageId</span>)
+    <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+			</div>
+
+		
+		</div>
+	
+
+	</div>
+
+
+	<div id="rdoc-debugging-section-dump" class="debugging-section">
+	
+		<p>Disabled; run with --debug to generate this.</p>
+	
+	</div>
+
+	<div id="validator-badges">
+		<p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+		<p><small>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish
+			Rdoc Generator</a> 1.1.6</small>.</p>
+	</div>
+
+</body>
+</html>
+

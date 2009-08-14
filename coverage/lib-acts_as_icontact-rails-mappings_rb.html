@@ -1,0 +1,513 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang='en' xml:lang='en' xmlns='http://www.w3.org/1999/xhtml'>
+  <head>
+    <title>lib/acts_as_icontact/rails/mappings.rb</title>
+    <link href="screen.css" media="screen" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="rcov.js"></script>
+  </head>
+  <body>
+    <h3>lib/acts_as_icontact/rails/mappings.rb</h3>
+    <p>Generated on 2009-08-11 00:53:51 -0400 with <a href="http://github.com/relevance/rcov">rcov 0.8.5.2</a></p>
+    
+    <hr />
+      <pre>
+        <span class='marked'>Code reported as executed by Ruby looks like this...</span><span class='marked1'>and this: this line is also marked as covered.</span><span class='inferred'>Lines considered as run by rcov, but not reported by Ruby, look like this,</span><span class='inferred1'>and this: these lines were inferred by rcov (using simple heuristics).</span><span class='uncovered'>Finally, here&apos;s a line marked as not executed.</span>
+      </pre>
+    <table class='report'>
+      <thead>
+        <tr>
+          <td class='heading'>Name</td>
+          <td class='heading'>Total lines</td>
+          <td class='heading'>Lines of code</td>
+          <td class='heading'>Total coverage</td>
+          <td class='heading'>Code coverage</td>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- alternate light/dark here -->
+        <tr class='light'>
+          <td>lib/acts_as_icontact/rails/mappings.rb</td>
+          <td class='lines_total'><tt>74</tt></td>
+          <td class='lines_code'><tt>59</tt></td>
+          <td>
+            <table cellspacing='0' cellpadding='0' align='right'>
+              <tr>
+                <td><tt class='coverage_total'>71.62%</tt>&nbsp;</td>
+                <td>
+                  <table cellspacing='0' class='percent_graph' cellpadding='0' width='100'>
+                    <tr>
+                      <td class='covered' width='72'></td>
+                      <td class='uncovered' width='28'></td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+          <td>
+            <table cellspacing='0' cellpadding='0' align='right'>
+              <tr>
+                <td><tt class='coverage_code'>86.44%</tt>&nbsp;</td>
+                <td>
+                  <table cellspacing='0' class='percent_graph' cellpadding='0' width='100'>
+                    <tr>
+                      <td class='covered' width='86'/>
+                      <td class='uncovered' width='14'/>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line1"></a>1 module ActsAsIcontact</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line2"></a>2   module Rails</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line3"></a>3     module ClassMethods</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line4"></a>4       module Mappings</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line5"></a>5         </pre></td>
+        </tr>
+      
+        
+        
+        <tr class="inferred">
+          <td colspan="5"><pre><a name="line6"></a>6         ICONTACT_DEFAULT_MAPPINGS = {</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line7"></a>7           :contactId =&gt; [:icontact_id, :icontactId],</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="inferred">
+          <td colspan="5"><pre><a name="line8"></a>8           :email =&gt; [:email, :email_address, :eMail, :emailAddress],</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="inferred">
+          <td colspan="5"><pre><a name="line9"></a>9           :firstName =&gt; [:firstName, :first_name, :fname],</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="inferred">
+          <td colspan="5"><pre><a name="line10"></a>10           :lastName =&gt; [:lastName, :last_name, :lname], </pre></td>
+        </tr>
+      
+        
+        
+        <tr class="inferred">
+          <td colspan="5"><pre><a name="line11"></a>11           :street =&gt; [:street, :street1, :address, :address1],</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="inferred">
+          <td colspan="5"><pre><a name="line12"></a>12           :street2 =&gt; [:street2, :address2],</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="inferred">
+          <td colspan="5"><pre><a name="line13"></a>13           :city =&gt; [:city],</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="inferred">
+          <td colspan="5"><pre><a name="line14"></a>14           :state =&gt; [:state, :province, :state_or_province],</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="inferred">
+          <td colspan="5"><pre><a name="line15"></a>15           :postalCode =&gt; [:postalCode, :postal_code, :zipCode, :zip_code, :zip],</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="inferred">
+          <td colspan="5"><pre><a name="line16"></a>16           :phone =&gt; [:phone, :phoneNumber, :phone_number],</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="inferred">
+          <td colspan="5"><pre><a name="line17"></a>17           :fax =&gt; [:fax, :faxNumber, :fax_number],</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="inferred">
+          <td colspan="5"><pre><a name="line18"></a>18           :business =&gt; [:business, :company, :companyName, :company_name, :businessName, :business_name],</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="inferred">
+          <td colspan="5"><pre><a name="line19"></a>19           :status =&gt; [:icontact_status, :icontactStatus],</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="inferred">
+          <td colspan="5"><pre><a name="line20"></a>20           :createDate =&gt; [:icontact_created, :icontactCreated, :icontact_create_date, :icontactCreateDate],</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="inferred">
+          <td colspan="5"><pre><a name="line21"></a>21           :bounceCount =&gt; [:icontact_bounces, :icontactBounces, :icontact_bounce_count, :icontactBounceCount]</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="inferred">
+          <td colspan="5"><pre><a name="line22"></a>22         }</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line23"></a>23 </pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line24"></a>24         # A hash containing the final list of iContact-to-Rails mappings.  The mappings take into account both</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line25"></a>25         # analysis of existing field names and explicit mappings on the `acts_as_icontact` macro line.</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line26"></a>26         def icontact_mappings</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line27"></a>27           @icontact_mappings</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line28"></a>28         end</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line29"></a>29         </pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line30"></a>30         # A two-element array indicating the association used to uniquely identify this record between Rails and iContact.</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line31"></a>31         # The first element is the Rails field; the second element is the iContact field.</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line32"></a>32         # First uses whatever field maps the contactId; if none, looks for a mapping from the Rails ID.  Uses the email address</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line33"></a>33         # mapping (which is required) as a last resort.</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line34"></a>34         def icontact_identity_map</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line35"></a>35           icontact_mappings.rassoc(:contactId) or icontact_mappings.assoc(:id) or icontact_mappings.rassoc(:email)</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line36"></a>36         end</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line37"></a>37         </pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line38"></a>38         protected</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line39"></a>39         </pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line40"></a>40         # Sets up the mapping hash from iContact fields to Rails fields.</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line41"></a>41         def set_mappings(options)</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line42"></a>42           @icontact_mappings = {}</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line43"></a>43           set_default_mappings</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line44"></a>44           set_custom_field_mappings</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line45"></a>45           @icontact_mappings.merge!(options)</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line46"></a>46         end</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line47"></a>47         </pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line48"></a>48         private</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line49"></a>49         def set_default_mappings</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line50"></a>50           ICONTACT_DEFAULT_MAPPINGS.each do |iContactField, candidates|</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line51"></a>51             candidates.each do |candidate|</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line52"></a>52               if rails_field?(candidate)</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line53"></a>53                 @icontact_mappings[candidate] = iContactField</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line54"></a>54                 break</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line55"></a>55               end</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="inferred">
+          <td colspan="5"><pre><a name="line56"></a>56             end</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="inferred">
+          <td colspan="5"><pre><a name="line57"></a>57           end</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="inferred">
+          <td colspan="5"><pre><a name="line58"></a>58         end</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line59"></a>59         </pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line60"></a>60         def set_custom_field_mappings</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line61"></a>61           @icontact_custom_fields ||= CustomField.list</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line62"></a>62           @icontact_custom_fields.each do |field|</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line63"></a>63             f = field.to_sym</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line64"></a>64             @icontact_mappings[f] = f if rails_field?(f)</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line65"></a>65           end</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="inferred">
+          <td colspan="5"><pre><a name="line66"></a>66         end</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line67"></a>67         </pre></td>
+        </tr>
+      
+        
+        
+        <tr class="uncovered">
+          <td colspan="5"><pre><a name="line68"></a>68         def rails_field?(field)</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line69"></a>69           column_names.include?(field.to_s) or instance_methods.include?(field) </pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line70"></a>70         end</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="inferred">
+          <td colspan="5"><pre><a name="line71"></a>71       end</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line72"></a>72     end</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line73"></a>73   end</pre></td>
+        </tr>
+      
+        
+        
+        <tr class="marked">
+          <td colspan="5"><pre><a name="line74"></a>74 end</pre></td>
+        </tr>
+      
+      </tbody>
+    </table>
+    <hr/>
+    <p>Generated on 2009-08-11 00:53:51 -0400 with <a href="http://github.com/relevance/rcov">rcov 0.8.5.2</a></p>
+  </body>
+</html>

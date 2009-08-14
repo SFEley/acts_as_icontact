@@ -1,0 +1,695 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+
+	<title>Module: ActsAsIcontact::Config</title>
+
+	<link rel="stylesheet" href="../rdoc.css" type="text/css" media="screen" />
+
+	<script src="../js/jquery.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="../js/thickbox-compressed.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="../js/quicksearch.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="../js/darkfish.js" type="text/javascript"
+		charset="utf-8"></script>
+
+</head>
+<body class="module">
+
+	<div id="metadata">
+		<div id="file-metadata">
+			<div id="file-list-section" class="section">
+				<h3 class="section-header">In Files</h3>
+				<div class="section-body">
+					<ul>
+					
+						<li><a href="../lib/acts_as_icontact/config_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+							class="thickbox" title="lib/acts_as_icontact/config.rb">lib/acts_as_icontact/config.rb</a></li>
+					
+					</ul>
+				</div>
+			</div>
+
+			
+		</div>
+
+		<div id="class-metadata">
+
+			<!-- Parent Class -->
+			
+
+			<!-- Namespace Contents -->
+			
+
+			<!-- Method Quickref -->
+			
+			<div id="method-list-section" class="section">
+				<h3 class="section-header">Methods</h3>
+				<ul class="link-list">
+					
+					<li><a href="#M000006">::api_version</a></li>
+					
+					<li><a href="#M000005">::app_id</a></li>
+					
+					<li><a href="#M000011">::content_type</a></li>
+					
+					<li><a href="#M000012">::content_type=</a></li>
+					
+					<li><a href="#M000004">::mode</a></li>
+					
+					<li><a href="#M000003">::mode=</a></li>
+					
+					<li><a href="#M000015">::password</a></li>
+					
+					<li><a href="#M000016">::password=</a></li>
+					
+					<li><a href="#M000008">::url</a></li>
+					
+					<li><a href="#M000009">::url=</a></li>
+					
+					<li><a href="#M000013">::username</a></li>
+					
+					<li><a href="#M000014">::username=</a></li>
+					
+				</ul>
+			</div>
+			
+
+			<!-- Included Modules -->
+			
+		</div>
+
+		<div id="project-metadata">
+			
+			
+			<div id="fileindex-section" class="section project-section">
+				<h3 class="section-header">Files</h3>
+				<ul>
+				
+					<li class="file"><a href="../README_markdown.html">README.markdown</a></li>
+				
+				</ul>
+			</div>
+			
+
+			<div id="classindex-section" class="section project-section">
+				<h3 class="section-header">Class Index
+					<span class="search-toggle"><img src="../images/find.png"
+						height="16" width="16" alt="[+]"
+						title="show/hide quicksearch" /></span></h3>
+				<form action="#" method="get" accept-charset="utf-8" class="initially-hidden">
+				<fieldset>
+					<legend>Quicksearch</legend>
+					<input type="text" name="quicksearch" value=""
+						class="quicksearch-field" />
+				</fieldset>
+				</form>
+
+				<ul class="link-list">
+				
+					<li><a href="../ActsAsIcontact.html">ActsAsIcontact</a></li>
+				
+					<li><a href="../ActsAsIcontact/Account.html">ActsAsIcontact::Account</a></li>
+				
+					<li><a href="../ActsAsIcontact/Campaign.html">ActsAsIcontact::Campaign</a></li>
+				
+					<li><a href="../ActsAsIcontact/ClientFolder.html">ActsAsIcontact::ClientFolder</a></li>
+				
+					<li><a href="../ActsAsIcontact/Config.html">ActsAsIcontact::Config</a></li>
+				
+					<li><a href="../ActsAsIcontact/ConfigError.html">ActsAsIcontact::ConfigError</a></li>
+				
+					<li><a href="../ActsAsIcontact/Contact.html">ActsAsIcontact::Contact</a></li>
+				
+					<li><a href="../ActsAsIcontact/ContactHistory.html">ActsAsIcontact::ContactHistory</a></li>
+				
+					<li><a href="../ActsAsIcontact/CustomField.html">ActsAsIcontact::CustomField</a></li>
+				
+					<li><a href="../ActsAsIcontact/List.html">ActsAsIcontact::List</a></li>
+				
+					<li><a href="../ActsAsIcontact/Message.html">ActsAsIcontact::Message</a></li>
+				
+					<li><a href="../ActsAsIcontact/MessageBounces.html">ActsAsIcontact::MessageBounces</a></li>
+				
+					<li><a href="../ActsAsIcontact/MessageClicks.html">ActsAsIcontact::MessageClicks</a></li>
+				
+					<li><a href="../ActsAsIcontact/MessageOpens.html">ActsAsIcontact::MessageOpens</a></li>
+				
+					<li><a href="../ActsAsIcontact/MessageStatistics.html">ActsAsIcontact::MessageStatistics</a></li>
+				
+					<li><a href="../ActsAsIcontact/QueryError.html">ActsAsIcontact::QueryError</a></li>
+				
+					<li><a href="../ActsAsIcontact/Rails.html">ActsAsIcontact::Rails</a></li>
+				
+					<li><a href="../ActsAsIcontact/Rails/Callbacks.html">ActsAsIcontact::Rails::Callbacks</a></li>
+				
+					<li><a href="../ActsAsIcontact/Rails/ClassMethods.html">ActsAsIcontact::Rails::ClassMethods</a></li>
+				
+					<li><a href="../ActsAsIcontact/Rails/ClassMethods/Lists.html">ActsAsIcontact::Rails::ClassMethods::Lists</a></li>
+				
+					<li><a href="../ActsAsIcontact/Rails/ClassMethods/Macro.html">ActsAsIcontact::Rails::ClassMethods::Macro</a></li>
+				
+					<li><a href="../ActsAsIcontact/Rails/ClassMethods/Mappings.html">ActsAsIcontact::Rails::ClassMethods::Mappings</a></li>
+				
+					<li><a href="../ActsAsIcontact/ReadOnly.html">ActsAsIcontact::ReadOnly</a></li>
+				
+					<li><a href="../ActsAsIcontact/ReadOnlyError.html">ActsAsIcontact::ReadOnlyError</a></li>
+				
+					<li><a href="../ActsAsIcontact/Resource.html">ActsAsIcontact::Resource</a></li>
+				
+					<li><a href="../ActsAsIcontact/ResourceCollection.html">ActsAsIcontact::ResourceCollection</a></li>
+				
+					<li><a href="../ActsAsIcontact/SaveError.html">ActsAsIcontact::SaveError</a></li>
+				
+					<li><a href="../ActsAsIcontact/Segment.html">ActsAsIcontact::Segment</a></li>
+				
+					<li><a href="../ActsAsIcontact/SegmentCriteria.html">ActsAsIcontact::SegmentCriteria</a></li>
+				
+					<li><a href="../ActsAsIcontact/Subresource.html">ActsAsIcontact::Subresource</a></li>
+				
+					<li><a href="../ActsAsIcontact/Subscription.html">ActsAsIcontact::Subscription</a></li>
+				
+					<li><a href="../ActsAsIcontact/ValidationError.html">ActsAsIcontact::ValidationError</a></li>
+				
+					<li><a href="../ActiveRecord.html">ActiveRecord</a></li>
+				
+					<li><a href="../ActiveRecord/Base.html">ActiveRecord::Base</a></li>
+				
+					<li><a href="../Bond.html">Bond</a></li>
+				
+					<li><a href="../Bond/Actions.html">Bond::Actions</a></li>
+				
+				</ul>
+				<div id="no-class-search-results" style="display: none;">No matching classes.</div>
+			</div>
+
+			
+		</div>
+	</div>
+
+	<div id="documentation">
+		<h1 class="module">ActsAsIcontact::Config</h1>
+
+		<div id="description">
+			<p>
+Predefined and user-supplied parameters for interfacing with i<a
+href="Contact.html">Contact</a>. Most of these are required by the i<a
+href="Contact.html">Contact</a> API for authentication.
+</p>
+
+		</div>
+
+		<!-- Constants -->
+		
+
+		<!-- Attributes -->
+		
+
+		<!-- Methods -->
+		
+		<div id="public-class-method-details" class="method-section section">
+			<h3 class="section-header">Public Class Methods</h3>
+
+		
+			<div id="api-version-method" class="method-detail ">
+				<a name="M000006"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">api_version</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+The API version that this code is designed to interface with.
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="api-version-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/acts_as_icontact/config.rb, line 43</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">api_version</span>
+      <span class="ruby-value">2.0</span>
+    <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+			</div>
+
+		
+			<div id="app-id-method" class="method-detail ">
+				<a name="M000005"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">app_id</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+Passed in the header of every request as the <b>API-AppId:</b> parameter.
+You should not need to change this. Ever.
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="app-id-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/acts_as_icontact/config.rb, line 33</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">app_id</span>
+      <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">mode</span>
+      <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:beta</span>, <span class="ruby-identifier">:sandbox</span>
+        <span class="ruby-value str">&quot;Ml5SnuFhnoOsuZeTOuZQnLUHTbzeUyhx&quot;</span> 
+      <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:production</span>
+        <span class="ruby-value str">&quot;IYDOhgaZGUKNjih3hl1ItLln7zpAtWN2&quot;</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+			</div>
+
+		
+			<div id="content-type-method" class="method-detail ">
+				<a name="M000011"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">content_type</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+Used in the &#8220;Accept:&#8221; and &#8220;Content-Type:&#8221; headers
+of every API request. Defaults to JSON, and if you&#8217;re simply using
+the gem methods there&#8217;s no reason you should ever change this, as the
+results are auto-parsed into Ruby structures. But you can set it to
+text/xml if you want to.
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="content-type-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/acts_as_icontact/config.rb, line 69</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">content_type</span>
+      <span class="ruby-ivar">@content_type</span> <span class="ruby-operator">||=</span> <span class="ruby-value str">&quot;application/json&quot;</span>
+    <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+			</div>
+
+		
+			<div id="content-type--method" class="method-detail ">
+				<a name="M000012"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">content_type=</span><span
+						class="method-args">(val)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+If you change this to anything other than application/json or text/xml
+you&#8217;ll get an error. So sayeth i<a href="Contact.html">Contact</a>;
+so say we all.
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="content-type--source">
+<pre>
+<span class="ruby-comment cmt"># File lib/acts_as_icontact/config.rb, line 75</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">content_type=</span>(<span class="ruby-identifier">val</span>)
+      <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">val</span>
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;text/xml&quot;</span>
+        <span class="ruby-ivar">@content_type</span> = <span class="ruby-identifier">val</span>
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;application/json&quot;</span>
+        <span class="ruby-ivar">@content_type</span> = <span class="ruby-identifier">val</span>
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-identifier">raise</span> <span class="ruby-constant">ActsAsIcontact</span><span class="ruby-operator">::</span><span class="ruby-constant">ConfigError</span>, <span class="ruby-value str">&quot;Content Type must be application/json or text/xml&quot;</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+			</div>
+
+		
+			<div id="mode-method" class="method-detail ">
+				<a name="M000004"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">mode</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+Determines whether to return the sandbox or production AppId and URL. If
+not explicitly set, it will first look for an ICONTACT_MODE environment
+variable. If it doesn&#8217;t find one, it will attempt to detect a <a
+href="Rails.html">Rails</a> or Rack environment; in either case it will
+default to :production if RAILS_ENV or RACK_ENV is
+&#8216;production&#8217;, and :sandbox otherwise. If none of these
+conditions apply, it assumes :production. (Because that probably means
+someone&#8217;s doing ad hoc queries.)
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="mode-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/acts_as_icontact/config.rb, line 17</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">mode</span>
+      <span class="ruby-ivar">@mode</span> <span class="ruby-operator">||=</span> <span class="ruby-keyword kw">case</span>
+      <span class="ruby-keyword kw">when</span> <span class="ruby-constant">ENV</span>[<span class="ruby-value str">&quot;ICONTACT_MODE&quot;</span>] 
+        <span class="ruby-constant">ENV</span>[<span class="ruby-value str">&quot;ICONTACT_MODE&quot;</span>].<span class="ruby-identifier">to_sym</span>
+      <span class="ruby-keyword kw">when</span> <span class="ruby-constant">Object</span>.<span class="ruby-identifier">const_defined?</span>(<span class="ruby-identifier">:Rails</span>)
+        (<span class="ruby-constant">ENV</span>[<span class="ruby-value str">&quot;RAILS_ENV&quot;</span>] <span class="ruby-operator">==</span> <span class="ruby-value str">'production'</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">:production</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">:sandbox</span>)
+      <span class="ruby-keyword kw">when</span> <span class="ruby-constant">Object</span>.<span class="ruby-identifier">const_defined?</span>(<span class="ruby-identifier">:Rack</span>)
+        (<span class="ruby-constant">ENV</span>[<span class="ruby-value str">&quot;RACK_ENV&quot;</span>] <span class="ruby-operator">==</span> <span class="ruby-value str">'production'</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">:production</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">:sandbox</span>)
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-identifier">:production</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+			</div>
+
+		
+			<div id="mode--method" class="method-detail ">
+				<a name="M000003"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">mode=</span><span
+						class="method-args">(val)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+Sets :production or :sandbox. This changes the AppId and URL.
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="mode--source">
+<pre>
+<span class="ruby-comment cmt"># File lib/acts_as_icontact/config.rb, line 7</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">mode=</span>(<span class="ruby-identifier">val</span>)
+      <span class="ruby-ivar">@mode</span> = <span class="ruby-identifier">val</span>
+    <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+			</div>
+
+		
+			<div id="password-method" class="method-detail ">
+				<a name="M000015"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">password</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+Required for every API request. If you&#8217;re using these methods in a <a
+href="Rails.html">Rails</a> app, the recommended way to set the password is
+in a <a href="Rails.html">Rails</a> initializer file. You can also set the
+ICONTACT_PASSWORD environment variable.
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="password-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/acts_as_icontact/config.rb, line 100</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">password</span>
+      <span class="ruby-ivar">@password</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">ENV</span>[<span class="ruby-value str">'ICONTACT_PASSWORD'</span>]
+    <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+			</div>
+
+		
+			<div id="password--method" class="method-detail ">
+				<a name="M000016"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">password=</span><span
+						class="method-args">(val)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p class="missing-docs">(Not documented)</p>
+					
+
+					
+					<div class="method-source-code"
+						id="password--source">
+<pre>
+<span class="ruby-comment cmt"># File lib/acts_as_icontact/config.rb, line 104</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">password=</span>(<span class="ruby-identifier">val</span>)
+      <span class="ruby-ivar">@password</span> = <span class="ruby-identifier">val</span>
+    <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+			</div>
+
+		
+			<div id="url-method" class="method-detail ">
+				<a name="M000008"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">url</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+Prefixed to the beginning of every API request. You can override this if
+you have some special need (e.g. working against a testing server, or if
+i<a href="Contact.html">Contact</a> changes their URL and you have to fix
+it before the gem gets updated), but for the most part you can leave it
+alone.
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="url-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/acts_as_icontact/config.rb, line 50</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">url</span>
+      <span class="ruby-ivar">@url</span> <span class="ruby-operator">||=</span> <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">mode</span>
+      <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:production</span>
+        <span class="ruby-value str">&quot;https://app.icontact.com/icp/&quot;</span>
+      <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:sandbox</span>
+        <span class="ruby-value str">&quot;https://app.sandbox.icontact.com/icp/&quot;</span>
+      <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:beta</span>  <span class="ruby-comment cmt"># The 'beta' environment still works as of 7/25/2009</span>
+        <span class="ruby-value str">&quot;https://app.beta.icontact.com/icp/&quot;</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+			</div>
+
+		
+			<div id="url--method" class="method-detail ">
+				<a name="M000009"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">url=</span><span
+						class="method-args">(val)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+Overrides the base URL for the API request.
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="url--source">
+<pre>
+<span class="ruby-comment cmt"># File lib/acts_as_icontact/config.rb, line 62</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">url=</span>(<span class="ruby-identifier">val</span>)
+      <span class="ruby-ivar">@url</span> = <span class="ruby-identifier">val</span>
+    <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+			</div>
+
+		
+			<div id="username-method" class="method-detail ">
+				<a name="M000013"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">username</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+Required for every API request. If you&#8217;re using these methods in a <a
+href="Rails.html">Rails</a> app, the recommended way to set the username is
+in a <a href="Rails.html">Rails</a> initializer file. You can also set the
+ICONTACT_USERNAME environment variable.
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="username-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/acts_as_icontact/config.rb, line 89</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">username</span>
+      <span class="ruby-ivar">@username</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">ENV</span>[<span class="ruby-value str">'ICONTACT_USERNAME'</span>]
+    <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+			</div>
+
+		
+			<div id="username--method" class="method-detail ">
+				<a name="M000014"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">username=</span><span
+						class="method-args">(val)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p class="missing-docs">(Not documented)</p>
+					
+
+					
+					<div class="method-source-code"
+						id="username--source">
+<pre>
+<span class="ruby-comment cmt"># File lib/acts_as_icontact/config.rb, line 93</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">username=</span>(<span class="ruby-identifier">val</span>)
+      <span class="ruby-ivar">@username</span> = <span class="ruby-identifier">val</span>
+    <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+			</div>
+
+		
+		</div>
+	
+
+	</div>
+
+
+	<div id="rdoc-debugging-section-dump" class="debugging-section">
+	
+		<p>Disabled; run with --debug to generate this.</p>
+	
+	</div>
+
+	<div id="validator-badges">
+		<p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+		<p><small>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish
+			Rdoc Generator</a> 1.1.6</small>.</p>
+	</div>
+
+</body>
+</html>
+
