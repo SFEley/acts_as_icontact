@@ -32,7 +32,7 @@ module ActsAsIcontact
     # to change this.  Ever.
     def self.app_id
       case mode
-      when :beta, :sandbox
+      when :sandbox
         "Ml5SnuFhnoOsuZeTOuZQnLUHTbzeUyhx" 
       when :production
         "IYDOhgaZGUKNjih3hl1ItLln7zpAtWN2"
@@ -53,8 +53,6 @@ module ActsAsIcontact
         "https://app.icontact.com/icp/"
       when :sandbox
         "https://app.sandbox.icontact.com/icp/"
-      when :beta  # The 'beta' environment still works as of 7/25/2009
-        "https://app.beta.icontact.com/icp/"
       end
     end
     
