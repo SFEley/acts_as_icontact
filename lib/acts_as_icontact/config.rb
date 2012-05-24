@@ -27,16 +27,19 @@ module ActsAsIcontact
       end
     end
     
-    
     # Passed in the header of every request as the *API-AppId:* parameter. You should not need
     # to change this.  Ever.
     def self.app_id
-      case mode
+      @app_id ||= case mode
       when :sandbox
         "Ml5SnuFhnoOsuZeTOuZQnLUHTbzeUyhx" 
       when :production
         "IYDOhgaZGUKNjih3hl1ItLln7zpAtWN2"
       end
+    end
+
+    def self.app_id=(val)
+      @app_id = val
     end
     
     # The API version that this code is designed to interface with.
