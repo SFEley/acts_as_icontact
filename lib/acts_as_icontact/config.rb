@@ -27,16 +27,19 @@ module ActsAsIcontact
       end
     end
     
-    
     # Passed in the header of every request as the *API-AppId:* parameter. You should not need
     # to change this.  Ever.
     def self.app_id
-      case mode
-      when :beta, :sandbox
+      @app_id ||= case mode
+      when :sandbox
         "Ml5SnuFhnoOsuZeTOuZQnLUHTbzeUyhx" 
       when :production
         "IYDOhgaZGUKNjih3hl1ItLln7zpAtWN2"
       end
+    end
+
+    def self.app_id=(val)
+      @app_id = val
     end
     
     # The API version that this code is designed to interface with.
@@ -53,8 +56,6 @@ module ActsAsIcontact
         "https://app.icontact.com/icp/"
       when :sandbox
         "https://app.sandbox.icontact.com/icp/"
-      when :beta  # The 'beta' environment still works as of 7/25/2009
-        "https://app.beta.icontact.com/icp/"
       end
     end
     
